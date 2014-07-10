@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:m="http://www.ol4jsf.org">
+
+<ui:composition template="/templates/templateP.xhtml">
+	<ui:define name="conteudo">
+	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/item.css" />
+	<div class="container">
+	<div class="col-lg-11 centralizado">
+			<div class="row">
+				<div class="centralizado">
+					<p:messages />
+					<p:button outcome="acervo" value="#{strings.voltarParaAcervo}" icon="ui-icon-circle-triangle-w" />
+					<p:tabView id="tabView">
+						<p:tab title="#{strings.informacoesGerais}">
+							<p:panelGrid columns="2">
+								<h:outputText value="#{strings.nomePopular}:" />
+								<h:outputText value="#{itemAcervo.bem.tituloPrincipal}" />
+								<h:outputText value="#{strings.nomeCientifico}: " />
+								<h:outputText value="#{itemAcervo.bem.complemento}" />
+								<h:outputText value="#{strings.identificacaoNoMuseu}:" />
+								<h:outputText value="#{itemAcervo.bem.numeroRegistro}" />
+								<h:outputText value="#{strings.familia} " />
+								<h:outputText value="#{itemAcervo.bem.colecao}" />
+							</p:panelGrid>
+							<div id="gallery">
+								<p:dataGrid var="foto" value="#{itemAcervo.fotos}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
+									<a href="javascript: void(0)" class="imagemLink">
+										<span></span><!-- Para o Icone de Zoom -->
+										<p:graphicImage value="#{fotos.foto}" title="Thumb" styleClass="imagemAcervo" 
+											id="#{foto.id}_image" >
+											<f:param name="id" value="#{foto.id}"/>
+										</p:graphicImage>
+									</a>
+								</p:dataGrid>
+							</div>
+						</p:tab>
+		
+						<p:tab title="#{strings.localizaçãoNoMuseu}">
+							<h:form>
+								<m:map width="950px" height="500px" jsVariable="map" >
+									<m:osmLayer name="Open Street Maps" />
+									<m:icon id="icon1"
+										url="http://www.openlayers.org/dev/img/marker.png" sizeH="25"
+										sizeW="21" />
+									<m:markersLayer name="Marcas" icon="icon1">
+										<m:marker lon="#{itemAcervo.bem.longitude}"
+											lat="#{itemAcervo.bem.latitude}"
+											transformationSource="EPSG:4326">
+										</m:marker>
+									</m:markersLayer>
+									<m:script>
+			                            var lonLat = new OpenLayers.LonLat(-47.89460,-22.00710).transform(
+				            					new OpenLayers.Projection("EPSG:4326"), 
+				            					new OpenLayers.Projection("EPSG:900913")
+				            					);
+				                        	
+				                            map.setCenter(lonLat, 18);
+				                           
+									</m:script>
+								</m:map>
+							</h:form>
+						</p:tab>
+		
+						<p:tab title="#{strings.historico}">
+		
+						</p:tab>				
+		
+						<p:tab title="#{strings.depoimentosECuriosidades}">
+						
+						</p:tab>
+						
+					</p:tabView>
+				</div>
+			</div>
+		</div>
+		</div>
+		<script>
+			var imagens = document.getElementsByClassName('imagemAcervo');
+			var links = document.getElementsByClassName('imagemLink');
+			
+			for(var i = 0;i &lt; imagens.length;i++){
+				links[i].href = imagens[i].src;
+			}
+			$('#gallery').photobox('a');			
+		</script>
+	</ui:define>
+</ui:composition>
+
+</html>

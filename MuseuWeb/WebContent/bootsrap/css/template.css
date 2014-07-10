@@ -1,0 +1,53 @@
+.img_logo {
+	width: 284px;
+	height: auto;
+}
+.ui-widget-content{
+	background-color: transparent !important;
+	border:0px solid transparent !important; 
+}
+
+.imgSlider{
+	height: 298px;
+	width: 498px;
+	border: 2px solid #ccecfd;
+}
+
+.acervo{
+	padding: 0px 0px 0px 0px;
+}
+
+.imagemAcervo{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+.largura100{
+	width:100%;
+}
+
+.ui-panelgrid {
+	font-size: 12px !important;
+}
+
+.ui-datagrid {
+	font-size: 10px;
+}
+
+.ui-messages {
+	font-size: 12px;
+}
+
+.ui-datagrid-column {
+	width: 200px;
+}
+
+.panel-catalogo {
+	height: 190px;
+}
+
+.botoes-catalogo {
+	display: block;
+	text-align: center;
+}

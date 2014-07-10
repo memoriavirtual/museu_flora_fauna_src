@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="acervo::#pages#acervo#acervo.xhtml"
+    NAME="output" PATH="/pages/acervo/acervo.xhtml"
+    TARGET="rules:#pages#acervo#acervo.xhtml" TITLE="acervo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="fauna::#pages#acervo#acervo_fauna.xhtml"
+    NAME="output1" PATH="/pages/acervo/acervo_fauna.xhtml"
+    TARGET="rules:#pages#acervo#acervo_fauna.xhtml" TITLE="fauna" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="flora::#pages#acervo#acervo_flora.xhtml"
+    NAME="output2" PATH="/pages/acervo/acervo_flora.xhtml"
+    TARGET="rules:#pages#acervo#acervo_flora.xhtml" TITLE="flora" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="item::#pages#acervo#item_do_acervo.xhtml"
+    NAME="output3" PATH="/pages/acervo/item_do_acervo.xhtml"
+    TARGET="rules:#pages#acervo#item_do_acervo.xhtml" TITLE="item" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="pagina::#pages#pagina.xhtml" NAME="output4"
+    PATH="/pages/pagina.xhtml" TARGET="rules:#pages#pagina.xhtml"
+    TITLE="pagina" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="events::#pages#events.xhtml" NAME="output5"
+    PATH="/pages/events.xhtml" TARGET="rules:#pages#events.xhtml"
+    TITLE="events" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="news::#pages#news.xhtml" NAME="output6"
+    PATH="/pages/news.xhtml" TARGET="rules:#pages#news.xhtml"
+    TITLE="news" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="index::#pages#index.xhtml" NAME="output7"
+    PATH="/pages/index.xhtml" TARGET="rules:#pages#index.xhtml"
+    TITLE="index" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="event::#pages#event.xhtml" NAME="output8"
+    PATH="/pages/event.xhtml" TARGET="rules:#pages#event.xhtml"
+    TITLE="event" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="new::#pages#new.xhtml" NAME="output9"
+    PATH="/pages/new.xhtml" TARGET="rules:#pages#new.xhtml" TITLE="new" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ajudeOMuseu::#pages#ajudeOMuseu.xhtml"
+    NAME="output10" PATH="/pages/ajudeOMuseu.xhtml"
+    TARGET="rules:#pages#ajudeOMuseu.xhtml" TITLE="ajudeOMuseu" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#acervo#acervo.xhtml"
+  PATH="/pages/acervo/acervo.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#acervo#acervo_fauna.xhtml"
+  PATH="/pages/acervo/acervo_fauna.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#acervo#acervo_flora.xhtml"
+  PATH="/pages/acervo/acervo_flora.xhtml" SHAPE="272,321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#acervo#item_do_acervo.xhtml"
+  PATH="/pages/acervo/item_do_acervo.xhtml" SHAPE="288,465,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#pagina.xhtml"
+  PATH="/pages/pagina.xhtml" SHAPE="304,497,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#events.xhtml"
+  PATH="/pages/events.xhtml" SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#news.xhtml" PATH="/pages/news.xhtml"
+  SHAPE="48,360,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#pages#index.xhtml" PATH="/pages/index.xhtml"
+  SHAPE="304,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#event.xhtml" PATH="/pages/event.xhtml"
+  SHAPE="304,625,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#new.xhtml" PATH="/pages/new.xhtml"
+  SHAPE="304,657,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#ajudeOMuseu.xhtml"
+  PATH="/pages/ajudeOMuseu.xhtml" SHAPE="304,689,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

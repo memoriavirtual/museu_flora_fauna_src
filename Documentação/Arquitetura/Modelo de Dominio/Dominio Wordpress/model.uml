@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_HDxSkOzoEeO-y57sgsWpDw" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_PNo8sOzoEeO-y57sgsWpDw" name="Page"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Pzv6cOzoEeO-y57sgsWpDw" name="Post">
+    <generalization xmi:type="uml:Generalization" xmi:id="_UA8ToOzoEeO-y57sgsWpDw" general="_PNo8sOzoEeO-y57sgsWpDw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_QPIO4OzoEeO-y57sgsWpDw" name="Gallery">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VEFysOzoEeO-y57sgsWpDw" name="image" type="_ROrAUOzoEeO-y57sgsWpDw" association="_VEFys-zoEeO-y57sgsWpDw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VEFysezoEeO-y57sgsWpDw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VEFysuzoEeO-y57sgsWpDw" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ROrAUOzoEeO-y57sgsWpDw" name="Image"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_VEFys-zoEeO-y57sgsWpDw" name="gallery_possui_imagens" memberEnd="_VEFytOzoEeO-y57sgsWpDw _VEFysOzoEeO-y57sgsWpDw">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_VEFytOzoEeO-y57sgsWpDw" name="gallery" type="_QPIO4OzoEeO-y57sgsWpDw" association="_VEFys-zoEeO-y57sgsWpDw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VEFytezoEeO-y57sgsWpDw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VEFytuzoEeO-y57sgsWpDw" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

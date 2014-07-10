@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_MUxdAOakEeOitaqZaa79Yg" name="model">
+  <packagedElement xmi:type="uml:Device" xmi:id="_ePjnkOakEeOitaqZaa79Yg" name="Servidor">
+    <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_mGtUkOalEeOitaqZaa79Yg" clientDependency="_AeZaAOamEeOitaqZaa79Yg" name="GlassFish 4">
+      <deployment xmi:type="uml:Deployment" xmi:id="_AeZaAOamEeOitaqZaa79Yg" name="" client="_mGtUkOalEeOitaqZaa79Yg" supplier="_og1NoOalEeOitaqZaa79Yg"/>
+    </nestedNode>
+    <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_yxaFkOalEeOitaqZaa79Yg" name="PosgresSQL 9.2"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Artifact" xmi:id="_og1NoOalEeOitaqZaa79Yg" name="Museu.ear" fileName="Artifact1.file"/>
+  <packagedElement xmi:type="uml:Artifact" xmi:id="_0XergOalEeOitaqZaa79Yg" clientDependency="_9qlOkOalEeOitaqZaa79Yg" name="Database Schema" fileName="Artifact1.file"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_9qlOkOalEeOitaqZaa79Yg" name="" client="_0XergOalEeOitaqZaa79Yg" supplier="_yxaFkOalEeOitaqZaa79Yg"/>
+  <packagedElement xmi:type="uml:Artifact" xmi:id="_ppCWYOamEeOitaqZaa79Yg" clientDependency="_yqXM8OamEeOitaqZaa79Yg" name="Museu.war ( Web )" fileName="Artifact1.file">
+    <nestedArtifact xmi:type="uml:Artifact" xmi:id="_LVRngOanEeOitaqZaa79Yg" name="Visão" fileName="Artifact1.file"/>
+    <nestedArtifact xmi:type="uml:Artifact" xmi:id="_ImPOYOanEeOitaqZaa79Yg" name="Controle" fileName="Artifact1.file"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Artifact" xmi:id="_sZC_4OamEeOitaqZaa79Yg" clientDependency="_0JkV4OamEeOitaqZaa79Yg" name="Museu.ejb ( Ejb )" fileName="Artifact1.file">
+    <nestedArtifact xmi:type="uml:Artifact" xmi:id="_RY9oQOanEeOitaqZaa79Yg" clientDependency="_emh1wOanEeOitaqZaa79Yg _oP0rQOanEeOitaqZaa79Yg _o1-FQOanEeOitaqZaa79Yg" name="Modelo" fileName="Artifact1.file"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_yqXM8OamEeOitaqZaa79Yg" name="" client="_ppCWYOamEeOitaqZaa79Yg" supplier="_og1NoOalEeOitaqZaa79Yg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_0JkV4OamEeOitaqZaa79Yg" name="" client="_sZC_4OamEeOitaqZaa79Yg" supplier="_og1NoOalEeOitaqZaa79Yg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_emh1wOanEeOitaqZaa79Yg" name="" client="_RY9oQOanEeOitaqZaa79Yg" supplier="_0XergOalEeOitaqZaa79Yg"/>
+  <packagedElement xmi:type="uml:Device" xmi:id="_lNC2wOanEeOitaqZaa79Yg" name="Servidor Memória Virtual"/>
+  <packagedElement xmi:type="uml:Device" xmi:id="_mpDhwOanEeOitaqZaa79Yg" name="Servidor Wordpress"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_oP0rQOanEeOitaqZaa79Yg" name="" client="_RY9oQOanEeOitaqZaa79Yg" supplier="_lNC2wOanEeOitaqZaa79Yg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_o1-FQOanEeOitaqZaa79Yg" name="" client="_RY9oQOanEeOitaqZaa79Yg" supplier="_mpDhwOanEeOitaqZaa79Yg"/>
+  <packagedElement xmi:type="uml:Device" xmi:id="_ya1GsOanEeOitaqZaa79Yg" name="Computador Pessoal">
+    <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_Vy3LQOaoEeOitaqZaa79Yg" clientDependency="_AOd1sOaoEeOitaqZaa79Yg" name="Navegador Web"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_AOd1sOaoEeOitaqZaa79Yg" name="1                          Acessa                  0..*" client="_Vy3LQOaoEeOitaqZaa79Yg" supplier="_mGtUkOalEeOitaqZaa79Yg"/>
+</uml:Model>

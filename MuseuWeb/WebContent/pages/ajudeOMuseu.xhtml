@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="conteudo">
+		<div class="container">
+			<div class="col-12 col-sm-12 com-xs-12 col-md-12 com-lg-12">
+				<div class="col-7 col-sm-7 com-xs-7 col-md-7 com-lg-7 centralizado">
+	
+					<h:outputText value="#{ajude.page.title}" escape="false" styleClass="h1" />
+					<h:outputText value="#{ajude.page.content}" escape="false" />
+					<!-- 
+					<p:panelGrid columns="2">
+						<p:outputLabel for="titulo" value="Título da Mensagem: *" />
+						<p:inputText id="titulo" value="#{ajude.assunto}" required="true"
+							label="Título da Mensagem">
+							<f:validateLength minimum="2" maximum="25" />
+						</p:inputText>
+					</p:panelGrid>
+	
+					<p:fileUpload fileUploadListener="#{ajude.handleFileUpload}"
+						mode="advanced" dragDropSupport="false" update="anexos"
+						sizeLimit="1000000" fileLimit="10"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" StyleClass="menuBar"
+						label="Anexar Arquivo" cancelLabel="Cancelar" uploadLabel="Enviar" />
+	
+					<p:panelGrid columns="2">
+						<h:outputText value="Arquivos Anexados a Mensagem:"
+							style="font-size:12px" />
+						<p:dataTable var="arquivo" value="#{ajude.anexos}" id="anexos"
+							style="font-size:12px" emptyMessage="Sem Arquivos Anexados.">
+							<p:column>
+								<h:outputText value="#{arquivo}" />
+							</p:column>
+						</p:dataTable>
+					</p:panelGrid>
+					 -->
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

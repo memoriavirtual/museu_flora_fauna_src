@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title><ui:insert name="title">#{strings.tituloAdmLogin}</ui:insert></title>
+</head>
+
+<body>
+
+	<div id="header">
+		<h:outputText value="Primeiro Acesso a Administração" />
+	</div>
+		<div id="content">
+			<h:form>
+					<h:outputText value="#{strings.recomendacao1}" />
+					<div style="both:clear;"/>
+					<h:outputText value="#{strings.recomendacao2}" />
+			        <h:messages />
+			        <h:panelGrid columns="2">
+			        	<h:outputText value="#{strings.login}" />
+		                <h:inputText value="#{primeiroAcesso.usuario.email}" />
+		                <h:outputText value="#{strings.nome}" />
+		                <h:inputText value="#{primeiroAcesso.usuario.nome}" />
+		                <h:outputText value="#{strings.senha}" />
+		                <h:inputSecret value="#{primeiroAcesso.usuario.senha}"  />
+		                <h:outputText value="#{strings.redigiteASenha}" />
+		                <h:inputSecret value="#{primeiroAcesso.senhaRedigitada}"  />
+			        </h:panelGrid>
+			        <h:commandButton value="#{strings.realizarCadastro}" action="#{primeiroAcesso.realizarCadastro}" />
+			</h:form>
+		</div>
+	<div id="footer">
+	</div>
+
+</body>
+
+</html>

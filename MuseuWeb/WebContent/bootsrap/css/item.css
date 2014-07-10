@@ -1,0 +1,47 @@
+.ui-widget-content {
+	background-color: white !important;
+	border: 1px solid #D5D5D5 !important;
+}
+
+#mapa{
+	
+}
+
+.tableItem td {
+	width: 425px;
+}
+
+table td {
+	border: 0px solid black;
+	vertical-align: top;
+}
+
+table {
+	border-spacing: 2px;
+	border-color: #D5D5D5;
+}
+
+.imagemAcervo {
+	max-width: 234px;
+	height: auto;
+}
+
+#gallery a {
+	position: relative;
+	float: left;
+}
+
+#gallery span {
+	display: none;
+	background-image:url('/Images/zoom.png');
+	background-repeat: no-repeat;
+	width: 31px;
+	height: 31px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+#gallery a:hover span{
+	display: block;
+}

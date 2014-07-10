@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_Bkg0kOzoEeO-y57sgsWpDw" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_Z2E7AOzoEeO-y57sgsWpDw" name="BemPatrimonial">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_d305MOzoEeO-y57sgsWpDw" name="multimidia" type="_aw9O4OzoEeO-y57sgsWpDw" association="_d305M-zoEeO-y57sgsWpDw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_d305MezoEeO-y57sgsWpDw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_d305MuzoEeO-y57sgsWpDw" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_wOq80P_wEeOKtNOReNUFUA" name="id" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_z4lCwP_wEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_z4lp0P_wEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_z4mQ4P_wEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_xbcR8P_wEeOKtNOReNUFUA" name="tituloPrincipal" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yzlwoP_wEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yzlwof_wEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_yzm-wP_wEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_0sek4P_wEeOKtNOReNUFUA" name="localizacao" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1xd3AP_wEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1xeeEP_wEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1xeeEf_wEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_e9FDwP_xEeOKtNOReNUFUA" name="titulo" type="_MlOisP_xEeOKtNOReNUFUA" association="_e9FDw__xEeOKtNOReNUFUA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e9FDwf_xEeOKtNOReNUFUA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e9FDwv_xEeOKtNOReNUFUA" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_v8Rv0P_xEeOKtNOReNUFUA" name="inumeras_outras_informacoes" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xWE0UP_xEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xWFbYP_xEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_xWGpgP_xEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_aw9O4OzoEeO-y57sgsWpDw" name="Multimidia">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_AmRn8P_yEeOKtNOReNUFUA" name="id" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BAuvUP_yEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BAv9cP_yEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_BAxLkP_yEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_BPKM4P_yEeOKtNOReNUFUA" name="tipo" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B02T4P_yEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B03iAP_yEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_B04wIP_yEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Cx-DcP_yEeOKtNOReNUFUA" name="bytes" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DKdb8P_yEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DKeqEP_yEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_DKfRIP_yEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_d305M-zoEeO-y57sgsWpDw" name="bemPatrimonial_possui_itens_multimidia" memberEnd="_d305NOzoEeO-y57sgsWpDw _d305MOzoEeO-y57sgsWpDw">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_d305NOzoEeO-y57sgsWpDw" name="bemPatrimonial" type="_Z2E7AOzoEeO-y57sgsWpDw" association="_d305M-zoEeO-y57sgsWpDw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_d305NezoEeO-y57sgsWpDw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_d305NuzoEeO-y57sgsWpDw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_JKhWYP_xEeOKtNOReNUFUA" name="Instituicao">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ayTFYP_xEeOKtNOReNUFUA" name="bemPatrimonial" type="_Z2E7AOzoEeO-y57sgsWpDw" association="_ayTscP_xEeOKtNOReNUFUA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ayTFYf_xEeOKtNOReNUFUA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ayTFYv_xEeOKtNOReNUFUA" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_tMtLMP_xEeOKtNOReNUFUA" name="id" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tv4JsP_xEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tv5X0P_xEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_tv6l8P_xEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ub8lgP_xEeOKtNOReNUFUA" name="nome" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vDZAAP_xEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vDaOIP_xEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_vDbcQP_xEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_47TgUP_xEeOKtNOReNUFUA" name="inumeras_outras_informacoes" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6IV7MP_xEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6IWiQP_xEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_6IXwYP_xEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_MlOisP_xEeOKtNOReNUFUA" name="Titulo">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_6mR0YP_xEeOKtNOReNUFUA" name="id" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7QP-cP_xEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7QQlgP_xEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_7QRzoP_xEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_8B-9YP_xEeOKtNOReNUFUA" name="tipo" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__IrokP_xEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__Is2sP_xEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="__ItdwP_xEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_9WNlYP_xEeOKtNOReNUFUA" name="valor" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-j0oAP_xEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-j1PEP_xEeOKtNOReNUFUA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_-j2dMP_xEeOKtNOReNUFUA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ayTscP_xEeOKtNOReNUFUA" name="instituicao_possui_bens_patrimoniais" memberEnd="_ayTscf_xEeOKtNOReNUFUA _ayTFYP_xEeOKtNOReNUFUA">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_ayTscf_xEeOKtNOReNUFUA" name="instituicao" type="_JKhWYP_xEeOKtNOReNUFUA" association="_ayTscP_xEeOKtNOReNUFUA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ayTscv_xEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ayTsc__xEeOKtNOReNUFUA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_e9FDw__xEeOKtNOReNUFUA" name="bem_patrimonial_possui_titulos" memberEnd="_e9FDxP_xEeOKtNOReNUFUA _e9FDwP_xEeOKtNOReNUFUA">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_e9FDxP_xEeOKtNOReNUFUA" name="bemPatrimonial" type="_Z2E7AOzoEeO-y57sgsWpDw" association="_e9FDw__xEeOKtNOReNUFUA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e9FDxf_xEeOKtNOReNUFUA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e9FDxv_xEeOKtNOReNUFUA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

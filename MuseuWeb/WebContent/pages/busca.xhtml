@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="conteudo">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-sm-12 com-xs-12 col-md-12 com-lg-12">
+					<div class="col-2 col-sm-2 com-xs-2 col-md-2 com-lg-2">
+						<h:form>
+							<p:commandButton action="#{busca.backPage}" value="#{strings.paginaAnterior}" icon="ui-icon-arrowthick-1-w"
+								disabled="#{!(busca.backButton)}" ajax="false" />
+						</h:form>
+					</div>
+					<div class="col-7 col-sm-7 com-xs-7 col-md-7 com-lg-7">
+						<h:outputText value="#{strings.resultadosDaBusca}"
+							styleClass="h1 centralizado centralizado-texto" />
+						
+							<div class="centralizado centralizado-texto alert alert-info">
+								<h:outputText value="#{strings.resultadosParaAcervo} "/>
+								<h:link value="Link" outcome="acervo">
+									<f:param value="#{busca.stringBusca}" name="chave"/>
+								</h:link>
+							</div>
+						<h:outputText value="#{strings.suaBuscaNaoRetornouResultados}" rendered="#{empty busca.posts}" 
+							styleClass="centralizado centralizado-texto alert alert-info"/>
+						
+						<h:dataTable value="#{busca.posts}" var="post"
+							styleClass="blog">
+							<h:column>
+								<div class="media">
+									<a class="pull-left" href=""> <img class="media-object"
+										src="#{busca.museu.getGallery(post.id).mainImage.url}"
+										alt="Foto" />
+									</a>
+									<div class="media-body">
+										<h:link value="#{post.title}" outcome="view_busca"
+											styleClass="media-heading">
+											<f:param name="idpost" value="#{post.id}" />
+											<f:param name="backPage" value="#{busca.page}" />
+											<f:param name="stringBusca" value="#{busca.stringBusca}" />
+										</h:link>
+										<div class="clear"></div>
+										<h:outputText value="#{post.resumedContent}" />
+									</div>
+								</div>
+							</h:column>
+						</h:dataTable>
+					</div>
+					<div class="col-2 col-sm-2 com-xs-2 col-md-2 com-lg-2">
+						<h:form style="float:right;">
+							<p:commandButton action="#{busca.nextPage}" value="#{strings.proximaPagina}" icon="ui-icon-arrowthick-1-e"
+								disabled="#{!(busca.nextButton)}" ajax="false" />
+						</h:form>
+					</div>
+					<div class="clear" />
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

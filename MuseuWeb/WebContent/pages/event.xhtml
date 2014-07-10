@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="conteudo">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-sm-12 com-xs-12 col-md-12 com-lg-12">
+					<div class="col-2 col-sm-2 com-xs-2 col-md-2 com-lg-2">
+						<p:button outcome="events" value="#{strings.voltarParaEventos}" icon="ui-icon-arrow-return-1-w">
+							<f:param name="idPagina" value="#{eventP.backPage}"></f:param>
+						</p:button>
+					</div>
+					<div class="col-7 col-sm-7 com-xs-7 col-md-7 com-lg-7 centralizado">
+						<h:outputText value="#{eventP.post.title}" escape="false" styleClass="h1 centralizado centralizado-texto"/>
+						<div class="clear"/>
+						<h:outputText value="Publicado: #{eventP.data}" styleClass="data"/>
+						<div class="clear"/>
+						<h:outputText value="#{eventP.post.content}" escape="false"/> 
+					</div>
+				</div>
+			</div>
+		</div>
+		</ui:define>
+	</ui:composition>
+
+</html>

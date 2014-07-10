@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:m="http://www.ol4jsf.org">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="conteudo">
+	<div class="container">
+		<div class="col-10 col-sm-12 col-xs-12 col-md-12 col-lg-10 centralizado">
+			<div class="row">
+				<div class="centralizado">
+					<h:outputText value="#{acervo.page.title}" styleClass="h2 centralizado centralizado-texto"/>
+					<h:outputText value="#{acervo.page.content}" escape="false" />
+				</div>
+				<div class="centralizado">
+					<p:messages autoUpdate="true"/>
+					<h:panelGrid columns="2">
+						<h:form>
+							<h:panelGrid columns="3">
+								<p:outputLabel for="busca"
+									value="#{strings.buscarExemplarAcervo}:" />
+								<p:inputText id="busca" value="#{acervo.stringBusca}"
+									required="true" label="Palavra Busca">
+									<f:validateLength minimum="2" />
+								</p:inputText>
+								<p:commandButton value="#{strings.realizarBusca}" action="#{acervo.novaBusca(acervo.stringBusca)}"
+									ajax="false" />
+							</h:panelGrid>
+						</h:form>
+						<h:form>
+							<h:panelGrid columns="1">
+								<p:commandButton value="#{strings.listarUltimosExemplares}"
+									action="#{acervo.listarUltimos}" ajax="false" />
+							</h:panelGrid>
+						</h:form>
+					</h:panelGrid>
+				</div>
+		
+				<script type="text/javascript">
+					//<![CDATA[
+					var selectedFeature, popup;
+		
+					function onPopupClose(evt) {
+						//selectControl.unselect(selectedFeature);
+					}
+					function onFeatureSelect(feature) {
+						//selectedFeature = feature;
+						//popup = new OpenLayers.Popup.FramedCloud("geom",
+								//feature.geometry.getBounds().getCenterLonLat(), null,
+								//"<div><b>Myattr</b> = " + (feature.attributes.string)
+										//+ "</div>", null, true, onPopupClose);
+						//feature.popup = popup;
+						//map.addPopup(popup);
+						buscarPeloMapa([ {
+							name : 'param1',
+							value : (feature.attributes.string)
+							} ]);
+					}
+					function onFeatureUnselect(feature) {
+						//map.removePopup(feature.popup);
+						//feature.popup.destroy();
+						//feature.popup = null;
+					}
+					//]]>
+				</script>
+				<div id="mapa" class="centralizado" style="border: 1px solid #D5D5D5;">
+					<h:form>
+						<m:map width="100%" height="400px" jsVariable="map">
+							<m:osmLayer options="{numZoomLevels: 20}"/>			
+							
+							<m:vectorLayer name="Locais" value="#{acervo.wkts}"
+								jsVariable="formasLayer" transformationSource="EPSG:4326"
+								transformationTarget="EPSG:900913" />
+			
+							<m:selectFeatureControl layers="formasLayer"
+								options="{onSelect: onFeatureSelect, onUnselect: onFeatureUnselect}"
+								jsVariable="selectControl" />
+							<m:navigationControl/>
+							<m:layerSwitcherControl />
+							<m:script>     		
+								controls = map.getControlsByClass('OpenLayers.Control.Navigation');
+								controls[0].disableZoomWheel();
+								controls[1].disableZoomWheel();
+								
+								selectControl.activate();
+				                map.setCenter(new OpenLayers.LonLat(-47.89460,-22.00725)
+				                .transform(
+				                new OpenLayers.Projection("EPSG:4326"), 
+				                new OpenLayers.Projection("EPSG:900913")),18);
+							</m:script>
+						</m:map>
+					</h:form>
+				</div>
+				<div id="acervo" class="centralizado" style="border: 1px solid #D5D5D5;">
+					<h:form id="content-acervo">
+						<p:remoteCommand name="buscarPeloMapa"
+							actionListener="#{acervo.buscarPeloMapa}" update="content-acervo">
+						</p:remoteCommand>
+						<table style="margin:0 auto;">
+						<tr>
+							<td style="padding-top: 15px;">
+								<h:commandButton id="anterior" value="&#60;" actionListener="#{acervo.pagAnterior}" 
+									disabled="#{acervo.pagina == 1}" styleClass="btn btn-primary btn-sm" style="height: 153px; width:30px;">
+									<f:ajax render="ultimas anterior proxima"/>
+								</h:commandButton>
+							</td>
+							<td>
+								<p:dataGrid value="#{acervo.resultados}" var="item" id="ultimas"  columns="4"
+								emptyMessage="#{strings.suaBuscaNaoRetornouResultados}">
+									<h:column>
+									<div class="panel panel-primary" style="width:100%;">
+									  <div class="panel-heading">#{item.tituloPrincipal}</div>
+									  <div class="panel-body" style="height:152px;">
+										<h:link outcome="item">
+											<p:graphicImage value="#{fotos.thumb}" title="Thumb" styleClass="imagemAcervo" >
+												<f:param name="id" value="#{item.id}"/>
+											</p:graphicImage>
+											<f:param value="#{item.numeroRegistro}" name="idBem" />
+										</h:link>
+										<h:button outcome="item" value="Clique para mais detalhes" styleClass="btn btn-primary btn-xs largura100 botao_acervo">
+											<f:param value="#{item.numeroRegistro}" name="idBem" />
+										</h:button>
+									  </div>
+									</div>
+									</h:column>
+								</p:dataGrid>
+							</td>
+							<td style="padding-top: 15px;">
+								<h:commandButton id="proxima" value="&#62;" actionListener="#{acervo.proxPagina}" 
+									disabled="#{acervo.ultimaPagina}" styleClass="btn btn-primary btn-sm" style="height: 153px; width: 30px;">
+									<f:ajax render="ultimas anterior proxima"/>
+								</h:commandButton>
+							</td>
+						</tr>			
+						</table>
+					</h:form>
+				</div>
+				<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

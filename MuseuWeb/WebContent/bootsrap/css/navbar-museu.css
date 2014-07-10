@@ -1,0 +1,84 @@
+.navbar-museu .navbar-nav > .open > a, .navbar-museu .navbar-nav > .open > a:hover, .navbar-museu .navbar-nav > .open > a:focus{
+	background-color: #72b94c;
+}
+
+/* navbar */
+.navbar-museu {
+    background-image: linear-gradient(#50a820, #408619 60%, #306413);
+    background-image: -webkit-linear-gradient(#50a820, #408619 60%, #306413);
+    border-color: #306413;
+    background-color: #408619;	
+}
+/* title */
+.navbar-museu .navbar-brand {
+    color: #fafafa;
+}
+.navbar-museu .navbar-brand:hover,
+.navbar-museu .navbar-brand:focus {
+    color: #72b94c;
+}
+/* link */
+.navbar-museu .navbar-nav > li > a {
+    color: #fafafa;
+}
+.navbar-museu .navbar-nav > li > a:hover,
+.navbar-museu .navbar-nav > li > a:focus {
+    color: #fafafa;
+}
+.navbar-museu .navbar-nav > .active > a, 
+.navbar-museu .navbar-nav > .active > a:hover, 
+.navbar-museu .navbar-nav > .active > a:focus {
+    color: #306413;
+    background-color: #72b94c;
+}
+.navbar-museu .navbar-nav > .open > a, 
+.navbar-museu .navbar-nav > .open > a:hover, 
+.navbar-museu .navbar-nav > .open > a:focus {
+    color: #fafafa;
+    background-color: #72b94c;
+}
+
+.nav>li>a:hover,.nav>li>a:focus {
+	background-color: #72b94c;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+	background-color: #72b94c;
+}
+
+/* caret */
+.navbar-museu .navbar-nav > .dropdown > a .caret {
+    border-top-color: #306413;
+    border-bottom-color: #306413;
+}
+.navbar-museu .navbar-nav > .dropdown > a:hover .caret,
+.navbar-museu .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #306413;
+    border-bottom-color: #306413;
+}
+.navbar-museu .navbar-nav > .open > a .caret, 
+.navbar-museu .navbar-nav > .open > a:hover .caret, 
+.navbar-museu .navbar-nav > .open > a:focus .caret {
+    border-top-color: #306413;
+    border-bottom-color: #306413;
+}
+/* mobile version */
+.navbar-museu .navbar-toggle {
+    border-color: #306413;
+}
+.navbar-museu .navbar-toggle:hover,
+.navbar-museu .navbar-toggle:focus {
+    background-color: #306413;
+}
+.navbar-museu .navbar-toggle .icon-bar {
+    background-color: #72b94c;
+}
+@media (max-width: 900px) {
+    .navbar-museu .navbar-nav .open .dropdown-menu > li > a {
+        color: #309913;
+    }
+    .navbar-museu .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-museu .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #fafafa;
+    }
+}

@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/com/bkahlert/devel/wpws/WordPressWebService.java=UTF-8
+encoding//src/com/bkahlert/devel/wpws/WordPressWebServiceLocator.java=UTF-8
+encoding//src/com/bkahlert/devel/wpws/WordPressWebServicePortType.java=UTF-8
+encoding//src/com/bkahlert/devel/wpws/WordPressWebServiceSoapBindingStub.java=UTF-8
+encoding//src/com/bkahlert/devel/wpws/model/Gallery.java=UTF-8
+encoding//src/com/bkahlert/devel/wpws/model/Image.java=UTF-8
+encoding//src/com/bkahlert/devel/wpws/model/Page.java=UTF-8
+encoding//src/com/bkahlert/devel/wpws/model/Post.java=UTF-8

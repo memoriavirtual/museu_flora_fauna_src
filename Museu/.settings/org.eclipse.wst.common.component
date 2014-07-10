@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Museu">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="MuseuWeb.war" deploy-path="/" handle="module:/resource/MuseuWeb/MuseuWeb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MuseuEJB.jar" deploy-path="/" handle="module:/resource/MuseuEJB/MuseuEJB">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="WPWS.jar" deploy-path="/lib" handle="module:/resource/WPWS/WPWS">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-discovery-0.2.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/commons-discovery-0.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="axis.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/axis.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javax.wsdl_1.5.1.v201012040544.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/javax.wsdl_1.5.1.v201012040544.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="saaj.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/saaj.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jaxrpc.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/jaxrpc.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.apache.commons.logging_1.0.4.v201101211617.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/org.apache.commons.logging_1.0.4.v201101211617.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="primefaces-4.0.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/primefaces-4.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-io-2.4.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/commons-io-2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javax.mail-1.5.0.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/javax.mail-1.5.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang3-3.2.1.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/commons-lang3-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jsoup-1.7.2.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/jsoup-1.7.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MVWS.jar" deploy-path="/lib" handle="module:/resource/MVWS/MVWS">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

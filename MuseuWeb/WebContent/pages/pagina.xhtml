@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/templates/template.xhtml">
+			<ui:define name="conteudo">
+				<div class="container">
+					<div class="col-12 col-sm-12 com-xs-12 col-md-12 com-lg-12">
+						<div class="col-7 col-sm-7 com-xs-7 col-md-7 com-lg-7 centralizado">
+							<h:outputText value="#{dPage.page.title}" escape="false" styleClass="h1 centralizado-texto centralizado"/>
+							<div class="clear"/>
+							<h:outputText value="#{dPage.page.content}" escape="false" />
+						</div>
+					</div>
+				</div>
+			</ui:define>
+	</ui:composition>
+
+</html>

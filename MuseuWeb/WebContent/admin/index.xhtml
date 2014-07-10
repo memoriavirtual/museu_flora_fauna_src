@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateAdmin.xhtml">
+	<ui:define name="content">
+	<h:outputText value="#{strings.mensagem1}"/>
+		<p:messages autoUpdate="true"/>
+		<p:tabView>
+			<p:tab title="#{strings.configuracoesGlobais}">
+				<h:form enctype="multipart/form-data">
+					<h:panelGrid columns="3">
+							<p:outputLabel value="#{strings.urlMemoriaVirtual}:"/>
+							<p:inputText value="#{indexAdm.config.urlMemoria}" styleClass="input450" id="urlMV"/>
+							<p:tooltip for="urlMV" value="#{strings.tipForUrlMemoriaVirtual}" />
+							
+							<p:outputLabel value="#{strings.nomeInstituicaoMemoriaVirtual}:"/>
+							<p:inputText value="#{indexAdm.config.nomeInstituicaoMemoria}" styleClass="input450" id="nomeInsMV"/>
+							<p:tooltip for="nomeInsMV" value="#{strings.tipForNomeInstituicaoMemoriaVirtual}"/>
+							
+							<p:outputLabel value="#{strings.loginMemoria}:"/>
+							<p:inputText value="#{indexAdm.config.memoriaVirtualLogin}" styleClass="input450" id="mvLogin"/>
+							<p:tooltip for="mvLogin" value="#{strings.tipoForLoginMemoria}"/>
+							
+							<p:outputLabel value="#{strings.senhaMemoria}:"/>
+							<p:inputText value="#{indexAdm.config.memoriaVirtualSenha}" styleClass="input450" id="mvSenha"/>
+							<p:tooltip for="mvSenha" value="#{strings.tipForSenhaMemoria}"/>
+							
+							<p:outputLabel value="#{strings.urlWordpress}:"/>
+							<p:inputText value="#{indexAdm.config.urlWordpress}" styleClass="input450" id="urlWP"/>
+							<p:tooltip for="urlWP" value="#{strings.tipForUrlWordpress}"/>
+							
+							<p:outputLabel value="#{strings.urlFreeGeoIP}:"/>
+							<p:inputText value="#{indexAdm.config.urlFreeGeoIP}" styleClass="input450" id="urlGeoIP"/>
+							<p:tooltip for="urlGeoIP" value="#{strings.tipForUrlFreeGeoIP}"  />
+							
+							<p:outputLabel value="#{strings.urlPortal}:"/>
+							<p:inputText value="#{indexAdm.config.urlPortal}" styleClass="input450" id="urlPortal"/>
+							<p:tooltip for="urlPortal" value="#{strings.tipForUrlPortal}" />
+							
+							<p:outputLabel value="#{strings.emailPortal}:"/>
+							<p:inputText value="#{indexAdm.config.emailPortal}" styleClass="input450" id="emailPortal"/>
+							<p:tooltip for="emailPortal" value="#{strings.tipForEmailPortal}" />
+							
+							<p:outputLabel value="#{strings.logoPortal}:"/>
+							<h:inputFile value="#{indexAdm.logo}"/>
+							<p:tooltip/>
+							
+							<p:outputLabel value="#{strings.logoAtual}:"/>
+							<p:graphicImage value="#{fotos.logo}"  style="height: 136px; width:auto;" />
+							<p:tooltip/>
+								
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:commandButton value="#{strings.reiniciar}" action="#{indexAdm.reiniciar}"/>
+						<p:commandButton value="#{strings.salvar}" action="#{indexAdm.salvar}" ajax="false"/>
+					</h:panelGrid>
+				</h:form>
+			</p:tab>
+			
+			<p:tab title="#{strings.testarServicos}">
+				<h:form>
+					<h:panelGrid columns="2" id="testes">
+						<h:outputLabel value="#{strings.memoriaVirtual}: "/>
+						<h:outputText value="#{indexAdm.memoriaVirtual}"/>
+						
+						<h:outputLabel value="#{strings.wordpress}: "/>
+						<h:outputText value="#{indexAdm.wordpress}"/>
+						
+						<h:outputLabel value="#{strings.freeGeoIP}: "/>
+						<h:outputText value="#{indexAdm.freeGeoUIP}"/>
+					</h:panelGrid>
+					<p:commandButton value="#{strings.realizarTeste}" action="#{indexAdm.testeServicos}" update="testes"/>
+				</h:form>
+			</p:tab>
+			
+			<p:tab title="#{strings.socialEInstitucional}">
+				<h:form>
+					<h:panelGrid columns="2" id="T3">
+						<p:outputLabel value="Url Facebook:"/>
+						<p:inputText value="#{indexAdm.config.facebook}" styleClass="input450"/>
+						
+						<p:outputLabel value="Url Twitter:"/>
+						<p:inputText value="#{indexAdm.config.twitter}" styleClass="input450"/>
+						
+						<p:outputLabel value="Url Flickr:"/>
+						<p:inputText value="#{indexAdm.config.flickr}" styleClass="input450"/>
+						
+						<p:outputLabel value="Url Youtube:"/>
+						<p:inputText value="#{indexAdm.config.youtube}" styleClass="input450"/>
+						
+						<p:outputLabel value="#{strings.instituicaoMuseuPertence}:"/>
+						<p:inputText value="#{indexAdm.config.nomeInstituicao}" styleClass="input450"/>
+						
+						<p:outputLabel value="#{strings.urlInstituicao}:"/>
+						<p:inputText value="#{indexAdm.config.urlInstituicao}" styleClass="input450"/>
+					</h:panelGrid>
+				
+					<h:panelGrid columns="2">
+						<p:commandButton value="#{strings.reiniciar}" action="#{indexAdm.reiniciar}" update="T3"/>
+						<p:commandButton value="#{strings.salvar}" action="#{indexAdm.salvar}" update="T3" />
+					</h:panelGrid>
+				</h:form>
+			</p:tab>
+			
+			<p:tab title="#{strings.configuracoesWordpress}">
+				<h:form>
+					<h3>
+						<p:commandButton icon="ui-icon-help" onclick="PF('ajuda1t4').show();" type="button"/>
+						<h:outputText value="#{strings.paginas}"/>
+					</h3>
+					<h:panelGrid columns="6" id="T4">
+						<p:outputLabel value="#{strings.paginaPadrao}"/>
+						<p:inputText value="#{indexAdm.config.padrao}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.mais}"/>
+						<p:inputText value="#{indexAdm.config.mais}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.bemVindo}"/>
+						<p:inputText value="#{indexAdm.config.bemVindo}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.historia}"/>
+						<p:inputText value="#{indexAdm.config.historia}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.institucional}"/>
+						<p:inputText value="#{indexAdm.config.institucional}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.palestraEeventos}"/>
+						<p:inputText value="#{indexAdm.config.palestrasEEventos}" styleClass="inputNumber"/>
+						
+						<!-- 
+						<p:outputLabel value="Acadêmicos"/>
+						<p:inputText value="#{indexAdm.config.academicos}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="Extra Acadêmicos"/>
+						<p:inputText value="#{indexAdm.config.academicos}" styleClass="inputNumber"/>
+						-->
+						<p:outputLabel value="#{strings.missaoeobjetivos}"/>
+						<p:inputText value="#{indexAdm.config.missaoEObjetivos}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.fundacao}"/>
+						<p:inputText value="#{indexAdm.config.fundacao}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.horarios}"/>
+						<p:inputText value="#{indexAdm.config.horarios}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.outrosMuseus}"/>
+						<p:inputText value="#{indexAdm.config.outrosMuseus}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.linksInteressantes}"/>
+						<p:inputText value="#{indexAdm.config.links}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.ajudeOMuseu}"/>
+						<p:inputText value="#{indexAdm.config.ajudeOMuseu}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.apresentacaoAcervo}"/>
+						<p:inputText value="#{indexAdm.config.acervo}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.flora}"/>
+						<p:inputText value="#{indexAdm.config.acervoFlora}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.fauna}"/>
+						<p:inputText value="#{indexAdm.config.acervoFauna}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.omuseu}"/>
+						<p:inputText value="#{indexAdm.config.OMuseu}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.midia}"/>
+						<p:inputText value="#{indexAdm.config.midia}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.localizacao}"/>
+						<p:inputText value="#{indexAdm.config.localizacao}" styleClass="inputNumber"/>
+					</h:panelGrid>
+					<h3>
+						<p:commandButton icon="ui-icon-help" onclick="PF('ajuda2t4').show();" type="button"/>
+						<h:outputText value="#{strings.tags}"/>
+					</h3>
+					<h:panelGrid columns="2" id="T4_2">
+						<p:outputLabel value="#{strings.tagNoticias}:"/>
+						<p:inputText value="#{indexAdm.config.tagNews}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.tagEventos}:"/>
+						<p:inputText value="#{indexAdm.config.tagEvents}" styleClass="inputNumber"/>
+						
+						<p:outputLabel value="#{strings.tagVoceSabia}:"/>
+						<p:inputText value="#{indexAdm.config.tagVoceSabia}" styleClass="inputNumber"/>
+					</h:panelGrid>					
+					<h:panelGrid columns="2">
+							<p:commandButton value="#{strings.reiniciar}" action="#{indexAdm.reiniciar}" update="T4 T4_2"/>
+							<p:commandButton value="#{strings.salvar}" action="#{indexAdm.salvar}" update="T4 T4_2"/>
+					</h:panelGrid>
+					<p:dialog header="Ajuda" widgetVar="ajuda1t4" position="center">
+						<h:outputText value="#{strings.ajuda1T4}" style="width: 400px;display:block;"/>
+						<h:outputText value="#{strings.ajuda2T4}" style="width: 400px;display:block;"/>
+					</p:dialog>
+					<p:dialog header="Ajuda" widgetVar="ajuda2t4" position="center">
+						<h:outputText value="#{strings.ajuda3T4}" style="width: 400px;display:block;"/>
+						<h:outputText value="#{strings.ajuda4T4}" style="width: 400px;display:block;"/>
+					</p:dialog>
+				</h:form>
+			</p:tab>
+			
+			<p:tab title="#{strings.slidePrincipal}">
+				<h:form enctype="multipart/form-data">
+					<h:commandButton value="#{strings.adicionarSlide}"  action="#{indexAdm.addSlide}"  id="uploadButton" />
+					<h:inputFile id="inputFile" value="#{indexAdm.uploadSlide}"/>
+					<p:dataGrid value="#{indexAdm.config.slides}" var="slide" binding="#{indexAdm.tabelaSlides}" rowIndexVar="iterador">
+						<p:column>
+							<h:panelGrid columns="1">
+								<p:graphicImage value="#{fotos.slide}" style="height: 136px; width:284px;">
+									<f:param name="slide" value="#{slide.id}"/>
+								</p:graphicImage>
+							</h:panelGrid>
+							<h:panelGrid columns="2">
+								<p:outputLabel value="Link:"/>
+								<p:inputText value="#{slide.link}" styleClass="inputLink"/>
+							</h:panelGrid>
+							<h:panelGrid columns="1">
+								<p:commandButton value="#{strings.removerSlide}" actionListener="#{indexAdm.removeSlide}" ajax="false"/>
+							</h:panelGrid>
+						</p:column>
+					</p:dataGrid>							
+					<h:panelGrid columns="2">
+							<p:commandButton value="#{strings.reiniciar}" action="#{indexAdm.reiniciar}" ajax="false"/>
+							<p:commandButton value="#{strings.salvar}" action="#{indexAdm.salvar}" ajax="false"/>
+					</h:panelGrid>
+				</h:form>
+			</p:tab>
+			
+			<p:tab title="#{strings.acessosAoPortal}">
+				<h:form>					
+					<p:watermark for="ptCal" value="#{strings.clickParaSelecionar}" />
+					<p:commandButton value="#{strings.listarPorData}" actionListener="#{acessosPortal.novaPesquisaPorData}"
+						update="tabelaAcessos anterior proximo"/> 
+					<p:calendar locale="pt" showButtonPanel="true" navigator="true" id="ptCal" value="#{acessosPortal.dataBusca}" styleClass="calendario"/>
+					
+					<div style="both:clear"/>
+					
+					<p:commandButton value="#{strings.listarTodos}" actionListener="#{acessosPortal.novaListagemAcessos}" 
+						update="tabelaAcessos anterior proximo"/> 
+					
+					<div style="both:clear"/>
+					
+					<h:outputText value="#{strings.totalAcessosAoPortal}: "/>
+					<h:outputText value="#{acessosPortal.totalAcessosBusca}"/>
+					<p:dataTable value="#{acessosPortal.acessos}" var="acesso" emptyMessage="Sem Resultados" id="tabelaAcessos">		
+						<f:facet name="header">
+								#{strings.listagemDeAcessos}
+						</f:facet>		
+						<p:column>
+							<f:facet name="header">
+								#{strings.ip}
+							</f:facet>
+							<h:outputText value="#{acesso.ip}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								#{strings.pais}
+							</f:facet>
+							<h:outputText value="#{acesso.countryName}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								#{strings.estado}
+							</f:facet>
+							<h:outputText value="#{acesso.regionName}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								#{strings.cidade}
+							</f:facet>
+							<h:outputText value="#{acesso.city}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								#{strings.dataAcesso}
+							</f:facet>
+							<h:outputText value="#{acesso.acessDate}" />
+						</p:column>
+					</p:dataTable>
+					<div style="display: block; text-align: center; margin: 0 auto;">
+						<p:commandButton value="#{strings.anterior}" actionListener="#{acessosPortal.paginaAnteriorAcesso}"  
+							id="anterior" disabled="#{acessosPortal.paginaAtualAcesso == 0}" update="tabelaAcessos anterior proximo"/>
+						<p:commandButton value="#{strings.proximo}" actionListener="#{acessosPortal.proximaPaginaAcesso}" 
+							id="proximo" disabled="#{acessosPortal.ultimaPagina}" update="tabelaAcessos anterior proximo"/>
+					</div>
+				</h:form>
+			</p:tab>
+		</p:tabView>
+	</ui:define>
+</ui:composition>
+</html>
