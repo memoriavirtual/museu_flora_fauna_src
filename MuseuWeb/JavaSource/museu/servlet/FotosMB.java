@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 
@@ -25,7 +25,7 @@ import org.primefaces.model.StreamedContent;
 import br.usp.memoriavirtual.servicos.soap.Multimidia;
 
 @ManagedBean(name="fotos")
-@RequestScoped
+@SessionScoped
 public class FotosMB implements Serializable {
 
 	private static final long serialVersionUID = 4123277535280650893L;
