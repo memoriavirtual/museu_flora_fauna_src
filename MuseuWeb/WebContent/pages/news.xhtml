@@ -22,10 +22,11 @@
 									<div class="media">
 									  <a class="pull-left" href="">
 									    <img class="media-object" src="#{news.museu.getGallery(new.id).mainImage.url}" alt="Foto"/>
+									    <h:outputText value="#{new.dataPublicacaoFormatada}" style="font-size:13px; margin-left: 1px;"/>
 									  </a>
 									  <div class="media-body">
 									    <h:link value="#{new.title}" outcome="new" styleClass="media-heading">
-											<f:param name="idnew" value="#{new.id}"/>
+											<f:param name="idNews" value="#{new.id}"/>
 											<f:param name="backPage" value="#{news.page}"/>
 										</h:link>
 										<div class="clear"></div>

@@ -10,9 +10,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,17 +53,15 @@ public class Index implements Serializable {
 	public Index() throws IOException {
 		
 	}
-
-	
 	
 	@PostConstruct
 	public void run() {
 		System.out.println("Carregando Index");
 		try {
-			LoadWelcome();
-			LoadNews();
-			LoadEvents();
-			LoadVoceSabia();
+			welcome = museu.getPage(Integer.parseInt(museu.getConfiguracao().getBemVindo()));
+			blog = museu.getPosts("tag="+museu.getConfiguracao().getTagNews()+"&paged=1&posts_per_page=3");
+			events = museu.getPosts("tag="+museu.getConfiguracao().getTagEvents()+"&paged=1&posts_per_page=3");
+			voceSabia = museu.getPosts("tag="+museu.getConfiguracao().getTagVoceSabia()).get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -106,36 +102,6 @@ public class Index implements Serializable {
 	    acesso.setAcessDate(dataAcesso);
 	    
 	    banco.persistirAcesso(acesso);
-	}
-	
-	public void LoadWelcome() throws RemoteException{
-		welcome = museu.getPage(Integer.parseInt(museu.getConfiguracao().getBemVindo()));
-	}
-	
-	public void LoadNews() throws RemoteException {
-		List<Post> blogTemp = museu.getPosts("tag="+museu.getConfiguracao().getTagNews()+"&paged=1");
-		blog = new ArrayList<Post>();
-
-		for (int i = 0; i < 4; i++) {
-			if (i == blogTemp.size())
-				break;
-			blog.add(blogTemp.get(i));
-		}
-	}
-
-	public void LoadEvents() throws RemoteException {
-		List<Post> eventsTemp = museu.getPosts("tag="+museu.getConfiguracao().getTagEvents()+"&paged=1");
-		events = new ArrayList<Post>();
-
-		for (int i = 0; i < 3; i++) {
-			if (i == eventsTemp.size())
-				break;
-			events.add(eventsTemp.get(i));
-		}
-	}
-
-	public void LoadVoceSabia() throws RemoteException {
-		voceSabia = museu.getPosts("tag="+museu.getConfiguracao().getTagVoceSabia()).get(0);
 	}
 
 	public List<Post> getBlog() {

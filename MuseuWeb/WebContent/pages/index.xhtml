@@ -96,6 +96,7 @@
 				<div class="media">
 				  <a class="pull-left" href="">
 				    <img class="media-object" src="#{index.museu.getGallery(event.id).mainImage.url}" alt="Foto"/>
+				    <h:outputText value="#{event.dataPublicacaoFormatada}" style="font-size:13px; margin-left: 1px;"/>
 				  </a>
 				  <div class="media-body">
 				    <h:link value="#{event.title}" outcome="event" styleClass="media-heading">
@@ -114,6 +115,7 @@
 				<div class="media">
 				  <a class="pull-left" href="">
 				    <img class="media-object" src="#{index.museu.getGallery(new.id).mainImage.url}" alt="Foto"/>
+				    <h:outputText value="#{new.dataPublicacaoFormatada}" style="font-size:13px; margin-left: 1px;"/>
 				  </a>
 				  <div class="media-body">
 					<h:link value="#{new.title}" outcome="new" styleClass="media-heading">

@@ -16,9 +16,9 @@
 						</p:button>
 					</div>
 					<div class="col-7 col-sm-7 com-xs-7 col-md-7 com-lg-7 centralizado">
-						<h:outputText value="#{notice.post.title}" escape="false" styleClass="h1 centralizado centralizado-texto"/>
-						<div class="clear"/>
-						<h:outputText value="Publicado: #{notice.data}" styleClass="data"/>
+						<h:outputText value="#{notice.post.title}" escape="false" styleClass="h2 centralizado centralizado-texto"/>
+						<div class="clear" style="margin-bottom: 20px;"/>
+						<h:outputText value="Publicado: #{notice.post.dataPublicacaoFormatada}" styleClass="data"/>
 						<div class="clear"/>
 						<h:outputText value="#{notice.post.content}" escape="false"/> 
 					</div>

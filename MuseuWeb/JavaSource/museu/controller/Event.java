@@ -18,7 +18,6 @@ public class Event implements Serializable{
 	private Gallery gallery;
 	private int ID;
 	private int backPage;
-	private String data;
 	
 	@EJB
 	private MuseuRemote museu;
@@ -37,13 +36,10 @@ public class Event implements Serializable{
 			this.loadNewestEvent();
 	}
 	
-	
-	@SuppressWarnings("deprecation")
 	public void loadEvent(){
         try {
         	post = museu.getPost(ID);
         	gallery = museu.getGallery(post.getId());
-        	data = post.getDate().toLocaleString().split(" ")[0];
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -91,14 +87,4 @@ public class Event implements Serializable{
 	public void setBackPage(int backPage) {
 		this.backPage = backPage;
 	}
-
-
-	public String getData() {
-		return data;
-	}
-
-
-	public void setData(String data) {
-		this.data = data;
-	}	
 }

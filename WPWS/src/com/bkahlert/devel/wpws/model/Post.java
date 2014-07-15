@@ -965,4 +965,8 @@ public class Post  implements java.io.Serializable {
             _javaType, _xmlType, typeDesc);
     }
 
+    public String getDataPublicacaoFormatada(){
+    	return getDate().toLocaleString().split(" ")[0];
+    }
+    
 }
