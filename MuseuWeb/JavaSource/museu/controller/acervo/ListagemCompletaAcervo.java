@@ -10,6 +10,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIData;
 
+import com.bkahlert.devel.wpws.model.Page;
+
 import museu.fachadas.remoto.MuseuRemote;
 import museu.util.FacesUtil;
 import br.usp.memoriavirtual.servicos.soap.BemPatrimonial;
@@ -30,12 +32,20 @@ public class ListagemCompletaAcervo {
 	
 	private UIData tabelaItens;
 	
+	private Page page; //relacionado a pagina no Wordpress, de apresentação do acervo
+	
 	public ListagemCompletaAcervo(){
 		
 	}
 	
 	@PostConstruct
 	public void init(){
+		try {
+			page = museu.getPage(Integer.parseInt(museu.getConfiguracao().getAcervoFlora()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}		
+		
 		for(int i = 1; ; i++){
 			try {
 				List<BemPatrimonial> bens = museu.getBens("", i, 30);
@@ -93,6 +103,14 @@ public class ListagemCompletaAcervo {
 	public void setFotosSelecionadoParaModal(
 			List<Multimidia> fotosSelecionadoParaModal) {
 		this.fotosSelecionadoParaModal = fotosSelecionadoParaModal;
+	}
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
 	}
 
 }

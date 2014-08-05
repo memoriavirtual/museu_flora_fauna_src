@@ -20,7 +20,8 @@
 			<div class="col-10 col-sm-12 col-xs-12 col-md-12 col-lg-10 centralizado">
 				<div class="row">
 					<div class="centralizado">
-						Titulo da Página
+						<h:outputText value="#{listagemCompleta.page.title}" styleClass="h2 centralizado centralizado-texto"/>
+						<h:outputText value="#{listagemCompleta.page.content}" escape="false" />
 					</div>
 					<div class="centralizado">
 						<p:dataGrid value="#{listagemCompleta.itens}" var="item" columns="3" binding="#{listagemCompleta.tabelaItens}">
