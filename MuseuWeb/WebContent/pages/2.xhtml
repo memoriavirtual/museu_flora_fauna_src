@@ -9,8 +9,7 @@
 	<ui:define name="conteudo">
 		<div id="carousel_fade" class="carousel slide carousel-fade">
 			<div class="carousel-inner">
-				<ui:repeat var="slide" value="#{template.museu.configuracao.slides}"
-					varStatus="indice">
+				<ui:repeat var="slide" value="#{template.museu.configuracao.slides}" varStatus="indice">
 					<h:panelGroup rendered="#{indice.index == 0}">
 						<div class="item active">
 							<a href="#{slide.link}"> 

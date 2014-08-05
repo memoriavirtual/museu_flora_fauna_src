@@ -7,7 +7,6 @@
 
 <h:head>
 	<title>::#{strings.tituloPortal}::</title>
-	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/museu.css" />
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/navbar-museu.css" />
@@ -84,6 +83,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">#{strings.acervo}</a>
 							<ul class="dropdown-menu" role="menu">
 								<li><h:link value="#{strings.apresentacaoAcervo}" outcome="acervo"/></li>
+								<li><h:link value="#{strings.listagemCompletaFlora}" outcome="listagem"/></li>
 								<!-- 
 								<li><h:link value="#{strings.fauna}" outcome="fauna"/></li>
 								<li><h:link value="#{strings.flora}" outcome="flora"/></li>

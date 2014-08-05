@@ -103,11 +103,13 @@ public class Museu implements MuseuRemote {
 
 	@Override
 	public List<BemPatrimonial> getBens(String args,int pagina,int tamanhoPagina) throws RemoteException {
+		System.out.println("args: "+args+" pag: "+pagina +" tamanho: "+tamanhoPagina);
 		BemPatrimonial[] bens = mv.buscarInstituicao(args, pagina,tamanhoPagina, banco.getConfiguracao().getNomeInstituicaoMemoria());
-		
 		if(bens == null) 
 			return null;
 		
+
+		System.out.println("size_retorno:"+bens.length);
 		return Arrays.asList(bens);
 	}
 	

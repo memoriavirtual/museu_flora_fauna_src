@@ -7,7 +7,6 @@
 
 <h:head>
 	<title>::#{strings.tituloPortal}::</title>
-	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/museu.css" />
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/navbar-museu.css" />
@@ -21,8 +20,8 @@
 </h:head>
 
 <f:view encoding="ISO-8859-1">
-	<h:body>
-		<div class="navbar navbar-museu navbar-fixed-top" role="navigation">
+	<h:body style="padding-top: 50px">
+		<div class="navbar navbar-museu navbar-fixed-top" role="navigation" style="margin-bottom: 0px;">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -74,6 +73,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">#{strings.acervo}</a>
 							<ul class="dropdown-menu" role="menu">
 								<li><h:link value="#{strings.apresentacaoAcervo}" outcome="acervo"/></li>
+								<li><h:link value="#{strings.listagemCompletaFlora}" outcome="listagem"/></li>
 								<!-- 
 								<li><h:link value="#{strings.fauna}" outcome="fauna"/></li>
 								<li><h:link value="#{strings.flora}" outcome="flora"/></li>

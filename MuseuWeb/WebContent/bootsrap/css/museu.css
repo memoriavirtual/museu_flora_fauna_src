@@ -109,3 +109,6 @@ h1{
 	font-size: 12px;
 	color: green;
 }
+.ui-widget-overlay {
+	position: fixed;
+}

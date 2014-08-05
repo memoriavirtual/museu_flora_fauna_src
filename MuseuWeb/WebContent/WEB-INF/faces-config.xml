@@ -88,11 +88,15 @@
 		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
-		<display-name>acervo</display-name>
+		<display-name>Portal</display-name>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>acervo</from-outcome>
 			<to-view-id>/pages/acervo/acervo.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listagem</from-outcome>
+			<to-view-id>/pages/acervo/listagem.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>fauna</from-outcome>

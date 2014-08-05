@@ -1,0 +1,27 @@
+.imagemAcervo {
+	max-width: 234px;
+	height: auto;
+	border-width: 1px;
+	border-style: solid;
+	border-color: lightgrey;
+}
+
+#gallery a {
+	position: relative;
+	float: left;
+}
+
+#gallery span {
+	display: none;
+	background-image:url('/Images/zoom.png');
+	background-repeat: no-repeat;
+	width: 31px;
+	height: 31px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+#gallery a:hover span{
+	display: block;
+}

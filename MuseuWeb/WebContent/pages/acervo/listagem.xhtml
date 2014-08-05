@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:m="http://www.ol4jsf.org">
+
+<ui:composition template="/templates/templateP.xhtml">
+	<ui:define name="conteudo">
+	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/listagem.css" />
+	
+	<h:form id="formulario" prependId="false">
+		<p:dialog widgetVar="dialogo" modal="true" closeOnEscape="true" width="500" height="350" position="center" resizable="false" 
+			header="#{listagemCompleta.selecionadoParaModal.tituloPrincipal} : #{listagemCompleta.selecionadoParaModal.numeroRegistro}">
+			<ui:include src="/pages/acervo/modal_item_do_acervo.xhtml"/>
+	    </p:dialog>
+	    
+		<div class="container">
+			<div class="col-10 col-sm-12 col-xs-12 col-md-12 col-lg-10 centralizado">
+				<div class="row">
+					<div class="centralizado">
+						Titulo da Página
+					</div>
+					<div class="centralizado">
+						<p:dataGrid value="#{listagemCompleta.itens}" var="item" columns="3" binding="#{listagemCompleta.tabelaItens}">
+							<h:outputText value="#{strings.nomePopular}: #{item.tituloPrincipal}"/>
+							<div class="clear"/>
+							<h:outputText value="#{strings.nomeCientifico}: #{item.complemento}"/>
+							<div class="clear"/>
+							<h:outputText value="#{strings.identificacaoNoMuseu}: #{item.numeroRegistro}"/>
+							<div class="clear"/>
+							<p:commandLink value="#{strings.maisInformacoes}" actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('dialogo').show(); setLinksGalleria();" update=":formulario" />
+						</p:dataGrid>
+					</div>
+				</div>
+			</div>
+		</div>
+	</h:form>
+	</ui:define>
+	</ui:composition>
+</html>
