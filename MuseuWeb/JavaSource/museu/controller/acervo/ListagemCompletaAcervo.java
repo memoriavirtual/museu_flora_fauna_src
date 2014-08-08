@@ -1,5 +1,6 @@
 package museu.controller.acervo;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +11,23 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIData;
 
-import com.bkahlert.devel.wpws.model.Page;
-
 import museu.fachadas.remoto.MuseuRemote;
+import museu.util.Constants;
 import museu.util.FacesUtil;
+import museu.util.Mensagens;
 import br.usp.memoriavirtual.servicos.soap.BemPatrimonial;
 import br.usp.memoriavirtual.servicos.soap.Multimidia;
+
+import com.bkahlert.devel.wpws.model.Page;
 
 
 @ManagedBean(name = "listagemCompleta")
 @ViewScoped
-public class ListagemCompletaAcervo {
+public class ListagemCompletaAcervo implements Serializable{
+
+	private static final long serialVersionUID = -1247505733388344492L;
+
+	private static final int tamanhoPaginaDefaultAcervo = 15;
 	
 	@EJB
 	private MuseuRemote museu;
@@ -31,6 +38,14 @@ public class ListagemCompletaAcervo {
 	private List<Multimidia> fotosSelecionadoParaModal = null;
 	
 	private UIData tabelaItens;
+	
+	private String stringBusca = "";
+	
+	private int pagina = 1;
+	
+	private boolean ultimaPagina;	
+	
+	private String tipoAcervo = Mensagens.getString("selecionarTipoAcervo");
 	
 	private Page page; //relacionado a pagina no Wordpress, de apresentação do acervo
 	
@@ -46,18 +61,35 @@ public class ListagemCompletaAcervo {
 			e.printStackTrace();
 		}		
 		
-		for(int i = 1; ; i++){
-			try {
-				List<BemPatrimonial> bens = museu.getBens("", i, 30);
-				if(bens == null) break;
-				
-				for(BemPatrimonial bem : bens){
-					this.itens.add(bem);
-				}
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
+		buscar(stringBusca);
+	}
+	
+	public void buscar(String chave) {
+		try {
+			itens = museu.getBens(chave,pagina,tamanhoPaginaDefaultAcervo);
+			if(museu.getBens(chave, pagina+1,tamanhoPaginaDefaultAcervo)==null)
+				ultimaPagina = true;
+			else
+				ultimaPagina = false;			
+		} catch (Exception e) {
+			FacesUtil
+					.addMessage(
+							"Erro ao comunicador com servidor de dados: Memória Virtual",
+							"Erro ao comunicador com servidor de dados: Memória Virtual",
+							Constants.ERROR);
+			e.printStackTrace();
 		}
+	}
+	
+	public void proxPagina(){
+		pagina++;
+		buscar(stringBusca);
+		
+	}
+	
+	public void pagAnterior(){
+		pagina--;
+		buscar(stringBusca);	
 	}
 	
 	public void selecionaItemParaModal() throws RemoteException{
@@ -71,7 +103,7 @@ public class ListagemCompletaAcervo {
 		}
 		
 	}
-
+	
 	public List<BemPatrimonial> getItens() {
 		return itens;
 	}
@@ -113,4 +145,35 @@ public class ListagemCompletaAcervo {
 		this.page = page;
 	}
 
+	public String getStringBusca() {
+		return stringBusca;
+	}
+
+	public void setStringBusca(String stringBusca) {
+		this.stringBusca = stringBusca;
+	}
+
+	public int getPagina() {
+		return pagina;
+	}
+
+	public void setPagina(int pagina) {
+		this.pagina = pagina;
+	}
+
+	public boolean isUltimaPagina() {
+		return ultimaPagina;
+	}
+
+	public void setUltimaPagina(boolean ultimaPagina) {
+		this.ultimaPagina = ultimaPagina;
+	}
+
+	public String getTipoAcervo() {
+		return tipoAcervo;
+	}
+
+	public void setTipoAcervo(String tipoAcervo) {
+		this.tipoAcervo = tipoAcervo;
+	}
 }

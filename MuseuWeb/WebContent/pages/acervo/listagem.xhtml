@@ -11,29 +11,62 @@
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/listagem.css" />
 	
 	<h:form id="formulario" prependId="false">
-		<p:dialog widgetVar="dialogo" modal="true" closeOnEscape="true" width="500" height="350" position="center" resizable="false" 
+		
+		<p:dialog widgetVar="modalViewItem" modal="true" closeOnEscape="true" width="500" height="350" position="center" resizable="false" 
 			header="#{listagemCompleta.selecionadoParaModal.tituloPrincipal} : #{listagemCompleta.selecionadoParaModal.numeroRegistro}">
 			<ui:include src="/pages/acervo/modal_item_do_acervo.xhtml"/>
+	    </p:dialog>
+	    
+	    <p:dialog widgetVar="modalSelecionaTipoAcervo" closeOnEscape="false" position="center" width="400" height="150" modal="true"
+	    	header="#{strings.selecionarTipoAcervo}" closable="false">
+	    	<h:selectOneRadio value="#{listagemCompleta.tipoAcervo}">
+	    		<f:selectItem itemValue="#{strings.todoAcervo}" itemLabel="#{strings.todoAcervo}"/>
+	    		<f:selectItem itemValue="#{strings.somenteFlora}" itemLabel="#{strings.somenteFlora}"/>
+	    		<f:selectItem itemValue="#{strings.somenteFauna}" itemLabel="#{strings.somenteFauna}"/>	    	
+	    	</h:selectOneRadio>
+	    	<p:commandButton onclick="PF('modalSelecionaTipoAcervo').close();" update="formulario"/>
 	    </p:dialog>
 	    
 		<div class="container">
 			<div class="col-10 col-sm-12 col-xs-12 col-md-12 col-lg-10 centralizado">
 				<div class="row">
-					<div class="centralizado">
+					<div class="row" style="margin-bottom: 20px !important;">
 						<h:outputText value="#{listagemCompleta.page.title}" styleClass="h2 centralizado centralizado-texto"/>
 						<h:outputText value="#{listagemCompleta.page.content}" escape="false" />
 					</div>
-					<div class="centralizado">
-						<p:dataGrid value="#{listagemCompleta.itens}" var="item" columns="3" binding="#{listagemCompleta.tabelaItens}">
-							<h:outputText value="#{strings.nomePopular}: #{item.tituloPrincipal}"/>
-							<div class="clear"/>
-							<h:outputText value="#{strings.nomeCientifico}: #{item.complemento}"/>
-							<div class="clear"/>
-							<h:outputText value="#{strings.identificacaoNoMuseu}: #{item.numeroRegistro}"/>
-							<div class="clear"/>
-							<p:commandLink value="#{strings.maisInformacoes}" actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('dialogo').show(); setLinksGalleria();" update=":formulario" />
-						</p:dataGrid>
+					<div class="input-group" style="margin-bottom: 20px !important;">
+						<p:inputText id="palavrasChaves" value="#{listagemCompleta.stringBusca}" styleClass="form-control input-sm" placeholder="#{strings.palavrasChaves}" style="width: 250px;"/>
+						<p:commandButton value="#{listagemCompleta.tipoAcervo}" styleClass="btn btn-primary btn-sm" onclick="PF('modalSelecionaTipoAcervo').show();"/>
+						<p:commandButton value="#{strings.localizacao}" styleClass="btn btn-primary btn-sm"/>
 					</div>
+					<div class="centralizado row">
+						<p:dataTable value="#{listagemCompleta.itens}" var="item" binding="#{listagemCompleta.tabelaItens}">
+							<p:column headerText="#{strings.nomePopular}" width="250" sortBy="#{item.tituloPrincipal}">
+								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario">
+									<h:outputText value="#{item.tituloPrincipal}"/>
+								</p:commandLink>
+							</p:column>
+							<p:column headerText="#{strings.nomeCientifico}"  sortBy="#{item.complemento}">
+								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario">
+									<h:outputText value="#{item.complemento}"/>
+								</p:commandLink>
+							</p:column>
+							<p:column headerText="#{strings.identificacaoNoMuseu}" width="225"  sortBy="#{item.numeroRegistro}">
+								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario">
+									<h:outputText value="#{item.numeroRegistro}"/>
+								</p:commandLink>
+							</p:column>	
+						</p:dataTable>
+					</div>
+				</div>
+				<div class="row">
+					<h:commandButton id="anterior" value="voltar" actionListener="#{listagemCompleta.pagAnterior}" disabled="#{listagemCompleta.pagina == 1}">
+						<f:ajax render="formulario"/>
+					</h:commandButton>
+					<h:commandButton id="proxima" value="proxima" actionListener="#{listagemCompleta.proxPagina}" disabled="#{listagemCompleta.ultimaPagina}"
+						style="float:right;">
+						<f:ajax render="formulario"/>
+					</h:commandButton>
 				</div>
 			</div>
 		</div>

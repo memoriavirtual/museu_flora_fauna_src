@@ -2,9 +2,16 @@
 	width: 284px;
 	height: auto;
 }
+
+/*
 .ui-widget-content{
-	background-color: #ecf4df !important;
-	border:0px solid transparent !important; 
+	background-color: lightblue !important;
+	border:0px solid transparent !important;
+}
+*/
+
+.input-sm{
+	height: 36px;
 }
 
 .imgSlider{
