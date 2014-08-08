@@ -45,7 +45,7 @@ public class ListagemCompletaAcervo implements Serializable{
 	
 	private boolean ultimaPagina;	
 	
-	private String tipoAcervo = Mensagens.getString("selecionarTipoAcervo");
+	private String tipoAcervo = Mensagens.getString("todoAcervo");
 	
 	private Page page; //relacionado a pagina no Wordpress, de apresentação do acervo
 	

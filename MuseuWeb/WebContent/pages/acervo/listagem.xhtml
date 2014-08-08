@@ -12,19 +12,22 @@
 	
 	<h:form id="formulario" prependId="false">
 		
-		<p:dialog widgetVar="modalViewItem" modal="true" closeOnEscape="true" width="500" height="350" position="center" resizable="false" 
+		<p:dialog id="modalItem" widgetVar="modalViewItem" modal="true" closeOnEscape="true" width="500" height="350" position="center" resizable="false" 
 			header="#{listagemCompleta.selecionadoParaModal.tituloPrincipal} : #{listagemCompleta.selecionadoParaModal.numeroRegistro}">
 			<ui:include src="/pages/acervo/modal_item_do_acervo.xhtml"/>
 	    </p:dialog>
 	    
-	    <p:dialog widgetVar="modalSelecionaTipoAcervo" closeOnEscape="false" position="center" width="400" height="150" modal="true"
-	    	header="#{strings.selecionarTipoAcervo}" closable="false">
-	    	<h:selectOneRadio value="#{listagemCompleta.tipoAcervo}">
+	    <p:dialog id="modalTipo" widgetVar="modalSelecionaTipoAcervo" closeOnEscape="false" position="center" width="400" height="150" modal="true"
+	    	header="#{strings.selecionarTipoAcervo}" closable="false" resizable="false">
+	    	<h:selectOneRadio value="#{listagemCompleta.tipoAcervo}" layout="pageDirection">
 	    		<f:selectItem itemValue="#{strings.todoAcervo}" itemLabel="#{strings.todoAcervo}"/>
-	    		<f:selectItem itemValue="#{strings.somenteFlora}" itemLabel="#{strings.somenteFlora}"/>
-	    		<f:selectItem itemValue="#{strings.somenteFauna}" itemLabel="#{strings.somenteFauna}"/>	    	
+	    		<f:selectItem itemValue="#{strings.flora}" itemLabel="#{strings.flora}"/>
+	    		<f:selectItem itemValue="#{strings.fauna}" itemLabel="#{strings.fauna}"/>	    	
 	    	</h:selectOneRadio>
-	    	<p:commandButton onclick="PF('modalSelecionaTipoAcervo').close();" update="formulario"/>
+	    	<h:commandButton value="Selecionar" onclick="PF('modalSelecionaTipoAcervo').close();"
+	    		styleClass="btn btn-primary btn-small" style="right:5px ; bottom: 5px; position: absolute;">
+	    		<f:ajax render="modalTipo"/>
+	    	</h:commandButton>
 	    </p:dialog>
 	    
 		<div class="container">
@@ -42,17 +45,17 @@
 					<div class="centralizado row">
 						<p:dataTable value="#{listagemCompleta.itens}" var="item" binding="#{listagemCompleta.tabelaItens}">
 							<p:column headerText="#{strings.nomePopular}" width="250" sortBy="#{item.tituloPrincipal}">
-								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario">
+								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario:modalItem">
 									<h:outputText value="#{item.tituloPrincipal}"/>
 								</p:commandLink>
 							</p:column>
 							<p:column headerText="#{strings.nomeCientifico}"  sortBy="#{item.complemento}">
-								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario">
+								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario:modalItem">
 									<h:outputText value="#{item.complemento}"/>
 								</p:commandLink>
 							</p:column>
 							<p:column headerText="#{strings.identificacaoNoMuseu}" width="225"  sortBy="#{item.numeroRegistro}">
-								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario">
+								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario:modalItem">
 									<h:outputText value="#{item.numeroRegistro}"/>
 								</p:commandLink>
 							</p:column>	
