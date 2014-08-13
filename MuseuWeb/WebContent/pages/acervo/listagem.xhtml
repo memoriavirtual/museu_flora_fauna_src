@@ -45,28 +45,34 @@
 						<h:outputText value="#{listagemCompleta.page.title}" styleClass="h2 centralizado centralizado-texto"/>
 						<h:outputText value="#{listagemCompleta.page.content}" escape="false" />
 					</div>
-					<div class="input-group" style="margin-bottom: 20px !important;">
-						<p:inputText id="palavrasChaves" value="#{listagemCompleta.stringBusca}" styleClass="form-control input-sm" placeholder="#{strings.palavrasChaves}" style="width: 250px;"/>			
-						<p:commandButton value="#{strings.buscar}" styleClass="btn btn-success btn-sm" actionListener="#{listagemCompleta.novaBusca(listagemCompleta.stringBusca)}" ajax="false"/>
-						<p:commandButton value="#{listagemCompleta.getNomeLocal(listagemCompleta.tipoAcervo)}" styleClass="btn btn-primary btn-sm" onclick="PF('modalSelecionaTipoAcervo').show();"/>
-						<p:commandButton value="#{listagemCompleta.getNomeLocal(listagemCompleta.localMapa)}" styleClass="btn btn-primary btn-sm" onclick="PF('modaSelecionaMapa').show();"/>
+					
+					<div class="input-group" style="margin-bottom: 5px !important; margin: 0 auto;">
+						<p:inputText id="palavrasChaves" value="#{listagemCompleta.stringBusca}" styleClass="form-control input-sm" placeholder="#{strings.palavrasChaves}" style="width: 260px;"/>			
+						<p:commandButton value="#{strings.buscarPorPalavraChave}" styleClass="btn btn-success btn-sm" actionListener="#{listagemCompleta.novaBusca(listagemCompleta.stringBusca)}" ajax="false" style="width: 240px"/>
 					</div>
+					
+					<div class="input-group" style="margin-bottom: 5px !important; margin: 0 auto;">
+						<p:commandButton value="#{listagemCompleta.getNomeLocal(listagemCompleta.tipoAcervo)}" styleClass="btn btn-primary btn-sm" onclick="PF('modalSelecionaTipoAcervo').show();" style="width: 260px;"/>
+						<p:commandButton value="#{strings.buscarPorTipoAcervo}" styleClass="btn btn-success btn-sm" actionListener="#{listagemCompleta.buscarPorTipoAcervo}" ajax="false" style="width: 240px"/>
+					</div>
+					
+					<div class="input-group" style="margin-bottom: 15px !important; margin: 0 auto;">
+						<p:commandButton value="#{listagemCompleta.getNomeLocal(listagemCompleta.localMapa)}" styleClass="btn btn-primary btn-sm" onclick="PF('modaSelecionaMapa').show();" style="width: 260px;"/>
+						<p:commandButton value="#{strings.buscarPorLocal}" styleClass="btn btn-success btn-sm" actionListener="#{listagemCompleta.buscarPeloMapa}" ajax="false" style="width: 240px"/>
+					</div>
+
 					<div class="centralizado row">
-						<p:dataTable value="#{listagemCompleta.itens}" var="item" binding="#{listagemCompleta.tabelaItens}">
+						<p:dataTable value="#{listagemCompleta.itens}" var="item"  emptyMessage="Sem Resultados" selectionMode="single" 
+							selection="#{listagemCompleta.selecionadoParaModal}" rowKey="#{item.id}">
+							<p:ajax event="rowSelect" listener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario:modalItem" />
 							<p:column headerText="#{strings.nomePopular}" width="250" sortBy="#{item.tituloPrincipal}">
-								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario:modalItem">
-									<h:outputText value="#{item.tituloPrincipal}"/>
-								</p:commandLink>
+								<h:outputText value="#{item.tituloPrincipal}"/>
 							</p:column>
 							<p:column headerText="#{strings.nomeCientifico}"  sortBy="#{item.complemento}">
-								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario:modalItem">
-									<h:outputText value="#{item.complemento}"/>
-								</p:commandLink>
+								<h:outputText value="#{item.complemento}"/>
 							</p:column>
 							<p:column headerText="#{strings.identificacaoNoMuseu}" width="225"  sortBy="#{item.numeroRegistro}">
-								<p:commandLink actionListener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario:modalItem">
 									<h:outputText value="#{item.numeroRegistro}"/>
-								</p:commandLink>
 							</p:column>	
 						</p:dataTable>
 					</div>

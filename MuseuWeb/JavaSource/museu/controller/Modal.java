@@ -1,5 +1,6 @@
 package museu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.usp.memoriavirtual.servicos.soap.BemPatrimonial;
@@ -7,10 +8,14 @@ import br.usp.memoriavirtual.servicos.soap.Multimidia;
 
 public abstract class Modal {
 
-	private BemPatrimonial selecionadoParaModal;
+	private BemPatrimonial selecionadoParaModal = new BemPatrimonial();
 	
-	private List<Multimidia> fotosSelecionadoParaModal = null;
+	private List<Multimidia> fotosSelecionadoParaModal = new ArrayList<Multimidia>();
 
+	public Modal(){
+		selecionadoParaModal.setNumeroRegistro(new String());
+	}
+	
 	public BemPatrimonial getSelecionadoParaModal() {
 		return selecionadoParaModal;
 	}

@@ -40,8 +40,6 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 	
 	private List<BemPatrimonial> itens = new ArrayList<BemPatrimonial>();
 	
-	private UIData tabelaItens;
-	
 	private String stringBusca = "";
 	
 	private String localMapa = "mapaInteiro";
@@ -57,7 +55,7 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 	private Page page; //relacionado a pagina no Wordpress, de apresentação do acervo
 	
 	public ListagemCompletaAcervo(){
-		
+		super();
 	}
 	
 	@PostConstruct
@@ -76,20 +74,24 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 		buscar(chave);
 	}
 	
+	public void buscarPorTipoAcervo(){
+		if(tipoAcervo.equals("todoAcervo"))buscar("");
+		else if(tipoAcervo.equals("flora"))buscar("MFF-FL");
+		else if(tipoAcervo.equals("fauna"))buscar("MFF-FN");
+	}
+	
+	public void buscarPeloMapa(){
+		buscar(localMapa);
+	}
+	
 	public void buscar(String chave) {
 		itens = new ArrayList<BemPatrimonial>();
 		try {
-			List<BemPatrimonial> bens = museu.getBens(chave,pagina,tamanhoPaginaDefaultAcervo);
+			itens = museu.getBens(chave,pagina,tamanhoPaginaDefaultAcervo);
 			if(museu.getBens(chave, pagina+1,tamanhoPaginaDefaultAcervo)==null)
 				ultimaPagina = true;
 			else
 				ultimaPagina = false;
-			
-			copiarBens(bens);
-			if(!localMapa.equals("mapaInteiro"))
-				filtrarPorLocal(this.itens);
-			if(!tipoAcervo.equals("todoAcervo"))
-				filtrarPorTipo(this.itens);
 			
 		} catch (Exception e) {
 			FacesUtil
@@ -98,19 +100,6 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 							"Erro ao comunicador com servidor de dados: Memória Virtual",
 							Constants.ERROR);
 			e.printStackTrace();
-		}
-	}
-	
-	public void copiarBens(List<BemPatrimonial> itens){
-		for(BemPatrimonial bem : itens){
-			this.itens.add(bem);
-		}
-	}
-	
-	public void filtrarPorLocal(List<BemPatrimonial> itens){
-		for(int i=0;i<itens.size();i++){
-				if(!itens.get(i).getLocalizacaoFisica().equals(localMapa))
-					itens.remove(i);
 		}
 	}
 	
@@ -131,7 +120,6 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 	
 	@Override
 	public void selecionaItemParaModal(){
-		setSelecionadoParaModal((BemPatrimonial) tabelaItens.getRowData());
 		
 		try {
 			setFotosSelecionadoParaModal(museu.getMidias(getSelecionadoParaModal().getId()));
@@ -153,14 +141,6 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 
 	public void setItens(List<BemPatrimonial> itens) {
 		this.itens = itens;
-	}
-	
-	public UIData getTabelaItens() {
-		return tabelaItens;
-	}
-
-	public void setTabelaItens(UIData tabelaItens) {
-		this.tabelaItens = tabelaItens;
 	}
 
 	public Page getPage() {
