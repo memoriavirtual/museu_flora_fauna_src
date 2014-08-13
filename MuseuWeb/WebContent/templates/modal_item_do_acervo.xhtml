@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:m="http://www.ol4jsf.org">
+	
+	<ui:composition>
+	
+		<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/listagem.css" />
+		<p:panelGrid columns="2">
+			<h:outputText value="#{strings.nomePopular}:" />
+			<h:outputText value="#{modal.selecionadoParaModal.tituloPrincipal}" />
+			<h:outputText value="#{strings.nomeCientifico}: " />
+			<h:outputText value="#{modal.selecionadoParaModal.complemento}" />
+			<h:outputText value="#{strings.identificacaoNoMuseu}:" />
+			<h:outputText value="#{modal.selecionadoParaModal.numeroRegistro}" />
+			<h:outputText value="#{strings.familia} " />
+			<h:outputText value="#{modal.selecionadoParaModal.colecao}" />
+		</p:panelGrid>
+		<div id="gallery">
+			<p:dataGrid var="foto" value="#{modal.fotosSelecionadoParaModal}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
+				<a href="javascript: void(0)" class="imagemLink">
+					<span></span><!-- Para o Icone de Zoom -->
+					<p:graphicImage value="#{fotos.foto}" title="Thumb" styleClass="imagemAcervo" 
+						id="#{foto.id}_image" >
+						<f:param name="id" value="#{foto.id}"/>
+					</p:graphicImage>
+				</a>
+			</p:dataGrid>
+		</div>
+		<h:button outcome="item" value="#{strings.fichaCompleta}" styleClass="btn btn-primary btn-small" style="right:5px ; bottom: 5px; position: absolute;">
+			<f:param value="#{modal.selecionadoParaModal.numeroRegistro}" name="idBem" />
+		</h:button>
+		
+		<script>
+			function setLinksGalleria(){
+				var imagens = document.getElementsByClassName('imagemAcervo');
+				var links = document.getElementsByClassName('imagemLink');
+				
+				for(var i = 0;i &lt; imagens.length;i++){
+					links[i].href = imagens[i].src;
+				}
+				$('#gallery').photobox('a');	
+			}
+		
+		</script>
+		
+	</ui:composition>
+</html>

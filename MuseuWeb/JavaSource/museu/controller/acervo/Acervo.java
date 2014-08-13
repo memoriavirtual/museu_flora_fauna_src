@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
+import museu.controller.Mapa;
 import museu.fachadas.remoto.MuseuRemote;
 import museu.util.Constants;
 import museu.util.FacesUtil;
@@ -20,7 +21,7 @@ import br.usp.memoriavirtual.servicos.soap.BemPatrimonial;
 
 import com.bkahlert.devel.wpws.model.Page;
 
-public class Acervo implements Serializable {
+public class Acervo implements Serializable,Mapa {
 
 	private static final int tamanhoPaginaDefaultAcervo = 4;
 	
@@ -108,7 +109,7 @@ public class Acervo implements Serializable {
 		return features.toMap();
 	}
 
-	public void buscarPeloMapa() {
+	public void selecionarAreaMapa() {
 		String local = FacesUtil.getRequestParameter("param1");
 		stringBusca = local;
 		buscar(local);
@@ -201,4 +202,23 @@ public class Acervo implements Serializable {
 	public void setUltimaPagina(boolean ultimaPagina) {
 		this.ultimaPagina = ultimaPagina;
 	}
+
+	@Override
+	public void confirmarSelecaoMapa() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cancelarSelecaoMapa() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getNomeLocal(String local) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:m="http://www.ol4jsf.org">
+	
+<ui:composition>
+		
+	<div id="mapa" class="centralizado" style="border: 1px solid #D5D5D5;">
+		<h:form prependId="false">
+			<m:map width="100%" height="400px" jsVariable="map">
+				<m:osmLayer options="{numZoomLevels: 20}"/>			
+				
+				<m:vectorLayer name="Locais" value="#{mapa.wkts}"
+					jsVariable="formasLayer" transformationSource="EPSG:4326"
+					transformationTarget="EPSG:900913" />
+
+				<m:selectFeatureControl layers="formasLayer"
+					options="{onSelect: onFeatureSelect, onUnselect: onFeatureUnselect}"
+					jsVariable="selectControl" />
+				<m:navigationControl/>
+				<m:layerSwitcherControl />
+				<m:script>     		
+					controls = map.getControlsByClass('OpenLayers.Control.Navigation');
+					controls[0].disableZoomWheel();
+					controls[1].disableZoomWheel();
+					
+					selectControl.activate();
+	                map.setCenter(new OpenLayers.LonLat(-47.89460,-22.00725)
+	                .transform(
+	                new OpenLayers.Projection("EPSG:4326"), 
+	                new OpenLayers.Projection("EPSG:900913")),18);
+				</m:script>
+			</m:map>
+			<p:remoteCommand name="buscarPeloMapa" actionListener="#{mapa.selecionarAreaMapa}">
+			</p:remoteCommand>
+			<h:commandButton value="Selecionar" onclick="PF('modaSelecionaMapa').close();" actionListener="#{mapa.confirmarSelecaoMapa}"
+	    		styleClass="btn btn-primary btn-small" style="right:5px ; bottom: 5px; position: absolute;">
+	    	</h:commandButton>
+	    	<h:commandButton value="Cancelar" onclick="PF('modaSelecionaMapa').close();" actionListener="#{mapa.cancelarSelecaoMapa}"
+	    		styleClass="btn btn-danger btn-small" style="right:100px ; bottom: 5px; position: absolute;">
+	    	</h:commandButton>
+		</h:form>
+	</div>		
+		
+	<script type="text/javascript">
+		//<![CDATA[
+		var selectedFeature, popup;
+
+		function onPopupClose(evt) {
+			//selectControl.unselect(selectedFeature);
+		}
+		function onFeatureSelect(feature) {
+			//selectedFeature = feature;
+			//popup = new OpenLayers.Popup.FramedCloud("geom",
+					//feature.geometry.getBounds().getCenterLonLat(), null,
+					//"<div><b>Myattr</b> = " + (feature.attributes.string)
+							//+ "</div>", null, true, onPopupClose);
+			//feature.popup = popup;
+			//map.addPopup(popup);
+			buscarPeloMapa([ {
+				name : 'param1',
+				value : (feature.attributes.string)
+				} ]);
+		}
+		function onFeatureUnselect(feature) {
+			//map.removePopup(feature.popup);
+			//feature.popup.destroy();
+			//feature.popup = null;
+		}
+		//]]>
+	</script>
+	
+</ui:composition>
+</html>

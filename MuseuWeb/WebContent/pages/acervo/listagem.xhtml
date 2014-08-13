@@ -3,26 +3,34 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:m="http://www.ol4jsf.org">
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/templateP.xhtml">
 	<ui:define name="conteudo">
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/listagem.css" />
+	    
+    <p:dialog id="modalMapa" widgetVar="modaSelecionaMapa" closeOnEscape="false" position="center" modal="true"
+    	closable="false" header="#{strings.selecionarAreaBusca}" resizable="false" width="600" height="450">
+    	<ui:decorate template="/templates/select_mapa.xhtml">
+    		<ui:param name="mapa" value="#{listagemCompleta}"/>
+    	</ui:decorate>
+    </p:dialog>
 	
 	<h:form id="formulario" prependId="false">
 		
 		<p:dialog id="modalItem" widgetVar="modalViewItem" modal="true" closeOnEscape="true" width="500" height="350" position="center" resizable="false" 
 			header="#{listagemCompleta.selecionadoParaModal.tituloPrincipal} : #{listagemCompleta.selecionadoParaModal.numeroRegistro}">
-			<ui:include src="/pages/acervo/modal_item_do_acervo.xhtml"/>
+			<ui:decorate template="/templates/modal_item_do_acervo.xhtml">
+				<ui:param name="modal" value="#{listagemCompleta}"/>
+			</ui:decorate>
 	    </p:dialog>
 	    
 	    <p:dialog id="modalTipo" widgetVar="modalSelecionaTipoAcervo" closeOnEscape="false" position="center" width="400" height="150" modal="true"
 	    	header="#{strings.selecionarTipoAcervo}" closable="false" resizable="false">
 	    	<h:selectOneRadio value="#{listagemCompleta.tipoAcervo}" layout="pageDirection">
-	    		<f:selectItem itemValue="#{strings.todoAcervo}" itemLabel="#{strings.todoAcervo}"/>
-	    		<f:selectItem itemValue="#{strings.flora}" itemLabel="#{strings.flora}"/>
-	    		<f:selectItem itemValue="#{strings.fauna}" itemLabel="#{strings.fauna}"/>	    	
+	    		<f:selectItem itemValue="todoAcervo" itemLabel="#{strings.todoAcervo}"/>
+	    		<f:selectItem itemValue="flora" itemLabel="#{strings.flora}"/>
+	    		<f:selectItem itemValue="fauna" itemLabel="#{strings.fauna}"/>	    	
 	    	</h:selectOneRadio>
 	    	<h:commandButton value="Selecionar" onclick="PF('modalSelecionaTipoAcervo').close();"
 	    		styleClass="btn btn-primary btn-small" style="right:5px ; bottom: 5px; position: absolute;">
@@ -38,9 +46,10 @@
 						<h:outputText value="#{listagemCompleta.page.content}" escape="false" />
 					</div>
 					<div class="input-group" style="margin-bottom: 20px !important;">
-						<p:inputText id="palavrasChaves" value="#{listagemCompleta.stringBusca}" styleClass="form-control input-sm" placeholder="#{strings.palavrasChaves}" style="width: 250px;"/>
-						<p:commandButton value="#{listagemCompleta.tipoAcervo}" styleClass="btn btn-primary btn-sm" onclick="PF('modalSelecionaTipoAcervo').show();"/>
-						<p:commandButton value="#{strings.localizacao}" styleClass="btn btn-primary btn-sm"/>
+						<p:inputText id="palavrasChaves" value="#{listagemCompleta.stringBusca}" styleClass="form-control input-sm" placeholder="#{strings.palavrasChaves}" style="width: 250px;"/>			
+						<p:commandButton value="#{strings.buscar}" styleClass="btn btn-success btn-sm" actionListener="#{listagemCompleta.novaBusca(listagemCompleta.stringBusca)}" ajax="false"/>
+						<p:commandButton value="#{listagemCompleta.getNomeLocal(listagemCompleta.tipoAcervo)}" styleClass="btn btn-primary btn-sm" onclick="PF('modalSelecionaTipoAcervo').show();"/>
+						<p:commandButton value="#{listagemCompleta.getNomeLocal(listagemCompleta.localMapa)}" styleClass="btn btn-primary btn-sm" onclick="PF('modaSelecionaMapa').show();"/>
 					</div>
 					<div class="centralizado row">
 						<p:dataTable value="#{listagemCompleta.itens}" var="item" binding="#{listagemCompleta.tabelaItens}">
@@ -63,16 +72,25 @@
 					</div>
 				</div>
 				<div class="row">
-					<h:commandButton id="anterior" value="voltar" actionListener="#{listagemCompleta.pagAnterior}" disabled="#{listagemCompleta.pagina == 1}">
-						<f:ajax render="formulario"/>
+					<h:commandButton id="anterior" value="voltar" actionListener="#{listagemCompleta.pagAnterior}" disabled="#{listagemCompleta.pagina == 1}" 
+						onclick="desabilitarBotoes();" styleClass="btn btn-primary btn-sm" style="width: 200px;">
+						<f:ajax render="formulario" />
 					</h:commandButton>
-					<h:commandButton id="proxima" value="proxima" actionListener="#{listagemCompleta.proxPagina}" disabled="#{listagemCompleta.ultimaPagina}"
-						style="float:right;">
+					<h:commandButton id="mais" value="mais" actionListener="#{listagemCompleta.proxPagina}" disabled="#{listagemCompleta.ultimaPagina}" 
+						onclick="desabilitarBotoes();" styleClass="btn btn-primary btn-sm" style="float:right; width: 200px;">
 						<f:ajax render="formulario"/>
 					</h:commandButton>
 				</div>
 			</div>
 		</div>
+		<script>
+		function desabilitarBotoes(){
+			var botao = document.getElementById("anterior");
+			botao.setAttribute("disabled", "true");
+			botao = document.getElementById("mais");
+			botao.setAttribute("disabled", "true");
+		}
+		</script>
 	</h:form>
 	</ui:define>
 	</ui:composition>
