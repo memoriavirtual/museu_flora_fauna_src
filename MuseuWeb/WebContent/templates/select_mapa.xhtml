@@ -38,11 +38,11 @@
 			</m:map>
 			<p:remoteCommand name="buscarPeloMapa" actionListener="#{mapa.selecionarAreaMapa}">
 			</p:remoteCommand>
-			<h:commandButton value="Selecionar" onclick="PF('modaSelecionaMapa').close();" actionListener="#{mapa.confirmarSelecaoMapa}"
-	    		styleClass="btn btn-primary btn-small" style="right:5px ; bottom: 5px; position: absolute;">
-	    	</h:commandButton>
 	    	<h:commandButton value="Cancelar" onclick="PF('modaSelecionaMapa').close();" actionListener="#{mapa.cancelarSelecaoMapa}"
 	    		styleClass="btn btn-danger btn-small" style="right:100px ; bottom: 5px; position: absolute;">
+	    	</h:commandButton>
+			<h:commandButton value="Selecionar" onclick="PF('modaSelecionaMapa').close();" actionListener="#{mapa.confirmarSelecaoMapa}"
+	    		styleClass="btn btn-primary btn-small" style="right:5px ; bottom: 5px; position: absolute;">
 	    	</h:commandButton>
 		</h:form>
 	</div>		

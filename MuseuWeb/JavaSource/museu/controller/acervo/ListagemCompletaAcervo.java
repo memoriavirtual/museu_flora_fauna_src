@@ -11,10 +11,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIData;
-
-import org.ol4jsf.component.api.FeatureVector;
-import org.ol4jsf.util.WKTFeaturesCollection;
 
 import museu.controller.Mapa;
 import museu.controller.Modal;
@@ -22,6 +18,10 @@ import museu.fachadas.remoto.MuseuRemote;
 import museu.util.Constants;
 import museu.util.FacesUtil;
 import museu.util.Mensagens;
+
+import org.ol4jsf.component.api.FeatureVector;
+import org.ol4jsf.util.WKTFeaturesCollection;
+
 import br.usp.memoriavirtual.servicos.soap.BemPatrimonial;
 import br.usp.memoriavirtual.servicos.soap.Multimidia;
 
@@ -61,7 +61,7 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 	@PostConstruct
 	public void init(){
 		try {
-			page = museu.getPage(Integer.parseInt(museu.getConfiguracao().getAcervoFlora()));
+			page = museu.getPage(Integer.parseInt(museu.getConfiguracao().getAcervo()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}		
@@ -81,7 +81,8 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 	}
 	
 	public void buscarPeloMapa(){
-		buscar(localMapa);
+		if(localMapa.equals("mapaInteiro"))buscar("");
+		else buscar(localMapa);
 	}
 	
 	public void buscar(String chave) {
@@ -251,7 +252,7 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 
 	@Override
 	public void cancelarSelecaoMapa() {
-				
+		localMapa = "mapaInteiro";
 	}
 
 	public String getLocalMapa() {

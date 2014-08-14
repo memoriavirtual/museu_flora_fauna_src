@@ -3,146 +3,101 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:m="http://www.ol4jsf.org">
+	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/templates/template.xhtml">
+<ui:composition template="/templates/templateP.xhtml">
 	<ui:define name="conteudo">
-	<div class="container">
-		<div class="col-10 col-sm-12 col-xs-12 col-md-12 col-lg-10 centralizado">
-			<div class="row">
-				<div class="centralizado">
-					<h:outputText value="#{acervo.page.title}" styleClass="h2 centralizado centralizado-texto"/>
-					<h:outputText value="#{acervo.page.content}" escape="false" />
-				</div>
-				<div class="centralizado">
-					<p:messages autoUpdate="true"/>
-					<h:panelGrid columns="2">
-						<h:form>
-							<h:panelGrid columns="3">
-								<p:outputLabel for="busca"
-									value="#{strings.buscarExemplarAcervo}:" />
-								<p:inputText id="busca" value="#{acervo.stringBusca}"
-									required="true" label="Palavra Busca">
-									<f:validateLength minimum="2" />
-								</p:inputText>
-								<p:commandButton value="#{strings.realizarBusca}" action="#{acervo.novaBusca(acervo.stringBusca)}"
-									ajax="false" />
-							</h:panelGrid>
-						</h:form>
-						<h:form>
-							<h:panelGrid columns="1">
-								<p:commandButton value="#{strings.listarUltimosExemplares}"
-									action="#{acervo.listarUltimos}" ajax="false" />
-							</h:panelGrid>
-						</h:form>
-					</h:panelGrid>
-				</div>
+	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/listagem.css" />
+	    
+    <p:dialog id="modalMapa" widgetVar="modaSelecionaMapa" closeOnEscape="false" position="center" modal="true"
+    	closable="false" header="#{strings.selecionarAreaBusca}" resizable="false" width="600" height="450">
+    	<ui:decorate template="/templates/select_mapa.xhtml">
+    		<ui:param name="mapa" value="#{listagemCompleta}"/>
+    	</ui:decorate>
+    </p:dialog>
+	
+	<h:form id="formulario" prependId="false">
 		
-				<script type="text/javascript">
-					//<![CDATA[
-					var selectedFeature, popup;
-		
-					function onPopupClose(evt) {
-						//selectControl.unselect(selectedFeature);
-					}
-					function onFeatureSelect(feature) {
-						//selectedFeature = feature;
-						//popup = new OpenLayers.Popup.FramedCloud("geom",
-								//feature.geometry.getBounds().getCenterLonLat(), null,
-								//"<div><b>Myattr</b> = " + (feature.attributes.string)
-										//+ "</div>", null, true, onPopupClose);
-						//feature.popup = popup;
-						//map.addPopup(popup);
-						buscarPeloMapa([ {
-							name : 'param1',
-							value : (feature.attributes.string)
-							} ]);
-					}
-					function onFeatureUnselect(feature) {
-						//map.removePopup(feature.popup);
-						//feature.popup.destroy();
-						//feature.popup = null;
-					}
-					//]]>
-				</script>
-				<div id="mapa" class="centralizado" style="border: 1px solid #D5D5D5;">
-					<h:form>
-						<m:map width="100%" height="400px" jsVariable="map">
-							<m:osmLayer options="{numZoomLevels: 20}"/>			
-							
-							<m:vectorLayer name="Locais" value="#{acervo.wkts}"
-								jsVariable="formasLayer" transformationSource="EPSG:4326"
-								transformationTarget="EPSG:900913" />
-			
-							<m:selectFeatureControl layers="formasLayer"
-								options="{onSelect: onFeatureSelect, onUnselect: onFeatureUnselect}"
-								jsVariable="selectControl" />
-							<m:navigationControl/>
-							<m:layerSwitcherControl />
-							<m:script>     		
-								controls = map.getControlsByClass('OpenLayers.Control.Navigation');
-								controls[0].disableZoomWheel();
-								controls[1].disableZoomWheel();
-								
-								selectControl.activate();
-				                map.setCenter(new OpenLayers.LonLat(-47.89460,-22.00725)
-				                .transform(
-				                new OpenLayers.Projection("EPSG:4326"), 
-				                new OpenLayers.Projection("EPSG:900913")),18);
-							</m:script>
-						</m:map>
-					</h:form>
+		<p:dialog id="modalItem" widgetVar="modalViewItem" modal="true" closeOnEscape="true" width="500" height="350" position="center" resizable="false" 
+			header="#{listagemCompleta.selecionadoParaModal.tituloPrincipal} : #{listagemCompleta.selecionadoParaModal.numeroRegistro}">
+			<ui:decorate template="/templates/modal_item_do_acervo.xhtml">
+				<ui:param name="modal" value="#{listagemCompleta}"/>
+			</ui:decorate>
+	    </p:dialog>
+	    
+	    <p:dialog id="modalTipo" widgetVar="modalSelecionaTipoAcervo" closeOnEscape="false" position="center" width="400" height="150" modal="true"
+	    	header="#{strings.selecionarTipoAcervo}" closable="false" resizable="false">
+	    	<h:selectOneRadio value="#{listagemCompleta.tipoAcervo}" layout="pageDirection">
+	    		<f:selectItem itemValue="todoAcervo" itemLabel="#{strings.todoAcervo}"/>
+	    		<f:selectItem itemValue="flora" itemLabel="#{strings.flora}"/>
+	    		<f:selectItem itemValue="fauna" itemLabel="#{strings.fauna}"/>	    	
+	    	</h:selectOneRadio>
+	    	<h:commandButton value="Selecionar" onclick="PF('modalSelecionaTipoAcervo').close();"
+	    		styleClass="btn btn-primary btn-small" style="right:5px ; bottom: 5px; position: absolute;">
+	    		<f:ajax render="modalTipo"/>
+	    	</h:commandButton>
+	    </p:dialog>
+	    
+		<div class="container">
+			<div class="col-10 col-sm-12 col-xs-12 col-md-12 col-lg-10 centralizado">
+				<div class="row">
+					<div class="row" style="margin-bottom: 20px !important;">
+						<h:outputText value="#{listagemCompleta.page.title}" styleClass="h2 centralizado centralizado-texto"/>
+						<h:outputText value="#{listagemCompleta.page.content}" escape="false" />
+					</div>
+					
+					<div class="input-group" style="margin-bottom: 5px !important; margin: 0 auto;">
+						<p:inputText id="palavrasChaves" value="#{listagemCompleta.stringBusca}" styleClass="form-control input-sm" placeholder="#{strings.palavrasChaves}" style="width: 260px;"/>			
+						<p:commandButton value="#{strings.buscarPorPalavraChave}" styleClass="btn btn-success btn-sm" actionListener="#{listagemCompleta.novaBusca(listagemCompleta.stringBusca)}" ajax="false" style="width: 240px"/>
+					</div>
+					
+					<div class="input-group" style="margin-bottom: 5px !important; margin: 0 auto;">
+						<p:commandButton value="#{listagemCompleta.getNomeLocal(listagemCompleta.tipoAcervo)}" styleClass="btn btn-primary btn-sm" onclick="PF('modalSelecionaTipoAcervo').show();" style="width: 260px;"/>
+						<p:commandButton value="#{strings.buscarPorTipoAcervo}" styleClass="btn btn-success btn-sm" actionListener="#{listagemCompleta.buscarPorTipoAcervo}" ajax="false" style="width: 240px"/>
+					</div>
+					
+					<div class="input-group" style="margin-bottom: 15px !important; margin: 0 auto;">
+						<p:commandButton value="#{listagemCompleta.getNomeLocal(listagemCompleta.localMapa)}" styleClass="btn btn-primary btn-sm" onclick="PF('modaSelecionaMapa').show();" style="width: 260px;"/>
+						<p:commandButton value="#{strings.buscarPorLocal}" styleClass="btn btn-success btn-sm" actionListener="#{listagemCompleta.buscarPeloMapa}" ajax="false" style="width: 240px"/>
+					</div>
+
+					<div class="centralizado row">
+						<p:dataTable value="#{listagemCompleta.itens}" var="item"  emptyMessage="Sem Resultados" selectionMode="single" 
+							selection="#{listagemCompleta.selecionadoParaModal}" rowKey="#{item.id}">
+							<p:ajax event="rowSelect" listener="#{listagemCompleta.selecionaItemParaModal}" oncomplete="PF('modalViewItem').show(); setLinksGalleria();" update=":formulario:modalItem" />
+							<p:column headerText="#{strings.nomePopular}" width="250" sortBy="#{item.tituloPrincipal}">
+								<h:outputText value="#{item.tituloPrincipal}"/>
+							</p:column>
+							<p:column headerText="#{strings.nomeCientifico}"  sortBy="#{item.complemento}">
+								<h:outputText value="#{item.complemento}"/>
+							</p:column>
+							<p:column headerText="#{strings.identificacaoNoMuseu}" width="225"  sortBy="#{item.numeroRegistro}">
+									<h:outputText value="#{item.numeroRegistro}"/>
+							</p:column>	
+						</p:dataTable>
+					</div>
 				</div>
-				<div id="acervo" class="centralizado" style="border: 1px solid #D5D5D5;">
-					<h:form id="content-acervo">
-						<p:remoteCommand name="buscarPeloMapa"
-							actionListener="#{acervo.selecionarAreaMapa}" update="content-acervo">
-						</p:remoteCommand>
-						<table style="margin:0 auto;">
-						<tr>
-							<td style="padding-top: 15px;">
-								<h:commandButton id="anterior" value="&#60;" actionListener="#{acervo.pagAnterior}" 
-									disabled="#{acervo.pagina == 1}" styleClass="btn btn-primary btn-sm" style="height: 153px; width:30px;">
-									<f:ajax render="ultimas anterior proxima"/>
-								</h:commandButton>
-							</td>
-							<td>
-								<p:dataGrid value="#{acervo.resultados}" var="item" id="ultimas"  columns="4"
-								emptyMessage="#{strings.suaBuscaNaoRetornouResultados}">
-									<h:column>
-									<div class="panel panel-primary" style="width:100%;">
-									  <div class="panel-heading">#{item.tituloPrincipal}</div>
-									  <div class="panel-body" style="height:152px;">
-										<h:link outcome="item">
-											<p:graphicImage value="#{fotos.thumb}" title="Thumb" styleClass="imagemAcervo" >
-												<f:param name="id" value="#{item.id}"/>
-											</p:graphicImage>
-											<f:param value="#{item.numeroRegistro}" name="idBem" />
-										</h:link>
-										<h:button outcome="item" value="#{strings.cliqueParaMaisDetalhes}" styleClass="btn btn-primary btn-xs largura100 botao_acervo">
-											<f:param value="#{item.numeroRegistro}" name="idBem" />
-										</h:button>
-									  </div>
-									</div>
-									</h:column>
-								</p:dataGrid>
-							</td>
-							<td style="padding-top: 15px;">
-								<h:commandButton id="proxima" value="&#62;" actionListener="#{acervo.proxPagina}" 
-									disabled="#{acervo.ultimaPagina}" styleClass="btn btn-primary btn-sm" style="height: 153px; width: 30px;">
-									<f:ajax render="ultimas anterior proxima"/>
-								</h:commandButton>
-							</td>
-						</tr>			
-						</table>
-					</h:form>
-				</div>
-				<div class="clear"></div>
+				<div class="row">
+					<h:commandButton id="anterior" value="voltar" actionListener="#{listagemCompleta.pagAnterior}" disabled="#{listagemCompleta.pagina == 1}" 
+						onclick="desabilitarBotoes();" styleClass="btn btn-primary btn-sm" style="width: 200px;">
+						<f:ajax render="formulario" />
+					</h:commandButton>
+					<h:commandButton id="mais" value="mais" actionListener="#{listagemCompleta.proxPagina}" disabled="#{listagemCompleta.ultimaPagina}" 
+						onclick="desabilitarBotoes();" styleClass="btn btn-primary btn-sm" style="float:right; width: 200px;">
+						<f:ajax render="formulario"/>
+					</h:commandButton>
 				</div>
 			</div>
 		</div>
+		<script>
+		function desabilitarBotoes(){
+			var botao = document.getElementById("anterior");
+			botao.setAttribute("disabled", "true");
+			botao = document.getElementById("mais");
+			botao.setAttribute("disabled", "true");
+		}
+		</script>
+	</h:form>
 	</ui:define>
-</ui:composition>
-
+	</ui:composition>
 </html>
