@@ -19,6 +19,8 @@ public class New implements Serializable{
 	private int ID;
 	private int backPage;
 	
+	private String urlNoticia;
+	
 	@EJB
 	private MuseuRemote museu;
 	
@@ -44,6 +46,8 @@ public class New implements Serializable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        
+        urlNoticia = museu.getConfiguracao().getUrlPortal() + "/pages/new.jsf?idNews=" + post.getId();
 	}
 	
 	
@@ -55,6 +59,8 @@ public class New implements Serializable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        
+        urlNoticia = museu.getConfiguracao().getUrlPortal() + "/pages/new.jsf?idNews=" + post.getId();
 	}
 	
 	public Post getPost() {
@@ -87,6 +93,16 @@ public class New implements Serializable{
 
 	public void setBackPage(int backPage) {
 		this.backPage = backPage;
+	}
+
+
+	public String getUrlNoticia() {
+		return urlNoticia;
+	}
+
+
+	public void setUrlNoticia(String urlNoticia) {
+		this.urlNoticia = urlNoticia;
 	}
 	
 }

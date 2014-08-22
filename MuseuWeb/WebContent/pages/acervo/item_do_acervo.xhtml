@@ -2,21 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:m="http://www.ol4jsf.org">
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:m="http://www.ol4jsf.org"
+	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/templates/templateP.xhtml">
+<ui:composition template="/templates/template.xhtml">
 	<ui:define name="conteudo">
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/item.css" />
+	
 	<div class="container">
 	<div class="col-lg-11 centralizado">
 			<div class="row">
 				<div class="centralizado">
-					<p:messages />
-					<p:button outcome="listagem" value="#{strings.voltarParaAcervo}" icon="ui-icon-circle-triangle-w" />
-					<p:tabView id="tabView">
-						<p:tab title="#{strings.informacoesGerais}">
+					<h:messages />
+					<h:button outcome="acervo" value="#{strings.voltarParaAcervo}" styleClass="btn btn-sm btn-primary" />
+					<div id="tabs-min">
+						<ul>
+							<li><a href="#tabs-1">#{strings.informacoesGerais}</a></li>
+						    <li><a href="#tabs-2">#{strings.localizaçãoNoMuseu}</a></li>
+						    <li><a href="#tabs-3">#{strings.historico}</a></li>
+						    <li><a href="#tabs-4">#{strings.depoimentosECuriosidades}</a></li>						    
+						</ul>
+						<div id="tabs-1">
 							<p:panelGrid columns="2">
 								<h:outputText value="#{strings.nomePopular}:" />
 								<h:outputText value="#{itemAcervo.bem.tituloPrincipal}" />
@@ -27,22 +34,26 @@
 								<h:outputText value="#{strings.familia} " />
 								<h:outputText value="#{itemAcervo.bem.colecao}" />
 							</p:panelGrid>
-							<div id="gallery">
-								<p:dataGrid var="foto" value="#{itemAcervo.fotos}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
-									<a href="javascript: void(0)" class="imagemLink">
-										<span></span><!-- Para o Icone de Zoom -->
-										<p:graphicImage value="#{fotos.foto}" title="Thumb" styleClass="imagemAcervo" 
-											id="#{foto.id}_image" >
-											<f:param name="id" value="#{foto.id}"/>
-										</p:graphicImage>
-									</a>
-								</p:dataGrid>
+							
+							<div id="gallery" class="row">
+								<ui:repeat var="foto" value="#{itemAcervo.fotosSelecionadoParaModal}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
+									<div class="col-sm-3 col-md-3" style="padding-left: 1px;padding-right: 1px;">
+									<div class="panel panel-primary" style="width:100%;">
+									  <div class="panel-heading">#{foto.nome}</div>
+									  	<div class="panel-body" style="height:152px;">
+											<a href="javascript: void(0)" class="imagemLink">
+												<span></span><!-- Para o Icone de Zoom -->
+												<img src="/midia?id=#{foto.id}&#38;chave=#{itemAcervo.sessionKey}" class="imagemAcervo" title="#{foto.descricao}" style="width: 100%; height: auto;"/>
+											</a>
+										</div>
+									</div>
+									</div>
+								</ui:repeat>
 							</div>
-						</p:tab>
-		
-						<p:tab title="#{strings.localizaçãoNoMuseu}">
+						</div>
+						<div id="tabs-2">
 							<h:form>
-								<m:map width="950px" height="500px" jsVariable="map" >
+								<m:map width="1000px" height="500px" jsVariable="map" >
 									<m:osmLayer name="Open Street Maps" />
 									<m:icon id="icon1"
 										url="http://www.openlayers.org/dev/img/marker.png" sizeH="25"
@@ -59,34 +70,32 @@
 				            					new OpenLayers.Projection("EPSG:900913")
 				            					);
 				                        	
-				                            map.setCenter(lonLat, 18);
-				                           
+				                            map.setCenter(lonLat, 18);				                           
 									</m:script>
 								</m:map>
 							</h:form>
-						</p:tab>
-		
-						<p:tab title="#{strings.historico}">
-		
-						</p:tab>				
-		
-						<p:tab title="#{strings.depoimentosECuriosidades}">
-						
-						</p:tab>
-						
-					</p:tabView>
-				</div>
+						</div>
+						<div id="tabs-3">
+							<p>...</p>
+						</div>
+						<div id="tabs-4">
+							<p>...</p>
+						</div>
+					</div>
 			</div>
 		</div>
 		</div>
+		</div>
 		<script>
-			var imagens = document.getElementsByClassName('imagemAcervo');
-			var links = document.getElementsByClassName('imagemLink');
-			
-			for(var i = 0;i &lt; imagens.length;i++){
-				links[i].href = imagens[i].src;
-			}
-			$('#gallery').photobox('a');			
+		var imagens = document.getElementsByClassName('imagemAcervo');
+		var links = document.getElementsByClassName('imagemLink');
+		
+		for(var i = 0;i &lt; imagens.length;i++){
+			links[i].href = imagens[i].src;
+		}
+		$('#gallery').photobox('a');
+
+		$('#tabs-min').tabs();
 		</script>
 	</ui:define>
 </ui:composition>

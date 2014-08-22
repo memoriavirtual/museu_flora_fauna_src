@@ -1,6 +1,7 @@
 package museu.controller.acervo;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +12,7 @@ import museu.util.Constants;
 import museu.util.FacesUtil;
 import br.usp.memoriavirtual.servicos.soap.BemPatrimonial;
 
-public class AcervoIndex implements Serializable {
+public class AcervoIndex extends BeanComMidiaMV implements Serializable {
 
 	private static final int tamanhoPaginaDefaultIndex = 3;
 	
@@ -25,6 +26,10 @@ public class AcervoIndex implements Serializable {
 
 	@EJB
 	private MuseuRemote museu;
+	
+	public AcervoIndex(){
+		super();
+	}
 	
 	@PostConstruct
 	public void run() {
@@ -90,5 +95,26 @@ public class AcervoIndex implements Serializable {
 
 	public void setUltimaPagina(boolean ultimaPagina) {
 		this.ultimaPagina = ultimaPagina;
+	}
+
+	@Override
+	public void selecionaItemParaModal() {
+		try {
+			setFotosSelecionadoParaModal(museu.getMidias(getSelecionadoParaModal().getId()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		this.setToSession();	
+	}
+	
+	public void selecionaItemParaModal(BemPatrimonial bem){
+		System.out.println("teste:"+bem.getTituloPrincipal());
+		setSelecionadoParaModal(bem);
+		try {
+			setFotosSelecionadoParaModal(museu.getMidias(getSelecionadoParaModal().getId()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		this.setToSession();		
 	}
 }

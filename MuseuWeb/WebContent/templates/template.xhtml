@@ -13,11 +13,15 @@
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/template.css" />
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/wordpress.css" />
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/slider.css" />
+	<link rel="stylesheet" type="text/css" href="${request.contextPath}/photobox/photobox.css" />
 	<script type="text/javascript" src="${request.contextPath}/bootsrap/js/bootstrap.min.js"/>
 	<script type="text/javascript" src="${request.contextPath}/bootsrap/js/museu.js"/>
 	<script type="text/javascript" src="${request.contextPath}/bootsrap/js/jquery-ui.min.js"/>
-	<script src="http://maps.google.com/maps/api/js?key=AIzaSyBw9YtmDX3JUz1u_jQEv2BWllw7103vzmw&amp;sensor=false"
-	 type="text/javascript"></script>	 
+	<script src="http://maps.google.com/maps/api/js?key=AIzaSyBw9YtmDX3JUz1u_jQEv2BWllw7103vzmw&amp;sensor=false" type="text/javascript"/>
+	<script type="text/javascript" src="${request.contextPath}/photobox/jquery.photobox.js"/>
+	<meta property="og:site_name" content="#{template.museu.configuracao.nomeInstituicaoMemoria}"/>
+	<meta property="og:locale" content="pt_BR" />
+	<ui:insert name="htmlhead"></ui:insert>
 </h:head>
 
 <f:view encoding="ISO-8859-1">
@@ -25,7 +29,7 @@
 		<div class="page-header ">
 			<div class="container">
 				<div id="logo" class="col-lg-4 col-md-4" style="float:left;">
-	  				<p:graphicImage value="#{fotos.logo}" styleClass="img_logo" title="Logo" alt="Logo" />
+	  				<img src="/logo" class="img_logo" title="Logo" alt="logo"/>
 	  			</div>
 	  			<div id="banner" class="col-lg-8 col-md-8">
 	  				<h1>#{strings.tituloPortal}<br/><small>#{strings.subTituloPortal}</small></h1>
@@ -125,7 +129,7 @@
 							</ul>
 						</li>
 					</ul>
-					<form class="navbar-form navbar-right" role="search" action="${request.contextPath}/pages/busca.jsf">
+					<form class="navbar-form navbar-right" method="get" role="search" action="/pages/busca.jsf">
 				        <div class="form-group">
 				          <input type="text" class="form-control busca" placeholder="#{strings.buscar}" name="stringBusca" />
 				        </div>

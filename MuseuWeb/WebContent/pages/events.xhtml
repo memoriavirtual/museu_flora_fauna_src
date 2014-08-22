@@ -12,11 +12,12 @@
 					<div class="col-12 col-sm-12 com-xs-12 col-md-12 com-lg-12">
 						<div class="col-2 col-sm-2 com-xs-2 col-md-2 com-lg-2">
 							<h:form>
-								<p:commandButton action="#{events.backPage}" value="#{strings.paginaAnterior}" icon="ui-icon-arrowthick-1-w" disabled="#{!(events.backButton)}" ajax="false"/>
+								<p:commandButton action="#{events.backPage}" value="#{strings.paginaAnterior}" icon="ui-icon-arrowthick-1-w" 
+									disabled="#{!(events.backButton)}" ajax="false" styleClass="btn btn-sm btn-primary"/>
 							</h:form>
 						</div>
 						<div class="col-7 col-sm-7 com-xs-7 col-md-7 com-lg-7">
-							<h:outputText value="#{strings.palestraEeventos}" styleClass="h1 centralizado centralizado-texto" />
+							<h:outputText value="#{strings.palestraEeventos}" styleClass="h1 centralizado centralizado-texto" style="margin-bottom: 20px !important;"/>
 							<h:dataTable value="#{events.events}" var="event"
 							styleClass="blog" >
 								<h:column>
@@ -39,7 +40,8 @@
 						</div>
 						<div class="col-2 col-sm-2 com-xs-2 col-md-2 com-lg-2">	
 							<h:form style="float:right;">
-								<p:commandButton action="#{events.nextPage}" value="#{strings.proximaPagina}" icon="ui-icon-arrowthick-1-e" disabled="#{!(events.nextButton)}" ajax="false"/>
+								<p:commandButton action="#{events.nextPage}" value="#{strings.proximaPagina}" icon="ui-icon-arrowthick-1-e" 
+								disabled="#{!(events.nextButton)}" ajax="false" styleClass="btn btn-sm btn-primary"/>
 							</h:form>
 						</div>
 						<div class="clear"/>

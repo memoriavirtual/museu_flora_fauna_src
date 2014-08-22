@@ -1,8 +1,3 @@
-.ui-widget-content {
-	background-color: white !important;
-	border: 1px solid #D5D5D5 !important;
-}
-
 #mapa{
 	
 }
@@ -19,11 +14,6 @@ table td {
 table {
 	border-spacing: 2px;
 	border-color: #D5D5D5;
-}
-
-.imagemAcervo {
-	max-width: 234px;
-	height: auto;
 }
 
 #gallery a {

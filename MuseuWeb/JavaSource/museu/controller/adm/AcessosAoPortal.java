@@ -69,7 +69,7 @@ public class AcessosAoPortal implements Serializable {
 			java.sql.Date dataEmSQL = new java.sql.Date(dataBusca.getTime());
 			acessos = banco.pesquisarAcessos(dataEmSQL, paginaAtualAcesso,
 					tamanhoPaginaAcessos);
-			if (banco.getAcessos(paginaAtualAcesso + 1, tamanhoPaginaAcessos)
+			if (banco.pesquisarAcessos(dataEmSQL,paginaAtualAcesso + 1, tamanhoPaginaAcessos)
 					.size() == 0)
 				ultimaPagina = true;
 			else

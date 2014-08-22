@@ -50,168 +50,129 @@
 				</div>
 			</div>
 			<div class="col-12 col-sm-12 col-lg-8">
-				<div class="row">
-					<div id="acervo" class="col-12 col-sm-12 col-lg-12">
-						<h:form prependId="false">
-							<h:outputText value="#{strings.ultimasCatalogacoes}"
-								styleClass="h2" />
-							<div class="row">
-								<table>
-									<tr>
-										<td style="padding-top: 15px;"><h:commandButton
-												id="anterior" value="&#60;"
-												actionListener="#{indexAcervo.pagAnterior}"
-												disabled="#{indexAcervo.pagina == 1}"
-												styleClass="btn btn-primary btn-sm"
-												style="height: 153px; width:30px;">
-												<f:ajax render="anterior proxima ultimas" />
-											</h:commandButton></td>
-										<td><p:dataGrid value="#{indexAcervo.resultados}"
-												var="item" id="ultimas" columns="3">
-												<h:column>
-													<div class="panel panel-primary" style="width: 100%;">
-														<div class="panel-heading">#{item.tituloPrincipal}</div>
-														<div class="panel-body" style="height: 152px;">
-															<h:link outcome="item">
-																<p:graphicImage value="#{fotos.thumb}" title="Thumb"
-																	styleClass="imagemAcervo">
-																	<f:param name="id" value="#{item.id}" />
-																</p:graphicImage>
-																<f:param value="#{item.numeroRegistro}" name="idBem" />
-															</h:link>
-															<h:button outcome="item"
-																value="#{strings.clickParaMaisDetalhes}"
-																styleClass="btn btn-primary btn-xs largura100 botao_acervo">
-																<f:param value="#{item.numeroRegistro}" name="idBem" />
-															</h:button>
-														</div>
-													</div>
-												</h:column>
-											</p:dataGrid></td>
-										<td style="padding-top: 15px;"><h:commandButton
-												id="proxima" value="&#62;"
-												actionListener="#{indexAcervo.proxPagina}"
-												disabled="#{indexAcervo.ultimaPagina}"
-												styleClass="btn btn-primary btn-sm"
-												style="height: 153px; width: 30px;">
-												<f:ajax render="anterior proxima ultimas" />
-											</h:commandButton></td>
-									</tr>
-								</table>
-							</div>
-						</h:form>
+		<div class="row">
+		<div id="acervo" class="col-12 col-sm-12 col-lg-12">
+			<h:form prependId="false">
+			<h:outputText value="#{strings.ultimasCatalogacoes}" styleClass="h2" />
+			<div class="row">
+				<ui:repeat value="#{indexAcervo.resultados}" var="item" id="ultimas">
+					<div class="col-sm-4 col-md-4">
+						<div class="panel panel-primary col-4" style="width:100%;">
+						  <div class="panel-heading">#{item.tituloPrincipal}</div>
+						  <div class="panel-body" style="height:152px;"> 
+							<h:link outcome="item">
+								<p:graphicImage value="#{fotos.thumb}" title="Thumb" styleClass="imagemAcervo">
+									<f:param name="id" value="#{item.id}"/>
+								</p:graphicImage>
+								<f:param value="#{item.numeroRegistro}" name="idBem" />
+							</h:link>
+							<h:button outcome="item" value="#{strings.clickParaMaisDetalhes}" styleClass="btn btn-primary btn-xs largura100 botao_acervo">
+								<f:param value="#{item.numeroRegistro}" name="idBem" />
+							</h:button>
+						  </div>
+						</div>
 					</div>
-					<div id="eventos" class="col-12 col-sm-12 col-lg-12">
-						<h2>#{strings.eventos}</h2>
-						<h:dataTable value="#{index.events}" var="event" id="tableEvents"
-							styleClass="largura100">
-							<h:column>
-								<div class="media">
-									<a class="pull-left" href=""> <img class="media-object"
-										src="#{index.museu.getGallery(event.id).mainImage.url}"
-										alt="Foto" /> <h:outputText
-											value="#{event.dataPublicacaoFormatada}"
-											style="font-size:13px; margin-left: 1px;" />
-									</a>
-									<div class="media-body">
-										<h:link value="#{event.title}" outcome="event"
-											styleClass="media-heading">
-											<f:param value="#{event.id}" name="idEvent" />
-										</h:link>
-									</div>
-								</div>
-							</h:column>
-						</h:dataTable>
-						<h:link value="#{strings.maisEventos}" outcome="events"
-							styleClass="h4" style="float:right;" />
-					</div>
-					<div id="news" class="col-12 col-sm-12 col-lg-12">
-						<h2>#{strings.noticias}</h2>
-						<h:dataTable value="#{index.blog}" var="new" id="tableNews"
-							styleClass="largura100">
-							<h:column>
-								<div class="media">
-									<a class="pull-left" href=""> <img class="media-object"
-										src="#{index.museu.getGallery(new.id).mainImage.url}"
-										alt="Foto" /> <h:outputText
-											value="#{new.dataPublicacaoFormatada}"
-											style="font-size:13px; margin-left: 1px;" />
-									</a>
-									<div class="media-body">
-										<h:link value="#{new.title}" outcome="new"
-											styleClass="media-heading">
-											<f:param value="#{new.id}" name="idNews" />
-										</h:link>
-									</div>
-								</div>
-							</h:column>
-						</h:dataTable>
-						<h:link value="#{strings.maisNoticias}" outcome="news"
-							styleClass="h4" style="float:right;" />
-					</div>
+				</ui:repeat>
+				<!-- <h:commandButton id="anterior" value="&#60;" actionListener="#{indexAcervo.pagAnterior}" 
+					disabled="#{indexAcervo.pagina == 1}" styleClass="btn btn-primary btn-sm" style="height: 153px; width:30px;">
+					<f:ajax render="anterior proxima ultimas"/>
+				</h:commandButton>
+				<h:commandButton id="proxima" value="&#62;" actionListener="#{indexAcervo.proxPagina}" 
+					disabled="#{indexAcervo.ultimaPagina}" styleClass="btn btn-primary btn-sm" style="height: 153px; width: 30px;">
+					<f:ajax render="anterior proxima ultimas"/>
+				</h:commandButton> -->
+			</div>
+			</h:form>
+		</div>		
+		<div id="eventos" class="col-12 col-sm-12 col-lg-12"> 
+			<h2>#{strings.eventos}</h2>
+			<h:dataTable value="#{index.events}" var="event" id="tableEvents" styleClass="largura100">
+				<h:column>
+				<div class="media">
+				  <a class="pull-left" href="">
+				    <img class="media-object" src="#{index.museu.getGallery(event.id).mainImage.url}" alt="Foto"/>
+				    <h:outputText value="#{event.dataPublicacaoFormatada}" style="font-size:13px; margin-left: 1px;"/>
+				  </a>
+				  <div class="media-body">
+				    <h:link value="#{event.title}" outcome="event" styleClass="media-heading">
+						<f:param value="#{event.id}" name="idEvent" />
+					</h:link>
+				  </div>
+				</div>
+				</h:column>
+			</h:dataTable>
+			<h:link value="#{strings.maisEventos}" outcome="events" styleClass="h4"  style="float:right;"/>
+		</div>
+		<div id="news" class="col-12 col-sm-12 col-lg-12"> 
+			<h2>#{strings.noticias}</h2>
+			<h:dataTable value="#{index.blog}" var="new" id="tableNews" styleClass="largura100">
+				<h:column>
+				<div class="media">
+				  <a class="pull-left" href="">
+				    <img class="media-object" src="#{index.museu.getGallery(new.id).mainImage.url}" alt="Foto"/>
+				    <h:outputText value="#{new.dataPublicacaoFormatada}" style="font-size:13px; margin-left: 1px;"/>
+				  </a>
+				  <div class="media-body">
+					<h:link value="#{new.title}" outcome="new" styleClass="media-heading">
+						<f:param value="#{new.id}" name="idNews" />
+					</h:link>
+				  </div>
+				</div>
+				</h:column>
+			</h:dataTable>
+			<h:link value="#{strings.maisNoticias}" outcome="news" styleClass="h4" style="float:right;" />
+		</div>
+		</div>
+		</div>
+		<div id="left" class="col-12 col-sm-12 col-lg-4 col-md-12">
+			<div id="social" class="col-12 col-sm-12 col-lg-12 col-md-12 border-bottom" >
+				<h:outputText value="#{strings.conectse}" styleClass="h2 col-12 col-sm-12 col-lg-12 col-md-12"/>
+				<div class="col-12 com-sm-12 col-lg-12 col-md-12">
+					<a href="#{index.museu.configuracao.facebook}" class="facebook-icon col-3 col-xs-3 col-md-3 com-sm-3 col-lg-3"/>
+					<a href="#{index.museu.configuracao.flickr}" class="flickr-icon col-3 col-xs-3 col-md-3 com-sm-3 col-lg-3"/>
+					<a href="#{index.museu.configuracao.twitter}" class="twitter-icon col-3 col-xs-3 col-md-3 com-sm-3 col-lg-3"/>
+					<a href="#{index.museu.configuracao.youtube}" class="youtube-icon col-3 col-xs-3 col-md-3 com-sm-3 col-lg-3"/>
 				</div>
 			</div>
-			<div id="left" class="col-12 col-sm-12 col-lg-4 col-md-12">
-				<div id="social"
-					class="col-12 col-sm-12 col-lg-12 col-md-12 border-bottom">
-					<h:outputText value="#{strings.conectse}"
-						styleClass="h2 col-12 col-sm-12 col-lg-12 col-md-12" />
-					<div class="col-12 com-sm-12 col-lg-12 col-md-12">
-						<a href="#{index.museu.configuracao.facebook}"
-							class="facebook-icon col-3 col-xs-3 col-md-3 com-sm-3 col-lg-3" />
-						<a href="#{index.museu.configuracao.flickr}"
-							class="flickr-icon col-3 col-xs-3 col-md-3 com-sm-3 col-lg-3" />
-						<a href="#{index.museu.configuracao.twitter}"
-							class="twitter-icon col-3 col-xs-3 col-md-3 com-sm-3 col-lg-3" />
-						<a href="#{index.museu.configuracao.youtube}"
-							class="youtube-icon col-3 col-xs-3 col-md-3 com-sm-3 col-lg-3" />
-					</div>
+			<div id="localizacao" class="col-12 com-sm-12 col-lg-12 col-md-12" style="padding-top: 25px;">
+				<div class="col-12 com-sm-12 col-lg-12 col-md-12">
+					<h:outputText value="#{strings.localizacao}" styleClass="h2"/>
 				</div>
-				<div id="localizacao" class="col-12 com-sm-12 col-lg-12 col-md-12"
-					style="padding-top: 25px;">
-					<div class="col-12 com-sm-12 col-lg-12 col-md-12">
-						<h:outputText value="#{strings.localizacao}" styleClass="h2" />
-					</div>
-					<div class="col-12 com-sm-12 col-lg-12 col-md-12">
-						<div id="gmap" style="width: 335px; height: 290px;" />
-					</div>
-					<div class="col-12 com-sm-12 col-lg-12 col-md-12">
-						<a href="http://goo.gl/M6n9LI" class="btn btn-primary btn-sm">
-							<i class="glyphicon glyphicon-zoom-in" style="float: left;"></i>#{strings.ampliarMapa}
-						</a>
-					</div>
+				<div class="col-12 com-sm-12 col-lg-12 col-md-12">
+					<div id="gmap" style="width:335px;height:290px;"/>
 				</div>
-				<div id="vocesabia" class="col-12 com-sm-12 col-lg-12 col-md-12"
-					style="padding-top: 25px;">
-					<h:outputText value="#{strings.voceSabia}"
-						styleClass="h2 col-12 col-sm-12 col-lg-12 col-md-12" />
-					<h:outputText value="#{index.voceSabia.content}" escape="false"
-						styleClass="col-12 col-sm-12 col-lg-12 col-md-12" />
+				<div class="col-12 com-sm-12 col-lg-12 col-md-12">
+					<a  href="http://goo.gl/M6n9LI" class="btn btn-primary btn-sm" >
+						<i class="glyphicon glyphicon-zoom-in" style="float: left;"></i>#{strings.ampliarMapa}</a>
 				</div>
-
 			</div>
+			<div id="vocesabia" class="col-12 com-sm-12 col-lg-12 col-md-12" style="padding-top: 25px;">
+				<h:outputText value="#{strings.voceSabia}" styleClass="h2 col-12 col-sm-12 col-lg-12 col-md-12" />
+				<h:outputText value="#{index.voceSabia.content}" escape="false" styleClass="col-12 col-sm-12 col-lg-12 col-md-12" />
+			</div>
+			
+		</div>
 		</div>
 		<script>
-			//Colocar opção no painel, a configuração do mapa e tempo execução do carousel
-			var options = {
-				scrollwheel : false,
-				center : new google.maps.LatLng(-22.007656, -47.894879),
-				zoom : 16,
-				mapTypeId : google.maps.MapTypeId.ROADMAP,
-				disableDefaultUI : true,
-				disableDoubleClickZoom : true,
-				draggable : false
-			};
-			var gmap = new google.maps.Map(document.getElementById("gmap"),
-					options);
-
-			jQuery('.carousel').carousel({
-				interval : 4500
-			});
+		//Colocar opção no painel, a configuração do mapa e tempo execução do carousel
+		var options = {
+				scrollwheel: false,
+				center: new google.maps.LatLng(-22.007656, -47.894879),
+				zoom:16,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				disableDefaultUI:true,
+				disableDoubleClickZoom:true,
+				draggable:false
+				};
+		var gmap = new google.maps.Map(document.getElementById("gmap"),options);
+		
+		
+		jQuery('.carousel').carousel({
+			interval: 4500
+		});
 		</script>
 		<h:form>
-			<p:remoteCommand name="onload" action="#{index.guardaAcesso}"
-				autoRun="true" />
+			<p:remoteCommand name="onload" action="#{index.guardaAcesso}" autoRun="true" />
 		</h:form>
 	</ui:define>
 </ui:composition>

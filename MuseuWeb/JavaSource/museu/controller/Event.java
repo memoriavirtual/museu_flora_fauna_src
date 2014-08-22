@@ -19,6 +19,8 @@ public class Event implements Serializable{
 	private int ID;
 	private int backPage;
 	
+	private String urlEvento;
+	
 	@EJB
 	private MuseuRemote museu;
 	
@@ -43,6 +45,8 @@ public class Event implements Serializable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        
+        urlEvento = museu.getConfiguracao().getUrlPortal() + "/pages/event.jsf?idEvent=" + post.getId();
 	}
 	
 	
@@ -54,6 +58,8 @@ public class Event implements Serializable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        
+        urlEvento = museu.getConfiguracao().getUrlPortal() + "/pages/event.jsf?idEvent=" + post.getId();
 	}
 	
 	public Post getPost() {
@@ -86,5 +92,13 @@ public class Event implements Serializable{
 
 	public void setBackPage(int backPage) {
 		this.backPage = backPage;
+	}
+
+	public String getUrlEvento() {
+		return urlEvento;
+	}
+
+	public void setUrlEvento(String urlEvento) {
+		this.urlEvento = urlEvento;
 	}
 }

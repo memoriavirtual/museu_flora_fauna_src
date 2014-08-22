@@ -30,9 +30,6 @@
         <dependent-module archiveName="org.apache.commons.logging_1.0.4.v201101211617.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/org.apache.commons.logging_1.0.4.v201101211617.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="primefaces-4.0.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/primefaces-4.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="commons-io-2.4.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/commons-io-2.4.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -46,6 +43,9 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="MVWS.jar" deploy-path="/lib" handle="module:/resource/MVWS/MVWS">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="primefaces-5.0.jar" deploy-path="/lib" handle="module:/classpath/lib/Museu/lib/primefaces-5.0.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>

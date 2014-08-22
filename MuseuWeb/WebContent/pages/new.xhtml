@@ -6,25 +6,45 @@
       xmlns:p="http://primefaces.org/ui">
 
 	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="htmlhead">
+			<meta property="og:title" content="#{notice.post.title}"/>
+			<meta property="og:url" content="#{notice.urlNoticia}"/>
+			<meta property="og:description" content="#{notice.post.contentOnlyText}"/>
+			<meta property="og:image" content="#{notice.gallery.mainImage.url}"/>
+			<meta property="og:type" content="article" />
+		</ui:define>
 		<ui:define name="conteudo">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 col-sm-12 com-xs-12 col-md-12 com-lg-12">
 					<div class="col-2 col-sm-2 com-xs-2 col-md-2 com-lg-2">
-						<p:button outcome="news" value="#{strings.voltarParaNoticias}" icon="ui-icon-arrow-return-1-w">
+						<p:button outcome="news" value="#{strings.voltarParaNoticias}" icon="ui-icon-arrow-return-1-w"
+							styleClass="btn btn-sm btn-primary">
 							<f:param name="idPagina" value="#{notice.backPage}"></f:param>
 						</p:button>
 					</div>
 					<div class="col-7 col-sm-7 com-xs-7 col-md-7 com-lg-7 centralizado">
 						<h:outputText value="#{notice.post.title}" escape="false" styleClass="h2 centralizado centralizado-texto"/>
-						<div class="clear" style="margin-bottom: 20px;"/>
-						<h:outputText value="Publicado: #{notice.post.dataPublicacaoFormatada}" styleClass="data"/>
-						<div class="clear"/>
+						<div class="row" style="margin: 20px 0;">
+							<h:outputText value="Publicado: #{notice.post.dataPublicacaoFormatada}" styleClass="data"/>
+							<div class="fb-like" data-href="#{notice.urlNoticia}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" style="float:right;"/>
+						</div>
 						<h:outputText value="#{notice.post.content}" escape="false"/> 
 					</div>
 				</div>
+				
 			</div>
 		</div>
+		<div id="fb-root"></div>
+		<script>
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&#38;version=v2.0";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
 		</ui:define>
 	</ui:composition>
 

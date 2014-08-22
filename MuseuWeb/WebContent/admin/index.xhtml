@@ -52,7 +52,7 @@
 							<p:tooltip/>
 							
 							<p:outputLabel value="#{strings.logoAtual}:"/>
-							<p:graphicImage value="#{fotos.logo}"  style="height: 136px; width:auto;" />
+							<img src="/logo" class="img_logo" title="Logo" alt="logo" style="height: 136px; width:auto;"/>
 							<p:tooltip/>
 								
 					</h:panelGrid>
@@ -212,9 +212,7 @@
 					<p:dataGrid value="#{indexAdm.config.slides}" var="slide" binding="#{indexAdm.tabelaSlides}" rowIndexVar="iterador">
 						<p:column>
 							<h:panelGrid columns="1">
-								<p:graphicImage value="#{fotos.slide}" style="height: 136px; width:284px;">
-									<f:param name="slide" value="#{slide.id}"/>
-								</p:graphicImage>
+								<img src="/slide?id=#{slide.id}" style="height: 136px; width:284px;"/>
 							</h:panelGrid>
 							<h:panelGrid columns="2">
 								<p:outputLabel value="Link:"/>

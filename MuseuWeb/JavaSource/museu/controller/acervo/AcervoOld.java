@@ -21,7 +21,7 @@ import br.usp.memoriavirtual.servicos.soap.BemPatrimonial;
 
 import com.bkahlert.devel.wpws.model.Page;
 
-public class Acervo implements Serializable,Mapa {
+public class AcervoOld implements Serializable,Mapa {
 
 	private static final int tamanhoPaginaDefaultAcervo = 4;
 	

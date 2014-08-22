@@ -13,7 +13,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import museu.controller.Mapa;
-import museu.controller.Modal;
 import museu.fachadas.remoto.MuseuRemote;
 import museu.util.Constants;
 import museu.util.FacesUtil;
@@ -23,13 +22,12 @@ import org.ol4jsf.component.api.FeatureVector;
 import org.ol4jsf.util.WKTFeaturesCollection;
 
 import br.usp.memoriavirtual.servicos.soap.BemPatrimonial;
-import br.usp.memoriavirtual.servicos.soap.Multimidia;
 
 import com.bkahlert.devel.wpws.model.Page;
 
 @ManagedBean(name = "listagemCompleta")
 @ViewScoped
-public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
+public class ListagemCompletaAcervo extends BeanComMidiaMV implements Serializable,Mapa{
 
 	private static final long serialVersionUID = -1247505733388344492L;
 
@@ -60,6 +58,10 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 	
 	@PostConstruct
 	public void init(){
+		if(FacesUtil.getRequestParameter("chave")!= null){
+			stringBusca = FacesUtil.getRequestParameter("chave");
+			
+		}
 		try {
 			page = museu.getPage(Integer.parseInt(museu.getConfiguracao().getAcervo()));
 		} catch (RemoteException e) {
@@ -75,12 +77,14 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 	}
 	
 	public void buscarPorTipoAcervo(){
+		pagina = 1;
 		if(tipoAcervo.equals("todoAcervo"))buscar("");
 		else if(tipoAcervo.equals("flora"))buscar("MFF-FL");
 		else if(tipoAcervo.equals("fauna"))buscar("MFF-FN");
 	}
 	
 	public void buscarPeloMapa(){
+		pagina = 1;
 		if(localMapa.equals("mapaInteiro"))buscar("");
 		else buscar(localMapa);
 	}
@@ -121,19 +125,12 @@ public class ListagemCompletaAcervo extends Modal implements Serializable,Mapa{
 	
 	@Override
 	public void selecionaItemParaModal(){
-		
 		try {
 			setFotosSelecionadoParaModal(museu.getMidias(getSelecionadoParaModal().getId()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		if(getFotosSelecionadoParaModal()!=null){
-			List<Multimidia> midias = getFotosSelecionadoParaModal();
-			for(Multimidia midia: midias){
-				FacesUtil.setSession(new Long(midia.getId()).toString(), midia);
-			}
-		}
-		
+		this.setToSession();		
 	}
 	
 	public List<BemPatrimonial> getItens() {

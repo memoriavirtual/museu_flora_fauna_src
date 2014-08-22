@@ -8,7 +8,7 @@
 	
 	<ui:composition>
 	
-		<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/listagem.css" />
+		<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/listagem.css" />	
 		<p:panelGrid columns="2">
 			<h:outputText value="#{strings.nomePopular}:" />
 			<h:outputText value="#{modal.selecionadoParaModal.tituloPrincipal}" />
@@ -23,10 +23,7 @@
 			<p:dataGrid var="foto" value="#{modal.fotosSelecionadoParaModal}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
 				<a href="javascript: void(0)" class="imagemLink">
 					<span></span><!-- Para o Icone de Zoom -->
-					<p:graphicImage value="#{fotos.foto}" title="Thumb" styleClass="imagemAcervo" 
-						id="#{foto.id}_image" >
-						<f:param name="id" value="#{foto.id}"/>
-					</p:graphicImage>
+					<img src="/midia?id=#{foto.id}&#38;chave=#{modal.sessionKey}" class="imagemAcervoModal" title="#{foto.descricao}" style="width: 100%; height: auto;"/>
 				</a>
 			</p:dataGrid>
 		</div>
@@ -36,7 +33,7 @@
 		
 		<script>
 			function setLinksGalleria(){
-				var imagens = document.getElementsByClassName('imagemAcervo');
+				var imagens = document.getElementsByClassName('imagemAcervoModal');
 				var links = document.getElementsByClassName('imagemLink');
 				
 				for(var i = 0;i &lt; imagens.length;i++){

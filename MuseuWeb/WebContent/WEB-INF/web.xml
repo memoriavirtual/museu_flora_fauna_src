@@ -17,7 +17,7 @@
 	</context-param>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>bootstrap</param-value>
+		<param-value>cupertino</param-value>
 	</context-param>
 	<context-param>
 		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
@@ -37,7 +37,7 @@
 	</context-param>
 	<context-param>
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-		<param-value>Client</param-value>
+		<param-value>Server</param-value>
 	</context-param>
 	<servlet>
 		<servlet-name>facesServlet</servlet-name>
