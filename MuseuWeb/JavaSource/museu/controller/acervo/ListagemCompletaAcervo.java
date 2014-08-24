@@ -71,9 +71,10 @@ public class ListagemCompletaAcervo extends BeanComMidiaMV implements Serializab
 		buscar(stringBusca);
 	}
 	
-	public void novaBusca(String chave){
+	public String novaBusca(String chave){
 		pagina = 1;
 		buscar(chave);
+		return "acervo";
 	}
 	
 	public void buscarPorTipoAcervo(){
@@ -244,6 +245,7 @@ public class ListagemCompletaAcervo extends BeanComMidiaMV implements Serializab
 
 	@Override
 	public void confirmarSelecaoMapa() {
+		System.out.println("confirmarSelecaoMapa:"+localTemp);
 		localMapa = localTemp;
 	}
 
