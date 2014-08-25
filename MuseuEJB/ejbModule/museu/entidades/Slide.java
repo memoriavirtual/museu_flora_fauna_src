@@ -21,13 +21,18 @@ public class Slide implements Serializable{
 	@SequenceGenerator(name = "SLIDE_ID", sequenceName = "SLIDE_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SLIDE_ID")
     private String id;
-	
-    private String contentType;
-    private String link;
+
+    private String titulo;
+    
+    private String texto;
+    
+    private String link;    
     
     @Lob  
     @Column(columnDefinition = "BYTEA")
     private byte[] content;
+    
+    private String contentType;
 
     @ManyToOne
     @JoinColumn(name="CONFIGURACAO_ID")
@@ -63,6 +68,22 @@ public class Slide implements Serializable{
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
     
 }

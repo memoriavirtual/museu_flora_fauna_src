@@ -212,11 +212,17 @@
 					<p:dataGrid value="#{indexAdm.config.slides}" var="slide" binding="#{indexAdm.tabelaSlides}" rowIndexVar="iterador">
 						<p:column>
 							<h:panelGrid columns="1">
-								<img src="/slide?id=#{slide.id}" style="height: 136px; width:284px;"/>
+								<img src="/slide?id=#{slide.id}" style="height: auto; width:290px;"/>
 							</h:panelGrid>
 							<h:panelGrid columns="2">
 								<p:outputLabel value="Link:"/>
 								<p:inputText value="#{slide.link}" styleClass="inputLink"/>
+								<p:outputLabel value="#{strings.titulo}:"/>
+								<p:inputText value="#{slide.titulo}" styleClass="inputLink"/>
+							</h:panelGrid>
+							<h:panelGrid columns="1">
+								<p:outputLabel value="#{strings.texto}"/>
+								<p:inputTextarea value="#{slide.texto}" maxlength="650" style="width: 290px; height: 200px;"/>
 							</h:panelGrid>
 							<h:panelGrid columns="1">
 								<p:commandButton value="#{strings.removerSlide}" actionListener="#{indexAdm.removeSlide}" ajax="false"/>

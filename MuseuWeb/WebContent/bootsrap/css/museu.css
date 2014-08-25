@@ -1,3 +1,30 @@
+.jumbotron p{
+	font-size: 18px;
+	text-align: justify;
+}
+
+.jumbotron h1{
+	font-size: 60px;
+	border-bottom: 2px solid white;
+}
+
+.vcenter {
+    margin-top: 225px;
+}
+
+.jumbotron{
+	 background: rgba(0, 0, 0, 0.8);
+	 color: white;
+}
+
+.image_slide{
+    height: 100vh !important;
+    width: 100vw !important;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+}
+
 .page-header{
 	margin: 0px 0px 0px 0px;
 }
@@ -50,15 +77,6 @@ h1{
    visibility: visible;
 }
 
-.jumbotron{
-	background-color: #ccecfd;
-	margin: 0px 0px 0px 0px;
-	padding: 5px 5px 5px 5px;
-}
-
-.jumbotron small{
-	color: black;
-}
 .media-object{
 	width: 128px;
 	height: 70px;
