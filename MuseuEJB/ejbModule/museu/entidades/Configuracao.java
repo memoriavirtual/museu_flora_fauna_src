@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Configuracao implements Serializable{
@@ -33,6 +34,7 @@ public class Configuracao implements Serializable{
 	
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@OrderBy("ordem ASC")
 	@JoinColumn(name="CONFIGURACAO_ID")
 	private List<Slide> slides = new ArrayList<Slide>();
 	

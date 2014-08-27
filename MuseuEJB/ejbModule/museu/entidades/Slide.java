@@ -28,6 +28,9 @@ public class Slide implements Serializable{
     
     private String link;    
     
+    @Column(unique=true)
+    private Integer ordem;
+    
     @Lob  
     @Column(columnDefinition = "BYTEA")
     private byte[] content;
@@ -84,6 +87,14 @@ public class Slide implements Serializable{
 
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+
+	public Integer getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(Integer ordem) {
+		this.ordem = ordem;
 	}
     
 }

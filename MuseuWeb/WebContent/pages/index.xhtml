@@ -13,8 +13,8 @@
 				<c:forEach var="slide" items="#{template.museu.configuracao.slides}" varStatus="indice" >
 					<h:panelGroup rendered="#{indice.index == 0}">
 						<div class="item active image_slide" style="background-image:url('/slide?id=#{slide.id}');">
-							<div class="container" style="height: 100%;">
-								<div class="jumbotron vcenter">
+							<div class="container">
+								<div class="col-md-10 jumbotron vcenter">
 									<h1>#{slide.titulo}</h1>
 								  	<p class="textoJumbo">#{slide.texto}</p>
   								  	<a class="btn btn-primary" role="button" href="#{slide.link}">
@@ -23,7 +23,6 @@
 								 	<a class="btn btn-success" role="button" href="#">
 								  		#{strings.compartilhar}
 								 	</a>
-								 	<div class="clear" style="margin-top:20px;"></div>
 								 	<a class="btn btn-warning" role="button" href="#conteudo_index">
 								  		#{strings.navegar}
 								  		<span class="glyphicon glyphicon-arrow-down"></span>
@@ -34,8 +33,8 @@
 					</h:panelGroup>
 					<h:panelGroup rendered="#{indice.index != 0}">
 						<div class="item image_slide" style="background-image:url('/slide?id=#{slide.id}');">
-							<div class="container" style="height: 100%;">
-								<div class="jumbotron vcenter">
+							<div class="container">
+								<div class="col-md-10 jumbotron vcenter">
 									<h1>#{slide.titulo}</h1>
 									<p class="textoJumbo">#{slide.texto}</p>
   								  	<a class="btn btn-primary" role="button" href="#{slide.link}">
@@ -44,7 +43,6 @@
 								 	<a class="btn btn-success" role="button" href="#">
 								  		#{strings.compartilhar}
 								 	</a>
-								 	<div class="clear" style="margin-top:20px;"></div>
 								 	<a class="btn btn-warning" role="button" href="#conteudo_index">
 								  		#{strings.navegar}
 								  		<span class="glyphicon glyphicon-arrow-down"></span>

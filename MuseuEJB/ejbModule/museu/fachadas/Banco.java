@@ -34,6 +34,8 @@ public class Banco implements BancoRemote,Serializable{
 		return u;
 	}
 
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> getUsuarios() {
@@ -69,7 +71,7 @@ public class Banco implements BancoRemote,Serializable{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Slide> getSlides() {
-		Query q = em.createQuery("SELECT s FROM Slide s");
+		Query q = em.createQuery("SELECT s FROM Slide s ORDER BY s.ordem DESC");
 		return q.getResultList();
 	}
 
@@ -137,6 +139,14 @@ public class Banco implements BancoRemote,Serializable{
 		Query q = em.createQuery("SELECT count(a.id) FROM Acesso a where a.AcessDate=:date");
 		q.setParameter("date", date);
 		return (Long) q.getSingleResult();
+	}
+
+	@Override
+	public Integer getMaiorOrdemSlide() {
+		Query q = em.createQuery("SELECT s.ordem FROM Slide s order by s.ordem DESC");
+		System.out.println("ordem:"+q.getResultList().size());
+		System.out.println("ordem2:"+q.getResultList().get(0));
+		return (Integer) q.getFirstResult();
 	}
 
 }

@@ -5,8 +5,6 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -39,8 +37,6 @@ public class Index implements Serializable{
 	
 	private javax.servlet.http.Part uploadSlide;
 	
-	private List<Part> slides = new ArrayList<Part>();
-	
 	//private boolean canUpload = true;
 	
 	private UIData tabelaSlides;
@@ -57,6 +53,7 @@ public class Index implements Serializable{
 	@PostConstruct
 	public void init(){
 		config = banco.getConfiguracao();
+		
 	}
 	
 	public void salvar(){
@@ -87,7 +84,7 @@ public class Index implements Serializable{
 			
 			slide.setContent(array);
 			slide.setContentType(uploadSlide.getContentType());
-
+			slide.setOrdem(config.getSlides().get(config.getSlides().size()-1).getOrdem()+1);
 			config.getSlides().add(slide);
 			
 			banco.salvarConfiguracoes(config);
@@ -99,10 +96,34 @@ public class Index implements Serializable{
 		return "/admin/index";
 	}
 	
+	public void aumentarOrdem(){
+		Slide slide = (Slide) tabelaSlides.getRowData();
+		
+		Slide s = config.getSlides().get(slide.getOrdem()-2);
+		
+		
+		slide.setOrdem(slide.getOrdem()-1);		
+		s.setOrdem(slide.getOrdem()+1);
+
+		config.getSlides().remove(s);
+		banco.removerSlide(s.getId());
+		
+		banco.updateSlide(slide);
+		
+		config.getSlides().add(s);
+		banco.persistirSlide(s);
+	}
+	
 	public void removeSlide(){
 		Slide slide = (Slide) tabelaSlides.getRowData();
 		banco.removerSlide(slide.getId());
 		config.getSlides().remove(slide);
+		
+		for(int i = 1;i<config.getSlides().size()+1;i++){
+			System.out.println("valor de i:"+i);
+			config.getSlides().get(i-1).setOrdem(i);
+			banco.updateSlide(config.getSlides().get(i-1));
+		}
 		banco.salvarConfiguracoes(config);
 		FacesUtil.addMessage("Slide removido com sucesso", 
 				"Slide removido com sucesso", Constants.INFO);
@@ -166,14 +187,6 @@ public class Index implements Serializable{
 
 	public void setLogo(Part logo) {
 		this.logo = logo;
-	}
-
-	public List<Part> getSlides() {
-		return slides;
-	}
-
-	public void setSlides(List<Part> slides) {
-		this.slides = slides;
 	}
 
 	public UIData getTabelaSlides() {

@@ -1,15 +1,16 @@
 .jumbotron p{
-	font-size: 18px;
+	font-size: 17px;
 	text-align: justify;
 }
 
 .jumbotron h1{
-	font-size: 60px;
+	font-size: 55px;
 	border-bottom: 2px solid white;
 }
 
 .vcenter {
-    margin-top: 225px;
+    margin: 10% auto !important;
+    float: none !important;
 }
 
 .jumbotron{

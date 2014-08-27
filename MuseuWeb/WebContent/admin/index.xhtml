@@ -206,7 +206,7 @@
 			</p:tab>
 			
 			<p:tab title="#{strings.slidePrincipal}">
-				<h:form enctype="multipart/form-data">
+				<h:form enctype="multipart/form-data">					
 					<h:commandButton value="#{strings.adicionarSlide}"  action="#{indexAdm.addSlide}"  id="uploadButton" />
 					<h:inputFile id="inputFile" value="#{indexAdm.uploadSlide}"/>
 					<p:dataGrid value="#{indexAdm.config.slides}" var="slide" binding="#{indexAdm.tabelaSlides}" rowIndexVar="iterador">
@@ -221,11 +221,18 @@
 								<p:inputText value="#{slide.titulo}" styleClass="inputLink"/>
 							</h:panelGrid>
 							<h:panelGrid columns="1">
-								<p:outputLabel value="#{strings.texto}"/>
+								<p:outputLabel value="#{strings.texto}:"/>
 								<p:inputTextarea value="#{slide.texto}" maxlength="650" style="width: 290px; height: 200px;"/>
 							</h:panelGrid>
-							<h:panelGrid columns="1">
-								<p:commandButton value="#{strings.removerSlide}" actionListener="#{indexAdm.removeSlide}" ajax="false"/>
+							<h:panelGrid columns="2">
+								<p:outputLabel value="#{strings.ordemExibicao}:"/>
+								<h:outputText value="#{slide.ordem}"/>
+							</h:panelGrid>
+							<h:panelGrid columns="3">
+								<p:commandButton value="#{strings.subirOrdemExibicao}" styleClass="btn btn-sm btn-primary"
+									actionListener="#{indexAdm.aumentarOrdem}" ajax="false" disabled="#{slide.ordem == 1}"/>
+								<p:commandButton value="#{strings.removerSlide}" styleClass="btn btn-sm btn-danger"
+									actionListener="#{indexAdm.removeSlide}" ajax="false"/>
 							</h:panelGrid>
 						</p:column>
 					</p:dataGrid>							
