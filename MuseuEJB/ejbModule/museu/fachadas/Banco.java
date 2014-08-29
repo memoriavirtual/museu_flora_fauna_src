@@ -17,7 +17,7 @@ import museu.fachadas.remoto.BancoRemote;
 
 @Stateless
 public class Banco implements BancoRemote,Serializable{
-
+	
 	private static final long serialVersionUID = 4297257314181091525L;
 	
 	@PersistenceContext(unitName="museu")
@@ -65,6 +65,7 @@ public class Banco implements BancoRemote,Serializable{
         	c.setId("Padrao");
         	em.persist(c);
         }
+        em.refresh(c);
         return c;
 	}
 
@@ -108,6 +109,20 @@ public class Banco implements BancoRemote,Serializable{
 	public void persistirAcesso(Acesso a) {
 		em.persist(a);
 	}
+	
+	@Override
+	public Slide getSlideByOrdem(Integer ordem){
+		Query q = em.createQuery("Select s from Slide s where s.ordem =:ordem");
+		q.setParameter("ordem", ordem);
+		return (Slide) q.getResultList().get(0);
+	}
+	
+	@Override
+	public Integer getMaiorOrdemDeSlide() {
+		Query q = em.createQuery("Select s from Slide s order by a.ordem DESC");
+		Slide s = (Slide) q.getResultList().get(0);
+		return s.getOrdem();
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -140,13 +155,4 @@ public class Banco implements BancoRemote,Serializable{
 		q.setParameter("date", date);
 		return (Long) q.getSingleResult();
 	}
-
-	@Override
-	public Integer getMaiorOrdemSlide() {
-		Query q = em.createQuery("SELECT s.ordem FROM Slide s order by s.ordem DESC");
-		System.out.println("ordem:"+q.getResultList().size());
-		System.out.println("ordem2:"+q.getResultList().get(0));
-		return (Integer) q.getFirstResult();
-	}
-
 }

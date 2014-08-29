@@ -25,7 +25,8 @@ public interface BancoRemote {
 	public void persistirSlide(Slide s);
 	public void updateSlide(Slide s);
 	public void removerSlide(String id);
-	public Integer getMaiorOrdemSlide();
+	public Slide getSlideByOrdem(Integer ordem);
+	public Integer getMaiorOrdemDeSlide();
 	
 	public void persistirAcesso(Acesso a);
 	public List<Acesso> getAcessos(int pagina,int tamanho);

@@ -99,19 +99,18 @@ public class Index implements Serializable{
 	public void aumentarOrdem(){
 		Slide slide = (Slide) tabelaSlides.getRowData();
 		
-		Slide s = config.getSlides().get(slide.getOrdem()-2);
+		Slide superior = banco.getSlideByOrdem(slide.getOrdem()-1);
 		
-		
-		slide.setOrdem(slide.getOrdem()-1);		
-		s.setOrdem(slide.getOrdem()+1);
-
-		config.getSlides().remove(s);
-		banco.removerSlide(s.getId());
+		superior.setOrdem(slide.getOrdem());
+		slide.setOrdem(slide.getOrdem()-1);
 		
 		banco.updateSlide(slide);
+		banco.updateSlide(superior);
 		
-		config.getSlides().add(s);
-		banco.persistirSlide(s);
+		config = banco.getConfiguracao();
+		
+		for(Slide s: config.getSlides())
+			System.out.println("slide:"+s.getOrdem());
 	}
 	
 	public void removeSlide(){

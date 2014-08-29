@@ -56,9 +56,9 @@
 							<p:tooltip/>
 								
 					</h:panelGrid>
-					<h:panelGrid columns="2">
-						<p:commandButton value="#{strings.reiniciar}" action="#{indexAdm.reiniciar}"/>
-						<p:commandButton value="#{strings.salvar}" action="#{indexAdm.salvar}" ajax="false"/>
+					<h:panelGrid columns="2" style="margin-top: 20px">
+						<h:commandButton value="#{strings.reiniciar}" actionListener="#{indexAdm.reiniciar}" styleClass="btn btn-sm btn-warning"/>
+						<h:commandButton value="#{strings.salvar}" actionListener="#{indexAdm.salvar}" styleClass="btn btn-sm btn-primary" style="margin-left: 10px"/>
 					</h:panelGrid>
 				</h:form>
 			</p:tab>
@@ -75,7 +75,8 @@
 						<h:outputLabel value="#{strings.freeGeoIP}: "/>
 						<h:outputText value="#{indexAdm.freeGeoUIP}"/>
 					</h:panelGrid>
-					<p:commandButton value="#{strings.realizarTeste}" action="#{indexAdm.testeServicos}" update="testes"/>
+					<h:commandButton value="#{strings.realizarTeste}" actionListener="#{indexAdm.testeServicos}"
+						styleClass="btn btn-sm btn-success"/>
 				</h:form>
 			</p:tab>
 			
@@ -101,19 +102,25 @@
 						<p:inputText value="#{indexAdm.config.urlInstituicao}" styleClass="input450"/>
 					</h:panelGrid>
 				
-					<h:panelGrid columns="2">
-						<p:commandButton value="#{strings.reiniciar}" action="#{indexAdm.reiniciar}" update="T3"/>
-						<p:commandButton value="#{strings.salvar}" action="#{indexAdm.salvar}" update="T3" />
+					<h:panelGrid columns="2" style="margin-top: 20px">
+						<h:commandButton value="#{strings.reiniciar}" actionListener="#{indexAdm.reiniciar}" update="T3"
+							styleClass="btn btn-sm btn-warning">
+							<f:ajax render="T3"/>
+						</h:commandButton>
+						<h:commandButton value="#{strings.salvar}" actionListener="#{indexAdm.salvar}" update="T3"
+							styleClass="btn btn-sm btn-primary" style="margin-left: 10px">
+							<f:ajax render="T3"/>
+						</h:commandButton>
 					</h:panelGrid>
 				</h:form>
 			</p:tab>
 			
 			<p:tab title="#{strings.configuracoesWordpress}">
 				<h:form>
-					<h3>
-						<p:commandButton icon="ui-icon-help" onclick="PF('ajuda1t4').show();" type="button"/>
-						<h:outputText value="#{strings.paginas}"/>
-					</h3>
+				
+					<h:outputText value="#{strings.paginas}" styleClass="h3"/>
+					<h:commandButton value="?" onclick="PF('ajuda1t4').show();" styleClass="btn btn-sm btn-primary"/>
+					
 					<h:panelGrid columns="6" id="T4">
 						<p:outputLabel value="#{strings.paginaPadrao}"/>
 						<p:inputText value="#{indexAdm.config.padrao}" styleClass="inputNumber"/>
@@ -176,10 +183,10 @@
 						<p:outputLabel value="#{strings.localizacao}"/>
 						<p:inputText value="#{indexAdm.config.localizacao}" styleClass="inputNumber"/>
 					</h:panelGrid>
-					<h3>
-						<p:commandButton icon="ui-icon-help" onclick="PF('ajuda2t4').show();" type="button"/>
-						<h:outputText value="#{strings.tags}"/>
-					</h3>
+					
+					<h:outputText value="#{strings.tags}" styleClass="h3"/>
+					<h:commandButton value="?" onclick="PF('ajuda2t4').show();" styleClass="btn btn-sm btn-primary"/>
+					
 					<h:panelGrid columns="2" id="T4_2">
 						<p:outputLabel value="#{strings.tagNoticias}:"/>
 						<p:inputText value="#{indexAdm.config.tagNews}" styleClass="inputNumber"/>
@@ -190,9 +197,15 @@
 						<p:outputLabel value="#{strings.tagVoceSabia}:"/>
 						<p:inputText value="#{indexAdm.config.tagVoceSabia}" styleClass="inputNumber"/>
 					</h:panelGrid>					
-					<h:panelGrid columns="2">
-							<p:commandButton value="#{strings.reiniciar}" action="#{indexAdm.reiniciar}" update="T4 T4_2"/>
-							<p:commandButton value="#{strings.salvar}" action="#{indexAdm.salvar}" update="T4 T4_2"/>
+					<h:panelGrid columns="2" style="margin-top: 20px">
+							<h:commandButton value="#{strings.reiniciar}" actionListener="#{indexAdm.reiniciar}"
+								styleClass="btn btn-sm btn-warning">
+								<f:ajax render="T4 T4_2"/>
+							</h:commandButton>
+							<h:commandButton value="#{strings.salvar}" actionListener="#{indexAdm.salvar}" update="T4 T4_2"
+								styleClass="btn btn-sm btn-primary" style="margin-left: 10px">
+								<f:ajax render="T4 T4_2"/>
+							</h:commandButton>
 					</h:panelGrid>
 					<p:dialog header="Ajuda" widgetVar="ajuda1t4" position="center">
 						<h:outputText value="#{strings.ajuda1T4}" style="width: 400px;display:block;"/>
@@ -229,16 +242,16 @@
 								<h:outputText value="#{slide.ordem}"/>
 							</h:panelGrid>
 							<h:panelGrid columns="3">
-								<p:commandButton value="#{strings.subirOrdemExibicao}" styleClass="btn btn-sm btn-primary"
-									actionListener="#{indexAdm.aumentarOrdem}" ajax="false" disabled="#{slide.ordem == 1}"/>
-								<p:commandButton value="#{strings.removerSlide}" styleClass="btn btn-sm btn-danger"
-									actionListener="#{indexAdm.removeSlide}" ajax="false"/>
+								<h:commandButton value="#{strings.subirOrdemExibicao}" styleClass="btn btn-sm btn-primary"
+									actionListener="#{indexAdm.aumentarOrdem}" disabled="#{slide.ordem == 1}"/>
+								<h:commandButton value="#{strings.removerSlide}" styleClass="btn btn-sm btn-danger"
+									actionListener="#{indexAdm.removeSlide}"/>
 							</h:panelGrid>
 						</p:column>
 					</p:dataGrid>							
-					<h:panelGrid columns="2">
-							<p:commandButton value="#{strings.reiniciar}" action="#{indexAdm.reiniciar}" ajax="false"/>
-							<p:commandButton value="#{strings.salvar}" action="#{indexAdm.salvar}" ajax="false"/>
+					<h:panelGrid columns="2" style="margin-top: 20px;">
+							<h:commandButton value="#{strings.reiniciar}" actionListener="#{indexAdm.reiniciar}" styleClass="btn btn-sm btn-warning"/>
+							<h:commandButton value="#{strings.salvar}" actionListener="#{indexAdm.salvar}" styleClass="btn btn-sm btn-primary" style="margin-left: 10px"/>
 					</h:panelGrid>
 				</h:form>
 			</p:tab>
@@ -299,10 +312,14 @@
 						</p:column>
 					</p:dataTable>
 					<div style="display: block; text-align: center; margin: 0 auto;">
-						<p:commandButton value="#{strings.anterior}" actionListener="#{acessosPortal.paginaAnteriorAcesso}"  
-							id="anterior" disabled="#{acessosPortal.paginaAtualAcesso == 0}" update="tabelaAcessos anterior proximo"/>
-						<p:commandButton value="#{strings.proximo}" actionListener="#{acessosPortal.proximaPaginaAcesso}" 
-							id="proximo" disabled="#{acessosPortal.ultimaPagina}" update="tabelaAcessos anterior proximo"/>
+						<h:commandButton value="#{strings.anterior}" actionListener="#{acessosPortal.paginaAnteriorAcesso}"  
+							id="anterior" disabled="#{acessosPortal.paginaAtualAcesso == 0}" styleClass="btn btn-sm btn-primary" style="margin-right:5px;">
+							<f:ajax render="tabelaAcessos anterior proximo"/>
+						</h:commandButton>
+						<h:commandButton value="#{strings.proximo}" actionListener="#{acessosPortal.proximaPaginaAcesso}" 
+							id="proximo" disabled="#{acessosPortal.ultimaPagina}" styleClass="btn btn-sm btn-primary" style="margin-left:5px;">
+							<f:ajax render="tabelaAcessos anterior proximo"/>
+						</h:commandButton>
 					</div>
 				</h:form>
 			</p:tab>

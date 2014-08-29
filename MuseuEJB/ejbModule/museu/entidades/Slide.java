@@ -28,7 +28,6 @@ public class Slide implements Serializable{
     
     private String link;    
     
-    @Column(unique=true)
     private Integer ordem;
     
     @Lob  

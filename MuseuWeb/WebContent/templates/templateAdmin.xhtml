@@ -26,6 +26,7 @@
 			width: 140px !important;
 		}
 	</style>
+	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/bootstrap.css" />
 </h:head>
 
 <f:view encoding="ISO-8859-1">
@@ -35,7 +36,8 @@
 			<ui:insert name="header">
 				<h:form>
 					<h:outputText value="#{strings.bemVindo}: #{login.u.nome}" />
-	                <p:commandButton value="#{strings.logoff}" action="#{login.realizarLogoff}" />
+					<div style="clear:both; margin: 5px 5px"></div>
+	                <h:commandButton value="#{strings.logoff}" action="#{login.realizarLogoff}" styleClass="btn btn-sm btn-primary" />
                 </h:form>
 			</ui:insert>
 		</div>

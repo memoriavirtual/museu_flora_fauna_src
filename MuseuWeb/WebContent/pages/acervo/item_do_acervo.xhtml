@@ -7,96 +7,102 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/template.xhtml">
+	<ui:define name="htmlhead">
+		<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/item.css" />
+		<link rel="stylesheet" type="text/css" href="${request.contextPath}/photobox/photobox.css" />
+		<script type="text/javascript" src="${request.contextPath}/bootsrap/js/jquery-ui.min.js"/>
+		<script type="text/javascript" src="${request.contextPath}/photobox/jquery.photobox.js"/>
+	</ui:define>
 	<ui:define name="conteudo">
-	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/item.css" />
-	
-	<div class="container">
-	<div class="col-lg-11 centralizado">
-			<div class="row">
-				<div class="centralizado">
-					<h:messages />
-					<h:button outcome="acervo" value="#{strings.voltarParaAcervo}" styleClass="btn btn-sm btn-primary" />
-					<div id="tabs-min">
-						<ul>
-							<li><a href="#tabs-1">#{strings.informacoesGerais}</a></li>
-						    <li><a href="#tabs-2">#{strings.localizaçãoNoMuseu}</a></li>
-						    <li><a href="#tabs-3">#{strings.historico}</a></li>
-						    <li><a href="#tabs-4">#{strings.depoimentosECuriosidades}</a></li>						    
-						</ul>
-						<div id="tabs-1">
-							<p:panelGrid columns="2">
-								<h:outputText value="#{strings.nomePopular}:" />
-								<h:outputText value="#{itemAcervo.bem.tituloPrincipal}" />
-								<h:outputText value="#{strings.nomeCientifico}: " />
-								<h:outputText value="#{itemAcervo.bem.complemento}" />
-								<h:outputText value="#{strings.identificacaoNoMuseu}:" />
-								<h:outputText value="#{itemAcervo.bem.numeroRegistro}" />
-								<h:outputText value="#{strings.familia} " />
-								<h:outputText value="#{itemAcervo.bem.colecao}" />
-							</p:panelGrid>
-							
-							<div id="gallery" class="row">
-								<ui:repeat var="foto" value="#{itemAcervo.fotosSelecionadoParaModal}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
-									<div class="col-sm-3 col-md-3" style="padding-left: 1px;padding-right: 1px;">
-									<div class="panel panel-primary" style="width:100%;">
-									  <div class="panel-heading">#{foto.nome}</div>
-									  	<div class="panel-body" style="height:152px;">
-											<a href="javascript: void(0)" class="imagemLink">
-												<span></span><!-- Para o Icone de Zoom -->
-												<img src="/midia?id=#{foto.id}&#38;chave=#{itemAcervo.sessionKey}" class="imagemAcervo" title="#{foto.descricao}" style="width: 100%; height: auto;"/>
-											</a>
+		<div class="container">
+		<div class="col-lg-11 centralizado">
+				<div class="row">
+					<div class="centralizado">
+						<h:messages />
+						<h:button outcome="acervo" value="#{strings.voltarParaAcervo}" styleClass="btn btn-sm btn-primary" />
+						<div id="tabs-min">
+							<ul>
+								<li><a href="#tabs-1">#{strings.informacoesGerais}</a></li>
+							    <li><a href="#tabs-2">#{strings.localizaçãoNoMuseu}</a></li>
+							    <li><a href="#tabs-3">#{strings.historico}</a></li>
+							    <li><a href="#tabs-4">#{strings.depoimentosECuriosidades}</a></li>						    
+							</ul>
+							<div id="tabs-1">
+								<p:panelGrid columns="2">
+									<h:outputText value="#{strings.nomePopular}:" />
+									<h:outputText value="#{itemAcervo.bem.tituloPrincipal}" />
+									<h:outputText value="#{strings.nomeCientifico}: " />
+									<h:outputText value="#{itemAcervo.bem.complemento}" />
+									<h:outputText value="#{strings.identificacaoNoMuseu}:" />
+									<h:outputText value="#{itemAcervo.bem.numeroRegistro}" />
+									<h:outputText value="#{strings.familia} " />
+									<h:outputText value="#{itemAcervo.bem.colecao}" />
+								</p:panelGrid>
+								
+								<div id="gallery" class="row">
+									<ui:repeat var="foto" value="#{itemAcervo.fotosSelecionadoParaModal}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
+										<div class="col-sm-3 col-md-3" style="padding-left: 1px;padding-right: 1px;">
+										<div class="panel panel-primary" style="width:100%;">
+										  <div class="panel-heading">#{foto.nome}</div>
+										  	<div class="panel-body" style="height:152px;">
+												<a href="javascript: void(0)" class="imagemLink">
+													<span></span><!-- Para o Icone de Zoom -->
+													<img src="/midia?id=#{foto.id}&#38;chave=#{itemAcervo.sessionKey}" class="imagemAcervo" title="#{foto.descricao}" style="width: 100%; height: auto;"/>
+												</a>
+											</div>
 										</div>
-									</div>
-									</div>
-								</ui:repeat>
+										</div>
+									</ui:repeat>
+								</div>
+							</div>
+							<div id="tabs-2">
+								<h:form>
+									<m:map width="1000px" height="500px" jsVariable="map" >
+										<m:osmLayer name="Open Street Maps" />
+										<m:icon id="icon1"
+											url="http://www.openlayers.org/dev/img/marker.png" sizeH="25"
+											sizeW="21" />
+										<m:markersLayer name="Marcas" icon="icon1">
+											<m:marker lon="#{itemAcervo.bem.longitude}"
+												lat="#{itemAcervo.bem.latitude}"
+												transformationSource="EPSG:4326">
+											</m:marker>
+										</m:markersLayer>
+										<m:script>
+				                            var lonLat = new OpenLayers.LonLat(-47.89460,-22.00710).transform(
+					            					new OpenLayers.Projection("EPSG:4326"), 
+					            					new OpenLayers.Projection("EPSG:900913")
+					            					);
+					                        	
+					                            map.setCenter(lonLat, 18);				                           
+										</m:script>
+									</m:map>
+								</h:form>
+							</div>
+							<div id="tabs-3">
+								<p>...</p>
+							</div>
+							<div id="tabs-4">
+								<p>...</p>
 							</div>
 						</div>
-						<div id="tabs-2">
-							<h:form>
-								<m:map width="1000px" height="500px" jsVariable="map" >
-									<m:osmLayer name="Open Street Maps" />
-									<m:icon id="icon1"
-										url="http://www.openlayers.org/dev/img/marker.png" sizeH="25"
-										sizeW="21" />
-									<m:markersLayer name="Marcas" icon="icon1">
-										<m:marker lon="#{itemAcervo.bem.longitude}"
-											lat="#{itemAcervo.bem.latitude}"
-											transformationSource="EPSG:4326">
-										</m:marker>
-									</m:markersLayer>
-									<m:script>
-			                            var lonLat = new OpenLayers.LonLat(-47.89460,-22.00710).transform(
-				            					new OpenLayers.Projection("EPSG:4326"), 
-				            					new OpenLayers.Projection("EPSG:900913")
-				            					);
-				                        	
-				                            map.setCenter(lonLat, 18);				                           
-									</m:script>
-								</m:map>
-							</h:form>
-						</div>
-						<div id="tabs-3">
-							<p>...</p>
-						</div>
-						<div id="tabs-4">
-							<p>...</p>
-						</div>
-					</div>
+				</div>
 			</div>
-		</div>
-		</div>
-		</div>
-		<script>
-		var imagens = document.getElementsByClassName('imagemAcervo');
-		var links = document.getElementsByClassName('imagemLink');
-		
-		for(var i = 0;i &lt; imagens.length;i++){
-			links[i].href = imagens[i].src;
-		}
-		$('#gallery').photobox('a');
-
-		$('#tabs-min').tabs();
-		</script>
+			</div>
+			</div>
+			<script>
+			$( document ).ready(function() {
+				var imagens = document.getElementsByClassName('imagemAcervo');
+				var links = document.getElementsByClassName('imagemLink');
+				
+				for(var i = 0;i &lt; imagens.length;i++){
+					links[i].href = imagens[i].src;
+				}
+				
+				$('#tabs-min').tabs();
+				$('#gallery').photobox('a');				
+			});			
+			</script>
 	</ui:define>
 </ui:composition>
 
