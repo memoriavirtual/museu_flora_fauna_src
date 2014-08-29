@@ -57,6 +57,7 @@ public class Index implements Serializable{
 	}
 	
 	public void salvar(){
+		System.out.println("affe:!"+config.getAcervoFauna());
 		try{
 		if(logo !=null)
 		if(logo.getSize() > 1){

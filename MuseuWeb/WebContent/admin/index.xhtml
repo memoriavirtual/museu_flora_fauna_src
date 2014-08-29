@@ -103,13 +103,13 @@
 					</h:panelGrid>
 				
 					<h:panelGrid columns="2" style="margin-top: 20px">
-						<h:commandButton value="#{strings.reiniciar}" actionListener="#{indexAdm.reiniciar}" update="T3"
+						<h:commandButton value="#{strings.reiniciar}" actionListener="#{indexAdm.reiniciar}"
 							styleClass="btn btn-sm btn-warning">
-							<f:ajax render="T3"/>
+							<f:ajax execute="@form" render="@form"/>
 						</h:commandButton>
-						<h:commandButton value="#{strings.salvar}" actionListener="#{indexAdm.salvar}" update="T3"
+						<h:commandButton value="#{strings.salvar}" actionListener="#{indexAdm.salvar}"
 							styleClass="btn btn-sm btn-primary" style="margin-left: 10px">
-							<f:ajax render="T3"/>
+							<f:ajax execute="@form" render="@form"/>
 						</h:commandButton>
 					</h:panelGrid>
 				</h:form>
@@ -117,9 +117,10 @@
 			
 			<p:tab title="#{strings.configuracoesWordpress}">
 				<h:form>
-				
-					<h:outputText value="#{strings.paginas}" styleClass="h3"/>
-					<h:commandButton value="?" onclick="PF('ajuda1t4').show();" styleClass="btn btn-sm btn-primary"/>
+					<h:panelGrid columns="2">
+						<button onclick="PF('ajuda1t4').show();" class="btn btn-sm btn-primary" type="button">?</button>
+						<h:outputText value="#{strings.paginas}" styleClass="h2"/>
+					</h:panelGrid>
 					
 					<h:panelGrid columns="6" id="T4">
 						<p:outputLabel value="#{strings.paginaPadrao}"/>
@@ -147,6 +148,7 @@
 						<p:outputLabel value="Extra Acadêmicos"/>
 						<p:inputText value="#{indexAdm.config.academicos}" styleClass="inputNumber"/>
 						-->
+						
 						<p:outputLabel value="#{strings.missaoeobjetivos}"/>
 						<p:inputText value="#{indexAdm.config.missaoEObjetivos}" styleClass="inputNumber"/>
 						
@@ -184,8 +186,10 @@
 						<p:inputText value="#{indexAdm.config.localizacao}" styleClass="inputNumber"/>
 					</h:panelGrid>
 					
-					<h:outputText value="#{strings.tags}" styleClass="h3"/>
-					<h:commandButton value="?" onclick="PF('ajuda2t4').show();" styleClass="btn btn-sm btn-primary"/>
+					<h:panelGrid columns="2">				
+						<button onclick="PF('ajuda2t4').show();" class="btn btn-sm btn-primary" type="button">?</button>
+						<h:outputText value="#{strings.tags}" styleClass="h2"/>
+					</h:panelGrid>
 					
 					<h:panelGrid columns="2" id="T4_2">
 						<p:outputLabel value="#{strings.tagNoticias}:"/>
@@ -196,15 +200,15 @@
 						
 						<p:outputLabel value="#{strings.tagVoceSabia}:"/>
 						<p:inputText value="#{indexAdm.config.tagVoceSabia}" styleClass="inputNumber"/>
-					</h:panelGrid>					
+					</h:panelGrid>	
+									
 					<h:panelGrid columns="2" style="margin-top: 20px">
 							<h:commandButton value="#{strings.reiniciar}" actionListener="#{indexAdm.reiniciar}"
 								styleClass="btn btn-sm btn-warning">
-								<f:ajax render="T4 T4_2"/>
+								<f:ajax execute="@form" render="@form"/>
 							</h:commandButton>
-							<h:commandButton value="#{strings.salvar}" actionListener="#{indexAdm.salvar}" update="T4 T4_2"
-								styleClass="btn btn-sm btn-primary" style="margin-left: 10px">
-								<f:ajax render="T4 T4_2"/>
+							<h:commandButton value="#{strings.salvar}" actionListener="#{indexAdm.salvar}" styleClass="btn btn-sm btn-primary" style="margin-left: 10px">
+								<f:ajax execute="@form" render="@form"/>
 							</h:commandButton>
 					</h:panelGrid>
 					<p:dialog header="Ajuda" widgetVar="ajuda1t4" position="center">
@@ -314,11 +318,11 @@
 					<div style="display: block; text-align: center; margin: 0 auto;">
 						<h:commandButton value="#{strings.anterior}" actionListener="#{acessosPortal.paginaAnteriorAcesso}"  
 							id="anterior" disabled="#{acessosPortal.paginaAtualAcesso == 0}" styleClass="btn btn-sm btn-primary" style="margin-right:5px;">
-							<f:ajax render="tabelaAcessos anterior proximo"/>
+							<f:ajax execute="@form" render="@form"/>
 						</h:commandButton>
 						<h:commandButton value="#{strings.proximo}" actionListener="#{acessosPortal.proximaPaginaAcesso}" 
 							id="proximo" disabled="#{acessosPortal.ultimaPagina}" styleClass="btn btn-sm btn-primary" style="margin-left:5px;">
-							<f:ajax render="tabelaAcessos anterior proximo"/>
+							<f:ajax execute="@form" render="@form"/>
 						</h:commandButton>
 					</div>
 				</h:form>
