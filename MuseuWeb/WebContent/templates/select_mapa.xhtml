@@ -35,14 +35,16 @@
 			</m:script>
 		</m:map>
 		<p:remoteCommand name="buscarPeloMapa" actionListener="#{mapa.selecionarAreaMapa}"/>
-    	<h:commandButton value="Cancelar" onclick="PF('modalSelecionaMapa').close();" actionListener="#{mapa.cancelarSelecaoMapa}"
-    		styleClass="btn btn-danger btn-small" style="right:100px ; bottom: 5px; position: absolute;">
-    		<f:ajax render="#{formToRender}"/>
-    	</h:commandButton>
-		<h:commandButton value="Selecionar" onclick="PF('modalSelecionaMapa').close();" actionListener="#{mapa.confirmarSelecaoMapa}"
-    		styleClass="btn btn-primary btn-small" style="right:5px ; bottom: 5px; position: absolute;">
-    		<f:ajax render="#{formToRender}"/>
-    	</h:commandButton>
+		<div class="input-group" style="right:5px ; bottom: 5px; position: absolute;">
+	    	<h:commandButton value="Cancelar" onclick="PF('modalSelecionaMapa').close();" actionListener="#{mapa.cancelarSelecaoMapa}"
+	    		styleClass="btn btn-danger btn-small" style="margin-right: 5px;">
+	    		<f:ajax render="#{formToRender}"/>
+	    	</h:commandButton>
+			<h:commandButton value="Selecionar" onclick="PF('modalSelecionaMapa').close();" actionListener="#{mapa.confirmarSelecaoMapa}"
+	    		styleClass="btn btn-primary btn-small">
+	    		<f:ajax render="#{formToRender}"/>
+	    	</h:commandButton>
+    	</div>
 	</div>		
 		
 	<script type="text/javascript">

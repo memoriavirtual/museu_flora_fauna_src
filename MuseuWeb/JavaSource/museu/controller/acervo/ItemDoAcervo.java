@@ -2,11 +2,8 @@ package museu.controller.acervo;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 
 import museu.fachadas.remoto.MuseuRemote;

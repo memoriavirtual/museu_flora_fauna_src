@@ -21,8 +21,6 @@ public class AcervoIndex extends BeanComMidiaMV implements Serializable {
 	private List<BemPatrimonial> resultados = null;
 
 	private int pagina = 1;
-	
-	private boolean ultimaPagina;
 
 	@EJB
 	private MuseuRemote museu;
@@ -40,11 +38,7 @@ public class AcervoIndex extends BeanComMidiaMV implements Serializable {
 	
 	public void buscar(String chave) {
 		try {
-			resultados = museu.getBens(chave,pagina,tamanhoPaginaDefaultIndex);
-			if(museu.getBens(chave, pagina+1,tamanhoPaginaDefaultIndex)==null)
-				ultimaPagina = true;
-			else
-				ultimaPagina = false;			
+			resultados = museu.getBens(chave,pagina,tamanhoPaginaDefaultIndex);	
 		} catch (Exception e) {
 			FacesUtil
 					.addMessage(
@@ -53,17 +47,6 @@ public class AcervoIndex extends BeanComMidiaMV implements Serializable {
 							Constants.ERROR);
 			e.printStackTrace();
 		}
-	}
-
-	public void proxPagina(){
-		pagina++;
-		buscar("");
-		
-	}
-	
-	public void pagAnterior(){
-		pagina--;
-		buscar("");	
 	}
 	
 	public List<BemPatrimonial> getResultados() {
@@ -87,14 +70,6 @@ public class AcervoIndex extends BeanComMidiaMV implements Serializable {
 
 	public void setPagina(int pagina) {
 		this.pagina = pagina;
-	}
-
-	public boolean isUltimaPagina() {
-		return ultimaPagina;
-	}
-
-	public void setUltimaPagina(boolean ultimaPagina) {
-		this.ultimaPagina = ultimaPagina;
 	}
 
 	@Override

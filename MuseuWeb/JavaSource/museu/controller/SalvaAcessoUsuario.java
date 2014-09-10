@@ -2,6 +2,7 @@ package museu.controller;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
@@ -22,8 +23,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 @ManagedBean(name = "salvaAcessoUsuario")
 @SessionScoped
-public class SalvaAcessoUsuario {
-	
+public class SalvaAcessoUsuario implements Serializable{
+
+	private static final long serialVersionUID = 2438299393640464441L;
+
 	@EJB
 	private MuseuRemote museu;
 	
