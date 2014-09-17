@@ -58,14 +58,15 @@ public class Banco implements BancoRemote,Serializable{
 		Query q = em.createQuery("SELECT c FROM Configuracao c WHERE c.id=:id");
 		q.setParameter("id", "Padrao");
         Configuracao c = null;
-        if (q.getResultList().size() > 0)
-                c = (Configuracao) q.getSingleResult();
+        if (q.getResultList().size() > 0){
+            c = (Configuracao) q.getSingleResult();
+            em.refresh(c);
+        }
         else{
         	c = new Configuracao();
         	c.setId("Padrao");
         	em.persist(c);
         }
-        em.refresh(c);
         return c;
 	}
 

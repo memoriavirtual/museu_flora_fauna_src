@@ -49,19 +49,21 @@ public class Museu implements MuseuRemote {
 	
 	@PostConstruct
 	public void init(){
+		try{
+		
 		wp = new WordPressWebServicePortTypeProxy(banco.getConfiguracao().getUrlWordpress());
 		
 		Buscar_ServiceLocator servico = new Buscar_ServiceLocator();
 		servico.setRealizarBuscaSOAPServicePortEndpointAddress(banco.getConfiguracao().getUrlMemoria());
 		
-		try{
+
 			RealizarBuscaSOAPService servico_ = servico.getRealizarBuscaSOAPServicePort();
 			Stub stub = (Stub) servico_;
 			stub._setProperty(Stub.USERNAME_PROPERTY, banco.getConfiguracao().getMemoriaVirtualLogin());
 			stub._setProperty(Stub.PASSWORD_PROPERTY, banco.getConfiguracao().getMemoriaVirtualSenha());
 			mv = servico_;
 			}catch(Exception e){
-			
+				e.printStackTrace();
 		}
 		
 	}
