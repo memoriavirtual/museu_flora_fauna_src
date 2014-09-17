@@ -57,20 +57,19 @@ public class Index implements Serializable{
 	}
 	
 	public void salvar(){
-		System.out.println("affe:!"+config.getAcervoFauna());
 		try{
-		if(logo !=null)
-		if(logo.getSize() > 1){
-			InputStream is = logo.getInputStream();
-			byte[] array = IOUtils.toByteArray(is);
+			if(logo !=null)
+			if(logo.getSize() > 1){
+				InputStream is = logo.getInputStream();
+				byte[] array = IOUtils.toByteArray(is);
+				
+				config.setLogo(array);
+				config.setContentTypeLogo(logo.getContentType());
+			}
 			
-			config.setLogo(array);
-			config.setContentTypeLogo(logo.getContentType());
-		}
-		
-		banco.salvarConfiguracoes(config);
-		museu.carregarWebServices();
-		FacesUtil.addMessage("Salvo com Sucesso", "Salvo com Sucesso", Constants.INFO);
+			banco.salvarConfiguracoes(config);
+			museu.carregarWebServices();
+			FacesUtil.addMessage("Salvo com Sucesso", "Salvo com Sucesso", Constants.INFO);
 		}catch(Exception e){
 			FacesUtil.addMessage("Erro ao Salvar Dados", "Erro ao Salvar Dados", Constants.ERROR);
 		}
@@ -78,14 +77,15 @@ public class Index implements Serializable{
 	 
 	public String addSlide() throws IOException{
 		if(uploadSlide.getSize() >1){
-
 			Slide slide = new Slide();
 			InputStream is = uploadSlide.getInputStream();
 			byte[] array = IOUtils.toByteArray(is);
-			
 			slide.setContent(array);
 			slide.setContentType(uploadSlide.getContentType());
-			slide.setOrdem(config.getSlides().get(config.getSlides().size()-1).getOrdem()+1);
+			if(config.getSlides().size()==0)
+				slide.setOrdem(1);
+			else
+				slide.setOrdem(config.getSlides().get(config.getSlides().size()-1).getOrdem()+1);
 			config.getSlides().add(slide);
 			
 			banco.salvarConfiguracoes(config);
@@ -137,16 +137,19 @@ public class Index implements Serializable{
 	public void testeServicos(){
 		try{
 			museu.getBens("",1,1);
-			memoriaVirtual = Mensagens.getString("testeSucesso");
+			if(museu.getBens("",1,1)!=null)
+				memoriaVirtual = Mensagens.getString("testeSucesso");
+			else
+				memoriaVirtual = "ERROR:"+Mensagens.getString("erroAutenticacaoMemoria");
 		}catch(Exception e){
-			memoriaVirtual = "ERROR:"+e.toString();
+			memoriaVirtual = "ERROR:"+Mensagens.getString("erroComunicacaoServico");
 		}
 		
 		try{
 			museu.getPosts(banco.getConfiguracao().getTagNews());
 			wordpress = Mensagens.getString("testeSucesso");
 		}catch(Exception e){
-			wordpress = "ERROR:"+e.toString();
+			wordpress = "ERROR:"+Mensagens.getString("erroComunicacaoServico");
 		}
 		
 		try{
@@ -161,7 +164,7 @@ public class Index implements Serializable{
 		    
 			freeGeoUIP = Mensagens.getString("testeSucesso");
 		}catch(Exception e){
-			freeGeoUIP = "ERROR:"+e.toString();
+			freeGeoUIP = "ERROR:"+Mensagens.getString("erroComunicacaoServico");
 		}
 	}
 	

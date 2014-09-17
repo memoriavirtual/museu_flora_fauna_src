@@ -49,7 +49,6 @@ public class Index implements Serializable {
 	public void run() {
 		System.out.println("Carregando Index");
 		try {
-			welcome = museu.getPage(Integer.parseInt(museu.getConfiguracao().getBemVindo()));
 			blog = museu.getPosts("tag="+museu.getConfiguracao().getTagNews()+"&paged=1&posts_per_page=3");
 			events = museu.getPosts("tag="+museu.getConfiguracao().getTagEvents()+"&paged=1&posts_per_page=3");
 			voceSabia = museu.getPosts("tag="+museu.getConfiguracao().getTagVoceSabia()).get(0);

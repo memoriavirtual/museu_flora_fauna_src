@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,20 +33,20 @@ public class Logo extends HttpServlet{
 		}
 		else{
 			resp.setContentType("img/jpg");
-        	resp.getOutputStream().write(getFotoDefault());
+        	resp.getOutputStream().write(getFotoDefault(req));
 		}
 		
 	}
 	
-	private byte[] getFotoDefault(){
-		   InputStream input = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/Images/indisponivel.jpg");
-		
-		    try {
-		        return IOUtils.toByteArray(input);
-		    }
-		    catch (IOException e) {
-		        e.printStackTrace();
-		        return null;
-		    }
-		}      
+	private byte[] getFotoDefault(HttpServletRequest req) {
+		ServletContext context = getServletContext();
+		InputStream input = context.getResourceAsStream("/Images/indisponivel.jpg");
+
+		try {
+			return IOUtils.toByteArray(input);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
