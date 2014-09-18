@@ -1,3 +1,7 @@
+.image_gallery{
+    background-size: cover;
+}
+
 .imagemAcervoModal {
 	max-width: 234px;
 	height: 145px;

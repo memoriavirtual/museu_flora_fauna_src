@@ -19,12 +19,16 @@
 			<h:outputText value="#{modal.selecionadoParaModal.colecao}" />
 		</p:panelGrid>
 		<div id="gallery">
-			<p:dataGrid var="foto" value="#{modal.fotosSelecionadoParaModal}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
-				<a href="javascript: void(0)" class="imagemLink">
-					<span></span><!-- Para o Icone de Zoom -->
-					<img src="/midia?id=#{foto.id}&#38;chave=#{modal.sessionKey}" class="imagemAcervoModal" title="#{foto.descricao}" style="width: 100%; height: auto;"/>
-				</a>
-			</p:dataGrid>
+			<ui:repeat var="foto" value="#{modal.fotosSelecionadoParaModal}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
+				<div class="col-sm-3 col-md-3" style="padding-left: 1px;padding-right: 1px;margin-bottom: 1px; margin-top: 1px;">
+				  	<div class="panel-body image_gallery" style="background-image:url('/midia?id=#{foto.id}&#38;chave=#{modal.sessionKey}'); border: 0.5px solid lightgrey;">
+						<a href="/midia?id=#{foto.id}&#38;chave=#{modal.sessionKey}" class="imagemLink">
+							<img src="/midia?id=#{foto.id}&#38;chave=#{modal.sessionKey}" style="visibility: hidden; height: 100px; width: 100%;"/>
+							<span></span><!-- Para o Icone de Zoom -->
+						</a>
+					</div>
+				</div>
+			</ui:repeat>
 		</div>
 		<h:button outcome="item" value="#{strings.fichaCompleta}" styleClass="btn btn-primary btn-small" style="right:5px ; bottom: 5px; position: absolute;">
 			<f:param value="#{modal.selecionadoParaModal.numeroRegistro}" name="idBem" />
@@ -32,12 +36,6 @@
 		
 		<script>
 			function setLinksGalleria(){
-				var imagens = document.getElementsByClassName('imagemAcervoModal');
-				var links = document.getElementsByClassName('imagemLink');
-				
-				for(var i = 0;i &lt; imagens.length;i++){
-					links[i].href = imagens[i].src;
-				}
 				$('#gallery').photobox('a');	
 			}		
 		</script>

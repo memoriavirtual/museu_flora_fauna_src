@@ -38,19 +38,18 @@
 									<h:outputText value="#{strings.familia} " />
 									<h:outputText value="#{itemAcervo.bem.colecao}" />
 								</p:panelGrid>
-								
+								<p class="h2">
+									<span class="glyphicon glyphicon-picture" style="margin-right:10px;"/>#{strings.galeriaDeFotos}
+								</p>
 								<div id="gallery" class="row">
 									<ui:repeat var="foto" value="#{itemAcervo.fotosSelecionadoParaModal}" rows="1" columns="4" emptyMessage="#{strings.semImagens}">
-										<div class="col-sm-3 col-md-3" style="padding-left: 1px;padding-right: 1px;">
-										<div class="panel panel-primary" style="width:100%;">
-										  <div class="panel-heading">#{foto.nome}</div>
-										  	<div class="panel-body" style="height:152px;">
-												<a href="javascript: void(0)" class="imagemLink">
+										<div class="col-sm-3 col-md-3" style="padding-left: 1px;padding-right: 1px;margin-bottom: 1px; margin-top: 1px;">
+										  	<div class="panel-body image_gallery" style="background-image:url('/midia?id=#{foto.id}&#38;chave=#{itemAcervo.sessionKey}'); border: 0.5px solid lightgrey;">
+												<a href="/midia?id=#{foto.id}&#38;chave=#{itemAcervo.sessionKey}" class="imagemLink">
+													<img src="/midia?id=#{foto.id}&#38;chave=#{itemAcervo.sessionKey}" style="visibility: hidden; height: 200px; width: 100%;"/>
 													<span></span><!-- Para o Icone de Zoom -->
-													<img src="/midia?id=#{foto.id}&#38;chave=#{itemAcervo.sessionKey}" class="imagemAcervo" title="#{foto.descricao}" style="width: 100%; height: auto;"/>
 												</a>
 											</div>
-										</div>
 										</div>
 									</ui:repeat>
 								</div>
@@ -92,12 +91,6 @@
 			</div>
 			<script>
 			$( document ).ready(function() {
-				var imagens = document.getElementsByClassName('imagemAcervo');
-				var links = document.getElementsByClassName('imagemLink');
-				
-				for(var i = 0;i &lt; imagens.length;i++){
-					links[i].href = imagens[i].src;
-				}
 				
 				$('#tabs-min').tabs();
 				$('#gallery').photobox('a');				

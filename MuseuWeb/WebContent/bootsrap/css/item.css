@@ -16,6 +16,10 @@ table {
 	border-color: #D5D5D5;
 }
 
+.image_gallery{
+    background-size: cover;
+}
+
 #gallery a {
 	position: relative;
 	float: left;
