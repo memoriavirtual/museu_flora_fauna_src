@@ -9,7 +9,15 @@
 
 <ui:composition template="/templates/templateAdmin.xhtml">
 	<ui:define name="content">
-	<h:outputText value="#{strings.mensagem1}"/>
+	<div class="container">
+		<div class="panel panel-warning">
+			<div class="panel-heading" style="text-align: center;">
+				#{strings.configuracoesMensagens}
+			</div>
+		 	<div class="panel-body" style="text-align: center;">    
+				<h:outputText value="#{strings.mensagem1}"/>
+			</div>
+		</div>
 		<p:messages autoUpdate="true"/>
 		<p:tabView>
 			<p:tab title="#{strings.configuracoesGlobais}">
@@ -25,7 +33,7 @@
 							
 							<p:outputLabel value="#{strings.loginMemoria}:"/>
 							<p:inputText value="#{indexAdm.config.memoriaVirtualLogin}" styleClass="input450" id="mvLogin"/>
-							<p:tooltip for="mvLogin" value="#{strings.tipoForLoginMemoria}"/>
+							<p:tooltip for="mvLogin" value="#{strings.tipForLoginMemoria}"/>
 							
 							<p:outputLabel value="#{strings.senhaMemoria}:"/>
 							<p:inputText value="#{indexAdm.config.memoriaVirtualSenha}" styleClass="input450" id="mvSenha"/>
@@ -282,6 +290,14 @@
 				</h:form>
 			</p:tab>
 			
+			<p:tab title="#{strings.Mapa}">
+			
+			</p:tab>
+			
+			<p:tab title="#{strings.MapaBusca}">
+			
+			</p:tab>
+			
 			<p:tab title="#{strings.acessosAoPortal}">
 				<h:form>					
 					<p:watermark for="ptCal" value="#{strings.clickParaSelecionar}" />
@@ -350,6 +366,7 @@
 				</h:form>
 			</p:tab>
 		</p:tabView>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

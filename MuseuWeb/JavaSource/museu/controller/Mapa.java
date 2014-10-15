@@ -10,5 +10,7 @@ public interface Mapa {
 	
 	public void cancelarSelecaoMapa();
 	
+	public void selecionarTodoOMapa();
+	
 	public String getNomeLocal(String local);
 }

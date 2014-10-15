@@ -20,124 +20,13 @@
 	<script src="http://maps.google.com/maps/api/js?key=AIzaSyBw9YtmDX3JUz1u_jQEv2BWllw7103vzmw&amp;sensor=false" type="text/javascript"/>
 	<script type="text/javascript" src="${request.contextPath}/photobox/jquery.photobox.js"/>
 	<meta property="og:site_name" content="#{template.museu.configuracao.nomeInstituicaoMemoria}"/>
-	<meta property="og:locale" content="#{strings.localizacao}" />
+	<meta property="og:locale" content="#{strings.location}" />
 	<ui:insert name="htmlhead"></ui:insert>
 </h:head>
 
 <f:view encoding="ISO-8859-1">
 	<h:body style="padding-top: 50px">
-				<div class="navbar navbar-museu navbar-fixed-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<h:link  outcome="index" styleClass="navbar-brand" ><span class="glyphicon glyphicon-home"/></h:link>
-				</div>
-				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						
-						<!-- 
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">#{strings.historia}</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><h:link value="#{strings.omuseu}" outcome="pagina">
-										<f:param value="#{template.museu.configuracao.OMuseu}" name="idPagina" />
-									</h:link>
-								</li>
-								<li><h:link value="#{strings.fundacao}" outcome="pagina" >
-				                	<f:param value="#{template.museu.configuracao.fundacao}" name="idPagina"/> 
-				               		</h:link>
-								</li>
-							</ul>
-						</li>
-						 -->
-						
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">#{strings.dropDown1}</a>
-							<ul class="dropdown-menu" role="menu" >
-								<li><h:link value="#{strings.item1}" outcome="pagina">
-										<f:param value="#{template.museu.configuracao.item1}" name="idPagina" />
-									</h:link>
-								</li>
-								<li><h:link value="#{strings.item2}" outcome="pagina">
-									<f:param value="#{template.museu.configuracao.item2}"
-										name="idPagina" />
-								</h:link></li>
-							</ul>
-						</li>
-						
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">#{strings.dropDown2}</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><h:link value="#{strings.palestrasEEventos}" outcome="events"
-								icon="ui-icon-calendar" /></li>
-								<li><h:link value="#{strings.noticias}" outcome="news"
-								icon="ui-icon-calendar" /></li>
-							</ul>
-						</li>
-						
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">#{strings.dropDown3}</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><h:link value="#{strings.buscarNoAcervo}" outcome="acervo"/></li>
-								<li><h:link value="#{strings.flora}" outcome="flora"/></li>
-								<!-- 
-								<li><h:link value="#{strings.fauna}" outcome="fauna"/></li>
-								 -->
-							</ul>
-						</li>
-						
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">#{strings.dropDown4}</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><h:link value="#{strings.item3}" outcome="pagina">
-									<f:param value="#{template.museu.configuracao.item3}"
-										name="idPagina" />
-								</h:link></li>
-								<li><h:link value="#{strings.item4}" outcome="pagina">
-									<f:param value="#{template.museu.configuracao.item4}" name="idPagina" />
-								</h:link></li>
-							</ul>
-						</li>
-						
-						<li>		
-							<h:link value="#{strings.item5}" outcome="pagina">
-								<f:param value="#{template.museu.configuracao.item5}" name="idPagina" />
-							</h:link>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle active" data-toggle="dropdown">#{strings.dropDown5}</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><h:link value="#{strings.ajudeOMuseu}" outcome="ajudeOMuseu" /></li>
-								<li><h:link value="#{strings.item6}" outcome="pagina">
-									<f:param value="#{template.museu.configuracao.item6}"
-										name="idPagina" />
-								</h:link></li>
-								<li><h:link value="#{strings.item7}" outcome="pagina">
-									<f:param value="#{template.museu.configuracao.item7}" name="idPagina" />
-								</h:link></li>
-								<li><h:link value="#{strings.item8}" outcome="pagina">
-									<f:param value="#{template.museu.configuracao.item8}" name="idPagina" />
-								</h:link></li>
-								<li><a href="#{template.museu.configuracao.urlInstituicao}">#{template.museu.configuracao.nomeInstituicao}</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<form class="navbar-form navbar-right" method="get" role="search" action="/pages/busca.jsf">
-				        <div class="form-group">
-				          <input type="text" class="form-control busca" placeholder="#{strings.buscar}" name="stringBusca" />
-				        </div>
-				    </form>
-				</div>
-			</div>
-		</div>
+		<ui:include src="/templates/menu_personalizavem.xhtml"/>
 		<ui:insert name="conteudo">
 			
 		</ui:insert>

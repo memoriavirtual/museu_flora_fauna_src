@@ -6,6 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title><ui:insert name="title">#{strings.tituloAdmLogin}</ui:insert></title>
+	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/bootstrap.css" />
 	<style>
 		.ui-inputfield{
 			width:140px;
@@ -24,6 +25,14 @@
 		.calendario{
 			width: 140px !important;
 		}
+		
+		header {
+			float: right;
+		}
+		
+		footer{
+			text-align: center;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootsrap/css/bootstrap.css" />
 </h:head>
@@ -31,25 +40,21 @@
 <f:view encoding="ISO-8859-1">
 <body style="font-size:13px;">
 	<div id="wrapper">
-		<div id="header">
-			<ui:insert name="header">
-				<h:form>
-					<h:outputText value="#{strings.bemVindo}: #{login.u.nome}" />
-					<div style="clear:both; margin: 5px 5px"></div>
-	                <h:commandButton value="#{strings.logoff}" action="#{login.realizarLogoff}" styleClass="btn btn-sm btn-primary" />
-                </h:form>
-			</ui:insert>
-		</div>
+		<header>
+			<h:form>
+				<h:outputText value="#{strings.bemVindo}: #{login.u.nome}" />
+				<div style="clear:both; margin: 5px 5px"></div>
+                <h:commandButton value="#{strings.logoff}" action="#{login.realizarLogoff}" styleClass="btn btn-sm btn-primary" />
+			</h:form>
+		</header>
 		<div id="content">
 			<ui:insert name="content">
                 Content
             </ui:insert>
 		</div>
-		<div id="footer">
-			<ui:insert name="footer">
-				Copyright 2014
-			</ui:insert>
-		</div>
+		<footer class="container">
+			Copyright 2014
+		</footer>
 	</div>
 </body>
 </f:view>

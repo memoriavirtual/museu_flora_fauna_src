@@ -247,13 +247,17 @@ public class ListagemCompletaAcervo extends BeanComMidiaMV implements Serializab
 
 	@Override
 	public void confirmarSelecaoMapa() {
-		System.out.println("confirmarSelecaoMapa:"+localTemp);
 		localMapa = localTemp;
 	}
 
 	@Override
 	public void cancelarSelecaoMapa() {
-		localMapa = "mapaInteiro";
+		
+	}
+
+	@Override
+	public void selecionarTodoOMapa() {
+		localMapa = "mapaInteiro";		
 	}
 
 	public String getLocalMapa() {

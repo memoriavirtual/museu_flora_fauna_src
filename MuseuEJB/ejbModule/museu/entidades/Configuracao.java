@@ -31,8 +31,7 @@ public class Configuracao implements Serializable{
     @Lob  
     @Column(columnDefinition = "BYTEA")
     private byte[] logo;
-	
-	
+    
 	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@OrderBy("ordem ASC")
 	@JoinColumn(name="CONFIGURACAO_ID")

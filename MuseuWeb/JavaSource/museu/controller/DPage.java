@@ -25,11 +25,10 @@ public class DPage implements Serializable{
 	
 	@PostConstruct
 	public void run(){
-		if(FacesUtil.getRequestParameter("idPagina") != null)
+		if(FacesUtil.getRequestParameter("idPagina") != null && !FacesUtil.getRequestParameter("idPagina").equals(""))
 			ID = new Integer(FacesUtil.getRequestParameter("idPagina"));
 		else
 			ID = null;
-		System.out.println("ID:"+ID);
 		this.loadPage();
 	}
 	
