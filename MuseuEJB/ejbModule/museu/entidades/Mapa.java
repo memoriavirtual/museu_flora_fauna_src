@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,15 +22,15 @@ public class Mapa implements Serializable{
 	@Id
 	private String id;
 	
-	private String zoomLevels;
-	
-	private Long latCenter;
-	
-	private Long longCenter;
-	
 	private String tipo; // LOCALIZACAO || BUSCA
 	
-	@OneToMany
+	private String latitude;
+	
+	private String longitude;
+	
+	private String url;
+	
+	@OneToMany(fetch=FetchType.EAGER,orphanRemoval=true)
 	@JoinColumn(name="MAPA_ID")
 	private List<Poligono> poligonos;
 
@@ -39,30 +40,6 @@ public class Mapa implements Serializable{
 
 	public void setPoligonos(List<Poligono> poligonos) {
 		this.poligonos = poligonos;
-	}
-
-	public String getZoomLevels() {
-		return zoomLevels;
-	}
-
-	public void setZoomLevels(String zoomLevels) {
-		this.zoomLevels = zoomLevels;
-	}
-
-	public Long getLatCenter() {
-		return latCenter;
-	}
-
-	public void setLatCenter(Long latCenter) {
-		this.latCenter = latCenter;
-	}
-
-	public Long getLongCenter() {
-		return longCenter;
-	}
-
-	public void setLongCenter(Long longCenter) {
-		this.longCenter = longCenter;
 	}
 
 	public String getId() {
@@ -80,5 +57,28 @@ public class Mapa implements Serializable{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}	
 }

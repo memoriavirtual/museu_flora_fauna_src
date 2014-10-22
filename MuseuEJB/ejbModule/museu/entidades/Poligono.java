@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -22,6 +23,7 @@ public class Poligono implements Serializable{
 	
 	private String nome;
 	
+	@Lob
 	private String forma; //Em Coordenadas no Formato POLYGON(...)
 
 	@ManyToOne

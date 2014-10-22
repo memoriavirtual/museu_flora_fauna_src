@@ -45,7 +45,7 @@
 					</div>		
 				</h:form>
 				
-				<h:form id="formLocal">					    
+				<h:form id="formLocal" rendered="#{listagemCompleta.buscaNoMapa}">					    
 				    <p:dialog id="modalMapa" widgetVar="modalSelecionaMapa" closeOnEscape="false" position="center" modal="true"
 				    	closable="false" header="#{strings.selecionarAreaBusca}" resizable="false" width="600" height="450">
 				    	<ui:decorate template="/templates/select_mapa.xhtml">

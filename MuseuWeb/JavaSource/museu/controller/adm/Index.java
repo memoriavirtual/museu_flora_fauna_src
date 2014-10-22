@@ -5,6 +5,10 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -12,6 +16,8 @@ import javax.faces.component.UIData;
 import javax.servlet.http.Part;
 
 import museu.entidades.Configuracao;
+import museu.entidades.Mapa;
+import museu.entidades.Poligono;
 import museu.entidades.Slide;
 import museu.fachadas.remoto.BancoRemote;
 import museu.fachadas.remoto.MuseuRemote;
@@ -20,6 +26,8 @@ import museu.util.FacesUtil;
 import museu.util.Mensagens;
 
 import org.apache.commons.io.IOUtils;
+import org.ol4jsf.component.api.FeatureVector;
+import org.ol4jsf.util.WKTFeaturesCollection;
 
 public class Index implements Serializable{
 
@@ -37,6 +45,16 @@ public class Index implements Serializable{
 	
 	private javax.servlet.http.Part uploadSlide;
 	
+	private String mapaAtual;
+	
+	private String poligono;
+	
+	private String localAdicionar;
+	
+	private Mapa mapaBusca;
+	
+	private boolean editandoMapa = false;
+	
 	//private boolean canUpload = true;
 	
 	private UIData tabelaSlides;
@@ -53,7 +71,60 @@ public class Index implements Serializable{
 	@PostConstruct
 	public void init(){
 		config = banco.getConfiguracao();
+
+		mapaBusca = banco.getMapaBusca();
+		tratamentoMapa(mapaBusca);
 		
+		editandoMapa = false;
+	}
+	
+	public void adicionarLocal(){
+		Poligono poligono = new Poligono();
+		poligono.setForma(this.poligono);
+		poligono.setNome(localAdicionar);
+		this.mapaBusca.getPoligonos().add(poligono);
+
+		tratamentoMapa(this.mapaBusca);	
+		
+		editandoMapa = true;
+
+		this.localAdicionar="";
+		this.poligono="";
+		
+		System.out.println("lat:"+mapaBusca.getLatitude());
+		System.out.println("lon:"+mapaBusca.getLongitude());
+	}
+	
+	public void editarMapa(){
+		editandoMapa = true;
+		localAdicionar = "";
+		System.out.println("lat:"+mapaBusca.getLatitude());
+		System.out.println("lon:"+mapaBusca.getLongitude());
+	}
+	
+	public void removerUltimo(){
+		localAdicionar="";
+		poligono="";
+		editandoMapa = true;
+		mapaBusca.getPoligonos().remove(mapaBusca.getPoligonos().size()-1);
+		
+		tratamentoMapa(this.mapaBusca);
+	}
+	
+	public void limparMapa(){
+		localAdicionar="";
+		poligono="";
+		editandoMapa = true;
+		
+		mapaBusca.setPoligonos(new ArrayList<Poligono>());
+		
+		tratamentoMapa(this.mapaBusca);
+	}
+	
+	public void salvarMapaEdicao(){
+		banco.persisteMapaBusca(this.mapaBusca);
+		FacesUtil.addMessage("Salvo com Sucesso", "Salvo com Sucesso", Constants.INFO);
+		editandoMapa = false;
 	}
 	
 	public void salvar(){
@@ -230,5 +301,62 @@ public class Index implements Serializable{
 
 	public void setFreeGeoUIP(String freeGeoUIP) {
 		this.freeGeoUIP = freeGeoUIP;
+	}
+
+	public String getLocalAdicionar() {
+		return localAdicionar;
+	}
+
+	public void setLocalAdicionar(String localAdicionar) {
+		this.localAdicionar = localAdicionar;
+	}
+
+	public String getMapaAtual() {
+		return mapaAtual;
+	}
+
+	public void setMapaAtual(String mapaAtual) {
+		this.mapaAtual = mapaAtual;
+	}
+
+	public boolean isEditandoMapa() {
+		return editandoMapa;
+	}
+
+	public void setEditandoMapa(boolean editandoMapa) {
+		this.editandoMapa = editandoMapa;
+	}
+	
+	public void tratamentoMapa(Mapa m){
+		List<FeatureVector> poligonos = new ArrayList<>();
+		
+		for(Poligono p : m.getPoligonos()){
+			Map<String, String> hash = new HashMap<String, String>();
+			hash.put("string", p.getNome());
+			FeatureVector f = new FeatureVector(p.getForma(),hash);
+			poligonos.add(f);
+		}		
+
+		WKTFeaturesCollection features = new WKTFeaturesCollection();
+		for(FeatureVector vector : poligonos)
+			features.addFeature(vector);
+		
+		mapaAtual = features.toMap();
+	}
+
+	public String getPoligono() {
+		return poligono;
+	}
+
+	public void setPoligono(String poligono) {
+		this.poligono = poligono;
+	}
+
+	public Mapa getMapaBusca() {
+		return mapaBusca;
+	}
+
+	public void setMapaBusca(Mapa mapaBusca) {
+		this.mapaBusca = mapaBusca;
 	}
 }

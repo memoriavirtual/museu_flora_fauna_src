@@ -15,7 +15,7 @@
 			
 			<m:vectorLayer name="Locais" value="#{mapa.wkts}"
 				jsVariable="formasLayer" transformationSource="EPSG:4326"
-				transformationTarget="EPSG:900913" />
+				transformationTarget="EPSG:900913" autoCenter="true" />
 
 			<m:selectFeatureControl layers="formasLayer"
 				options="{onSelect: onFeatureSelect, onUnselect: onFeatureUnselect}"
@@ -28,10 +28,6 @@
 				controls[1].disableZoomWheel();
 				
 				selectControl.activate();
-                map.setCenter(new OpenLayers.LonLat(-47.89460,-22.00725)
-                .transform(
-                new OpenLayers.Projection("EPSG:4326"), 
-                new OpenLayers.Projection("EPSG:900913")),18);
 			</m:script>
 		</m:map>
 		<p:remoteCommand name="buscarPeloMapa" actionListener="#{mapa.selecionarAreaMapa}"/>
@@ -56,25 +52,25 @@
 		var selectedFeature, popup;
 
 		function onPopupClose(evt) {
-			//selectControl.unselect(selectedFeature);
+			selectControl.unselect(selectedFeature);
 		}
 		function onFeatureSelect(feature) {
-			//selectedFeature = feature;
-			//popup = new OpenLayers.Popup.FramedCloud("geom",
-					//feature.geometry.getBounds().getCenterLonLat(), null,
-					//"<div><b>Myattr</b> = " + (feature.attributes.string)
-							//+ "</div>", null, true, onPopupClose);
-			//feature.popup = popup;
-			//map.addPopup(popup);
+			selectedFeature = feature;
+			popup = new OpenLayers.Popup.FramedCloud("geom",
+					feature.geometry.getBounds().getCenterLonLat(), null,
+					"<div><b>#{strings.nomeLocal}</b> = " + (feature.attributes.string)
+							+ "</div>", null, true, onPopupClose);
+			feature.popup = popup;
+			map.addPopup(popup);
 			buscarPeloMapa([ {
 				name : 'param1',
 				value : (feature.attributes.string)
 				} ]);
 		}
 		function onFeatureUnselect(feature) {
-			//map.removePopup(feature.popup);
-			//feature.popup.destroy();
-			//feature.popup = null;
+			map.removePopup(feature.popup);
+			feature.popup.destroy();
+			feature.popup = null;
 		}
 		//]]>
 	</script>

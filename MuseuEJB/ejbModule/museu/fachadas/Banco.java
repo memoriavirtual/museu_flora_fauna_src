@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import museu.entidades.Acesso;
 import museu.entidades.Configuracao;
+import museu.entidades.Mapa;
 import museu.entidades.Slide;
 import museu.entidades.Usuario;
 import museu.fachadas.remoto.BancoRemote;
@@ -155,5 +156,17 @@ public class Banco implements BancoRemote,Serializable{
 		Query q = em.createQuery("SELECT count(a.id) FROM Acesso a where a.AcessDate=:date");
 		q.setParameter("date", date);
 		return (Long) q.getSingleResult();
+	}
+	
+	@Override
+	public Mapa getMapaBusca() {
+		Query q = em.createQuery("SELECT m FROM Mapa m where m.tipo='busca'");
+		return (Mapa) q.getSingleResult();
+	}
+	
+	@Override
+	public void persisteMapaBusca(Mapa mapa) {
+		em.merge(mapa);
+		em.flush();
 	}
 }

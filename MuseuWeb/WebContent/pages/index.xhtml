@@ -5,8 +5,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	
 
 <ui:composition template="/templates/template_sem_header.xhtml">
+	<ui:define name="htmlhead">
+		<script src="http://openlayers.org/api/OpenLayers.js"></script>
+	</ui:define>
 	<ui:define name="conteudo">
 		<div id="carousel_fade" class="carousel slide carousel-fade">
 			<div class="carousel-inner">
@@ -149,11 +153,11 @@
 						<h:outputText value="#{strings.localizacao}" styleClass="h2"/>
 					</div>
 					<div class="col-12 com-sm-12 col-lg-12 col-md-12">
-						<div id="gmap" style="width:335px;height:290px;"/>
+						<div style="width:335px; height:290px" id="map"></div>
 					</div>
 					<div class="col-12 com-sm-12 col-lg-12 col-md-12">
-						<a  href="http://goo.gl/M6n9LI" class="btn btn-primary btn-sm" >
-							<i class="glyphicon glyphicon-zoom-in" style="float: left;"></i>#{strings.ampliarMapa}</a>
+						<a  href="#{index.mapa.url}" class="btn btn-primary btn-sm" >
+							<i class="glyphicon glyphicon-zoom-in" style="margin: 0 auto;"></i>#{strings.ampliarMapa}</a>
 					</div>
 				</div>
 				<div id="vocesabia" class="col-12 com-sm-12 col-lg-12 col-md-12" style="padding-top: 25px;">
@@ -166,25 +170,28 @@
 		</article>
 		<script>
 		//Colocar opção no painel, a configuração do mapa e tempo execução do carousel
-		var options = {
-				scrollwheel: false,
-				center: new google.maps.LatLng(-22.007656, -47.894879),
-				zoom:16,
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				disableDefaultUI:true,
-				disableDoubleClickZoom:true,
-				draggable:false
-				};
-		var gmap = new google.maps.Map(document.getElementById("gmap"),options);
-		
-		window.addEventListener("hashchange", function() { scrollBy(0, -50) })
-		
-		jQuery('.carousel').carousel({
-			interval: 8000
-		});
+		window.onload = function(){
+			var map;
+			map = new OpenLayers.Map( 'map');
+	        layer = new OpenLayers.Layer.OSM('#{strings.localizacao}');
+	        map.addLayer(layer);
+	        map.setCenter(
+	            new OpenLayers.LonLat(#{index.mapa.longitude},#{index.mapa.latitude}).transform(
+	                new OpenLayers.Projection("EPSG:3857"),//4326 Formatação Padrão de Coordenadas
+	                map.getProjectionObject()
+	            ), 17
+	        );
+	        
+			jQuery('.carousel').carousel({
+				interval: 8000
+			});
+
+			window.addEventListener("hashchange", function() { scrollBy(0, -50) })
+			ao_carregar();
+		}
 		</script>
 		<h:form>
-			<p:remoteCommand name="onload" action="#{salvaAcessoUsuario.guardaAcesso}" autoRun="true" />
+			<p:remoteCommand name="ao_carregar" action="#{salvaAcessoUsuario.guardaAcesso}" />
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -7,6 +7,7 @@ import javax.ejb.Remote;
 
 import museu.entidades.Acesso;
 import museu.entidades.Configuracao;
+import museu.entidades.Mapa;
 import museu.entidades.Slide;
 import museu.entidades.Usuario;
 
@@ -34,4 +35,7 @@ public interface BancoRemote {
 	
 	public Long getTotalAcessos();
 	public Long getTotalAcessosDia(Date date);
+	
+	public Mapa getMapaBusca();
+	public void persisteMapaBusca(Mapa mapa);
 }

@@ -30,6 +30,8 @@ public class Index implements Serializable {
 
 	private List<Post> events;
 
+	private museu.entidades.Mapa mapa;
+	
 	private Post voceSabia;
 	private Gallery voceSabiaImage;
 
@@ -47,6 +49,8 @@ public class Index implements Serializable {
 	
 	@PostConstruct
 	public void run() {
+		mapa = banco.getMapaBusca();
+		
 		System.out.println("Carregando Index");
 		try {
 			blog = museu.getPosts("tag="+museu.getConfiguracao().getTagNews()+"&paged=1&posts_per_page=3");
@@ -136,5 +140,13 @@ public class Index implements Serializable {
 
 	public void setWelcome(Page welcome) {
 		this.welcome = welcome;
+	}
+
+	public museu.entidades.Mapa getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(museu.entidades.Mapa mapa) {
+		this.mapa = mapa;
 	}
 }
