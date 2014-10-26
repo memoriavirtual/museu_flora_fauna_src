@@ -44,18 +44,29 @@ public class Museu implements MuseuRemote {
 	
 	@Override
 	public void carregarWebServices(){
+		System.out.println("aeooooooooow");
+		System.out.println("x:"+banco.getConfiguracao().getUrlMemoria());
 		init();
 	}
 	
 	@PostConstruct
 	public void init(){
-		try{
 		
-		wp = new WordPressWebServicePortTypeProxy(banco.getConfiguracao().getUrlWordpress());
+		try{
+			wp = new WordPressWebServicePortTypeProxy(banco.getConfiguracao().getUrlWordpress());
+		}catch(Exception e){
+			wp = null;
+		}
 		
 		Buscar_ServiceLocator servico = new Buscar_ServiceLocator();
-		servico.setRealizarBuscaSOAPServicePortEndpointAddress(banco.getConfiguracao().getUrlMemoria());
 		
+		try{
+			servico.setRealizarBuscaSOAPServicePortEndpointAddress(banco.getConfiguracao().getUrlMemoria());
+		}catch(Exception e){
+			servico.setRealizarBuscaSOAPServicePortEndpointAddress(null);
+		}
+		
+		try{
 
 			RealizarBuscaSOAPService servico_ = servico.getRealizarBuscaSOAPServicePort();
 			Stub stub = (Stub) servico_;
@@ -105,13 +116,10 @@ public class Museu implements MuseuRemote {
 
 	@Override
 	public List<BemPatrimonial> getBens(String args,int pagina,int tamanhoPagina) throws RemoteException {
-		System.out.println("args: "+args+" pag: "+pagina +" tamanho: "+tamanhoPagina);
 		BemPatrimonial[] bens = mv.buscarInstituicao(args, pagina,tamanhoPagina, banco.getConfiguracao().getNomeInstituicaoMemoria());
 		if(bens == null) 
 			return null;
 		
-
-		System.out.println("size_retorno:"+bens.length);
 		return Arrays.asList(bens);
 	}
 	

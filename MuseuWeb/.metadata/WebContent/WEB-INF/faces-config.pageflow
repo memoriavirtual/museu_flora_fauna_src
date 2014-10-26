@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13914514105990" configfile="/MuseuWeb/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="Portal" x="84" y="2098" id="pf13914514530511" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13914514530512 pf13914514530513 pf13914514530514 pf13914514530515 pf13914514530516 pf13914514530517 pf13914514530518 pf13914514530519 pf139145145305110 pf139145145305111 pf139145145305112 pf14071630047030" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="Portal" x="84" y="2098" id="pf13914514530511" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13914514530512 pf13914514530513 pf13914514530514 pf13914514530515 pf13914514530516 pf13914514530517 pf13914514530518 pf139145145305110 pf139145145305111 pf139145145305112 pf14071630047030 pf14141589560290" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/acervo/acervo.xhtml" x="338" y="178" id="pf139145145305113" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13914514530512" path="/pages/acervo/acervo.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/acervo/acervo_fauna.xhtml" x="338" y="562" id="pf139145145305214" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf13914514530513" path="/pages/acervo/acervo_fauna.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/acervo/acervo_flora.xhtml" x="338" y="946" id="pf139145145305215" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf13914514530514" path="/pages/acervo/acervo_flora.xhtml"/>
@@ -8,11 +8,11 @@
   <nodes xsi:type="pageflow:PFPage" name="pages/pagina.xhtml" x="338" y="1714" id="pf139145145305217" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf13914514530516" path="/pages/pagina.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/events.xhtml" x="338" y="2098" id="pf139145145305218" referenceLink="//@navigationRule.0/@navigationCase.6/@toViewId|" inlinks="pf13914514530517" path="/pages/events.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/news.xhtml" x="338" y="2482" id="pf139145145305219" referenceLink="//@navigationRule.0/@navigationCase.7/@toViewId|" inlinks="pf13914514530518" path="/pages/news.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/index.xhtml" x="338" y="2866" id="pf139145145305220" referenceLink="//@navigationRule.0/@navigationCase.8/@toViewId|" inlinks="pf13914514530519" path="/pages/index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/event.xhtml" x="338" y="3250" id="pf139145145305221" referenceLink="//@navigationRule.0/@navigationCase.9/@toViewId|" inlinks="pf139145145305110" path="/pages/event.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/new.xhtml" x="338" y="3634" id="pf139145145305222" referenceLink="//@navigationRule.0/@navigationCase.10/@toViewId|" inlinks="pf139145145305111" path="/pages/new.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/ajudeOMuseu.xhtml" x="338" y="4018" id="pf139145145305223" referenceLink="//@navigationRule.0/@navigationCase.11/@toViewId|" inlinks="pf139145145305112" path="/pages/ajudeOMuseu.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/acervo/listagem.xhtml" id="pf14071630047041" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14071630047030" path="/pages/acervo/listagem.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/index.xhtml" id="pf14141589560301" referenceLink="//@navigationRule.0/@navigationCase.8/@toViewId|" inlinks="pf14141589560290" path="/pages/index.xhtml"/>
   <links id="pf13914514530512" target="pf139145145305113" source="pf13914514530511" outcome="acervo"/>
   <links id="pf13914514530513" target="pf139145145305214" source="pf13914514530511" outcome="fauna"/>
   <links id="pf13914514530514" target="pf139145145305215" source="pf13914514530511" outcome="flora"/>
@@ -20,9 +20,9 @@
   <links id="pf13914514530516" target="pf139145145305217" source="pf13914514530511" outcome="pagina"/>
   <links id="pf13914514530517" target="pf139145145305218" source="pf13914514530511" outcome="events"/>
   <links id="pf13914514530518" target="pf139145145305219" source="pf13914514530511" outcome="news"/>
-  <links id="pf13914514530519" target="pf139145145305220" source="pf13914514530511" outcome="index"/>
   <links id="pf139145145305110" target="pf139145145305221" source="pf13914514530511" outcome="event"/>
   <links id="pf139145145305111" target="pf139145145305222" source="pf13914514530511" outcome="new"/>
   <links id="pf139145145305112" target="pf139145145305223" source="pf13914514530511" outcome="ajudeOMuseu"/>
   <links id="pf14071630047030" target="pf14071630047041" source="pf13914514530511" outcome="listagem"/>
+  <links id="pf14141589560290" target="pf14141589560301" source="pf13914514530511" outcome="index"/>
 </pageflow:Pageflow>

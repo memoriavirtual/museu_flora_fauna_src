@@ -13,7 +13,7 @@ public class Teste {
 		WordPressWebServicePortTypeProxy wordpress = new WordPressWebServicePortTypeProxy(
 				"http://mff.icmc.usp.br:22180/wordpress/index.php?/wpws");
 		try {
-			wordpress.getPosts("tag=RightSide");
+			wordpress.getPosts("tag=News");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

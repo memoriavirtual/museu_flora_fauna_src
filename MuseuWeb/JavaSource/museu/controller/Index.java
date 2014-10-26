@@ -51,7 +51,7 @@ public class Index implements Serializable {
 	public void run() {
 		mapa = banco.getMapaBusca();
 		
-		System.out.println("Carregando Index");
+		System.out.println("Carregando Eventos/Noticias/VoceSabia");
 		try {
 			blog = museu.getPosts("tag="+museu.getConfiguracao().getTagNews()+"&paged=1&posts_per_page=3");
 			events = museu.getPosts("tag="+museu.getConfiguracao().getTagEvents()+"&paged=1&posts_per_page=3");
@@ -59,7 +59,7 @@ public class Index implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Index Carregado");
+		System.out.println("Carregamento Concluido");
 	}
 
 

@@ -55,6 +55,8 @@ public class Index implements Serializable{
 	
 	private boolean editandoMapa = false;
 	
+	private boolean testeServicos = false;
+	
 	//private boolean canUpload = true;
 	
 	private UIData tabelaSlides;
@@ -90,16 +92,12 @@ public class Index implements Serializable{
 
 		this.localAdicionar="";
 		this.poligono="";
-		
-		System.out.println("lat:"+mapaBusca.getLatitude());
-		System.out.println("lon:"+mapaBusca.getLongitude());
 	}
 	
 	public void editarMapa(){
 		editandoMapa = true;
+		testeServicos = false;
 		localAdicionar = "";
-		System.out.println("lat:"+mapaBusca.getLatitude());
-		System.out.println("lon:"+mapaBusca.getLongitude());
 	}
 	
 	public void removerUltimo(){
@@ -144,6 +142,8 @@ public class Index implements Serializable{
 		}catch(Exception e){
 			FacesUtil.addMessage("Erro ao Salvar Dados", "Erro ao Salvar Dados", Constants.ERROR);
 		}
+		editandoMapa = false;
+		testeServicos = false;
 	}
 	 
 	public String addSlide() throws IOException{
@@ -237,6 +237,9 @@ public class Index implements Serializable{
 		}catch(Exception e){
 			freeGeoUIP = "ERROR:"+Mensagens.getString("erroComunicacaoServico");
 		}
+		
+		testeServicos = true;
+		editandoMapa = false;
 	}
 	
 	public BancoRemote getBanco() {
@@ -358,5 +361,13 @@ public class Index implements Serializable{
 
 	public void setMapaBusca(Mapa mapaBusca) {
 		this.mapaBusca = mapaBusca;
+	}
+
+	public boolean isTesteServicos() {
+		return testeServicos;
+	}
+
+	public void setTesteServicos(boolean testeServicos) {
+		this.testeServicos = testeServicos;
 	}
 }

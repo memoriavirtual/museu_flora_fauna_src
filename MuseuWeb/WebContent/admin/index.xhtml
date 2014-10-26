@@ -30,9 +30,8 @@
 				    <li><a href="#tabs-3">#{strings.socialEInstitucional}</a></li>
 				    <li><a href="#tabs-4">#{strings.configuracoesWordpress}</a></li>
 			     	<li><a href="#tabs-5">#{strings.slidePrincipal}</a></li>
-			     	<li><a href="#tabs-6">#{strings.mapa}</a></li>
-			     	<li><a href="#tabs-7">#{strings.mapaBusca}</a></li>
-			     	<li><a href="#tabs-8">#{strings.acessosAoPortal}</a></li>						    
+			     	<li><a href="#tabs-6">#{strings.mapaBusca}</a></li>
+			     	<li><a href="#tabs-7">#{strings.acessosAoPortal}</a></li>						    
 				</ul>
 				<div id="tabs-1">
 					<h:form enctype="multipart/form-data">
@@ -305,10 +304,6 @@
 				</div>
 				
 				<div id="tabs-6">
-					
-				</div>
-				
-				<div id="tabs-7">
 					<script type="text/javascript">
 						//<![CDATA[
 						
@@ -428,6 +423,14 @@
 									
 									b = document.getElementsByClassName('olControlDrawFeaturePolygonItemInactive')[0];
 									b.setAttribute('onclick','verificaNome();');
+									
+									var c = map.getCenter();
+						
+									var lat = document.getElementById('mapa:latitude');
+									var lon = document.getElementById('mapa:longitude');
+									
+									lat.value = c.lat;
+									lon.value = c.lon;	
 								</m:script>
 							</m:map>						
 							<h:panelGrid columns="4" style="margin-top: 20px;" id="botoes_mapa" binding="#{botoes_mapa}">
@@ -444,7 +447,7 @@
 					</div>
 				</div>
 				
-				<div id="tabs-8">
+				<div id="tabs-7">
 					<h:form>					
 						<p:watermark for="ptCal" value="#{strings.clickParaSelecionar}" />
 						<p:commandButton value="#{strings.listarPorData}" actionListener="#{acessosPortal.novaPesquisaPorData}"
@@ -517,18 +520,10 @@
 			$( document ).ready(function() {				
 				if(#{indexAdm.editandoMapa}){
 					$('#tabs-min').tabs({active:6});
-					
-					setTimeout(function setCoor(){
-						var c = map.getCenter();
-						
-						var lat = document.getElementById("#{latitude.clientId}");
-						var lon = document.getElementById("#{longitude.clientId}");
-						
-						lat.value = c.lat;
-						lon.value = c.lon;								
-					}, 10)
 				}
-				else{
+				else if(#{indexAdm.testeServicos}){
+					$('#tabs-min').tabs({active:1});
+				}else{
 					$('#tabs-min').tabs();
 				}
 			});

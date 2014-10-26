@@ -19,9 +19,9 @@ public class Post  implements java.io.Serializable {
 
     private java.lang.String author;
 
-    private java.util.Date date;
+    private java.sql.Date date;
 
-    private java.util.Date dateGmt;
+    private java.sql.Date dateGmt;
 
     private java.lang.String content;
 
@@ -43,9 +43,9 @@ public class Post  implements java.io.Serializable {
 
     private java.lang.String pinged;
 
-    private java.util.Date modified;
+    private java.sql.Date modified;
 
-    private java.util.Date modifiedGmt;
+    private java.sql.Date modifiedGmt;
 
     private java.lang.String contentFiltered;
 
@@ -73,8 +73,8 @@ public class Post  implements java.io.Serializable {
     public Post(
            int id,
            java.lang.String author,
-           java.util.Date date,
-           java.util.Date dateGmt,
+           java.sql.Date date,
+           java.sql.Date dateGmt,
            java.lang.String content,
            java.lang.String title,
            java.lang.String excerpt,
@@ -85,8 +85,8 @@ public class Post  implements java.io.Serializable {
            java.lang.String name,
            java.lang.String toPing,
            java.lang.String pinged,
-           java.util.Date modified,
-           java.util.Date modifiedGmt,
+           java.sql.Date modified,
+           java.sql.Date modifiedGmt,
            java.lang.String contentFiltered,
            int parentId,
            java.lang.String guid,
@@ -193,7 +193,7 @@ public class Post  implements java.io.Serializable {
      * 
      * @return date
      */
-    public java.util.Date getDate() {
+    public java.sql.Date getDate() {
         return date;
     }
 
@@ -203,7 +203,7 @@ public class Post  implements java.io.Serializable {
      * 
      * @param date
      */
-    public void setDate(java.util.Date date) {
+    public void setDate(java.sql.Date date) {
         this.date = date;
     }
 
@@ -213,7 +213,7 @@ public class Post  implements java.io.Serializable {
      * 
      * @return dateGmt
      */
-    public java.util.Date getDateGmt() {
+    public java.sql.Date getDateGmt() {
         return dateGmt;
     }
 
@@ -223,7 +223,7 @@ public class Post  implements java.io.Serializable {
      * 
      * @param dateGmt
      */
-    public void setDateGmt(java.util.Date dateGmt) {
+    public void setDateGmt(java.sql.Date dateGmt) {
         this.dateGmt = dateGmt;
     }
 
@@ -433,7 +433,7 @@ public class Post  implements java.io.Serializable {
      * 
      * @return modified
      */
-    public java.util.Date getModified() {
+    public java.sql.Date getModified() {
         return modified;
     }
 
@@ -443,7 +443,7 @@ public class Post  implements java.io.Serializable {
      * 
      * @param modified
      */
-    public void setModified(java.util.Date modified) {
+    public void setModified(java.sql.Date modified) {
         this.modified = modified;
     }
 
@@ -453,7 +453,7 @@ public class Post  implements java.io.Serializable {
      * 
      * @return modifiedGmt
      */
-    public java.util.Date getModifiedGmt() {
+    public java.sql.Date getModifiedGmt() {
         return modifiedGmt;
     }
 
@@ -463,7 +463,7 @@ public class Post  implements java.io.Serializable {
      * 
      * @param modifiedGmt
      */
-    public void setModifiedGmt(java.util.Date modifiedGmt) {
+    public void setModifiedGmt(java.sql.Date modifiedGmt) {
         this.modifiedGmt = modifiedGmt;
     }
 
