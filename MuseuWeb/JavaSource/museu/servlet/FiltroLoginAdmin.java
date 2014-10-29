@@ -49,6 +49,8 @@ public class FiltroLoginAdmin implements Filter, Serializable {
 				if(!url.contains("primeiro_acesso")){
 					String contextPath = ((HttpServletRequest) request).getContextPath();
 					((HttpServletResponse) response).sendRedirect(contextPath+ "/admin/primeiro_acesso.jsf");
+				}else{
+					chain.doFilter(request, response);
 				}
 			}else{
 				if(usuario != null && url.contains("login")){
@@ -56,13 +58,14 @@ public class FiltroLoginAdmin implements Filter, Serializable {
 					((HttpServletResponse) response).sendRedirect(contextPath+ "/admin/index.jsf");
 				}
 				
-				if (usuario == null && !url.contains("login")) {
+				else if (usuario == null && !url.contains("login")) {
 					String contextPath = ((HttpServletRequest) request).getContextPath();
 					((HttpServletResponse) response).sendRedirect(contextPath+ "/admin/login.jsf");
+				}else {
+					chain.doFilter(request, response);
 				}
 			}
 		}
-		chain.doFilter(request, response);
 	}
 
 	@Override

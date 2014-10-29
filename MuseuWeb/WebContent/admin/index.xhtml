@@ -13,15 +13,6 @@
 		<script type="text/javascript" src="${request.contextPath}/bootsrap/js/jquery-ui.min.js"/>
 	</ui:define>
 	<ui:define name="content">
-	<div class="container">
-		<div class="panel panel-warning">
-			<div class="panel-heading" style="text-align: center;">
-				#{strings.configuracoesMensagens}
-			</div>
-		 	<div class="panel-body" style="text-align: center;">    
-				<h:outputText value="#{strings.mensagem1}"/>
-			</div>
-		</div>
 		<p:messages autoUpdate="true"/>
 			<div id="tabs-min">
 				<ul>
@@ -96,7 +87,7 @@
 							<h:outputLabel value="#{strings.freeGeoIP}: "/>
 							<h:outputText value="#{indexAdm.freeGeoUIP}"/>
 						</h:panelGrid>
-						<h:commandButton value="#{strings.realizarTeste}" actionListener="#{indexAdm.testeServicos}"
+						<h:commandButton value="#{strings.realizarTeste}" actionListener="#{indexAdm.testarServicos}"
 							styleClass="btn btn-sm btn-success"/>
 					</h:form>
 				</div>
@@ -423,14 +414,6 @@
 									
 									b = document.getElementsByClassName('olControlDrawFeaturePolygonItemInactive')[0];
 									b.setAttribute('onclick','verificaNome();');
-									
-									var c = map.getCenter();
-						
-									var lat = document.getElementById('mapa:latitude');
-									var lon = document.getElementById('mapa:longitude');
-									
-									lat.value = c.lat;
-									lon.value = c.lon;	
 								</m:script>
 							</m:map>						
 							<h:panelGrid columns="4" style="margin-top: 20px;" id="botoes_mapa" binding="#{botoes_mapa}">
@@ -515,17 +498,18 @@
 					</h:form>
 				</div>
 			</div>
-		</div>
 		<script>
-			$( document ).ready(function() {				
-				if(#{indexAdm.editandoMapa}){
-					$('#tabs-min').tabs({active:6});
-				}
-				else if(#{indexAdm.testeServicos}){
-					$('#tabs-min').tabs({active:1});
-				}else{
-					$('#tabs-min').tabs();
-				}
+			$( document ).ready(function() {	
+				$('#tabs-min').tabs({active:#{indexAdm.abaAtual}});
+								
+				setTimeout(function setLonLatCenter(){
+					if(!(document.getElementById('mapa:latitude')==null)){
+						var lat = document.getElementById('mapa:latitude');
+						var lon = document.getElementById('mapa:longitude');
+						lat.value = map.getCenter().lat;
+						lon.value = map.getCenter().lon;
+					}
+				}, 100);
 			});
 		</script>
 	</ui:define>

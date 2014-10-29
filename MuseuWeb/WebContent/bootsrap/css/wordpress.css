@@ -1,6 +1,26 @@
-.wp-image-1,.wp-image-2,.wp-image-3,.wp-image-4,.wp-image-5,.wp-image-6,.wp-image-7,.wp-image-8,.wp-image-9,.wp-image-10,.wp-image-11,.wp-image-12,.wp-image-13,.wp-image-14,.wp-image-15,.wp-image-16,.wp-image-17,.wp-image-18,.wp-image-19,.wp-image-20,.wp-image-21,.wp-image-22,.wp-image-23,.wp-image-24,.size-full
+.wp-image,.wp-image-1,.wp-image-2,.wp-image-3,.wp-image-4,.wp-image-5,.wp-image-6,.wp-image-7,.wp-image-8,.wp-image-9,.wp-image-10,.wp-image-11,.wp-image-12,.wp-image-13,.wp-image-14,.wp-image-15,.wp-image-16,.wp-image-17,.wp-image-18,.wp-image-19,.wp-image-20,.wp-image-21,.wp-image-22,.wp-image-23,.wp-image-24,.size-full
 	{
-	width: 100%;
+	max-width: 100%;
 	height: auto;
-	margin-top: 10px;
+	margin: 5px 0;
+}
+
+.entry-content img,
+.entry-summary img,
+.widget img,
+.wp-caption {
+	max-width: 100%;
+	height: auto;
+	margin: 5px 0;
+}
+
+/* Make sure images with WordPress-added height and width attributes are scaled correctly. */
+.entry-content img,
+.entry-summary img,
+img[class*="align"],
+img[class*="wp-image-"],
+img[class*="attachment-"] {
+	height: auto;
+	max-width: 100%;
+	margin: 5px 0;
 }

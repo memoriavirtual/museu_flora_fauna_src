@@ -126,14 +126,12 @@ public class ListagemCompletaAcervo extends BeanComMidiaMV implements Serializab
 	}
 	
 	public void proxPagina(){
-		System.out.println("prox:"+pagina);
 		pagina++;
 		buscar(stringBusca);
 		
 	}
 	
 	public void pagAnterior(){
-		System.out.println("ant:"+pagina);
 		pagina--;
 		buscar(stringBusca);	
 	}

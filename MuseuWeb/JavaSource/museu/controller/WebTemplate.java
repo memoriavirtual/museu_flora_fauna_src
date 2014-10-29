@@ -2,33 +2,34 @@ package museu.controller;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 
 import museu.fachadas.remoto.MuseuRemote;
 
+@ApplicationScoped
+@ManagedBean(name="template",eager=true)
 public class WebTemplate implements Serializable{
 	
 	private static final long serialVersionUID = 8525924864372596029L;
-	private String Location = "Onde Voce Esta no Site";
 	private String urlDP;
 	private String urlAcervo;
 	
 	@EJB
 	private MuseuRemote museu;
 
+	@PostConstruct
+	public void init(){
+		System.out.println("Iniciando Template");
+	}
+	
 	public WebTemplate(){
 	}
 	
 	public String preLoad(){
 		return "success";
-	}
-	
-	public String getLocation() {
-		return Location;
-	}
-
-	public void setLocation(String location) {
-		Location = location;
 	}
 
 	public String getUrlDP() {

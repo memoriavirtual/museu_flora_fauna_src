@@ -55,9 +55,7 @@ public class Index implements Serializable{
 	
 	private boolean editandoMapa = false;
 	
-	private boolean testeServicos = false;
-	
-	//private boolean canUpload = true;
+	private Integer abaAtual = 0;
 	
 	private UIData tabelaSlides;
 	
@@ -76,7 +74,6 @@ public class Index implements Serializable{
 
 		mapaBusca = banco.getMapaBusca();
 		tratamentoMapa(mapaBusca);
-		
 		editandoMapa = false;
 	}
 	
@@ -86,9 +83,7 @@ public class Index implements Serializable{
 		poligono.setNome(localAdicionar);
 		this.mapaBusca.getPoligonos().add(poligono);
 
-		tratamentoMapa(this.mapaBusca);	
-		
-		editandoMapa = true;
+		tratamentoMapa(this.mapaBusca);
 
 		this.localAdicionar="";
 		this.poligono="";
@@ -96,14 +91,13 @@ public class Index implements Serializable{
 	
 	public void editarMapa(){
 		editandoMapa = true;
-		testeServicos = false;
+		abaAtual = 5;
 		localAdicionar = "";
 	}
 	
 	public void removerUltimo(){
 		localAdicionar="";
 		poligono="";
-		editandoMapa = true;
 		mapaBusca.getPoligonos().remove(mapaBusca.getPoligonos().size()-1);
 		
 		tratamentoMapa(this.mapaBusca);
@@ -122,6 +116,7 @@ public class Index implements Serializable{
 	public void salvarMapaEdicao(){
 		banco.persisteMapaBusca(this.mapaBusca);
 		FacesUtil.addMessage("Salvo com Sucesso", "Salvo com Sucesso", Constants.INFO);
+		abaAtual = 0;
 		editandoMapa = false;
 	}
 	
@@ -142,8 +137,7 @@ public class Index implements Serializable{
 		}catch(Exception e){
 			FacesUtil.addMessage("Erro ao Salvar Dados", "Erro ao Salvar Dados", Constants.ERROR);
 		}
-		editandoMapa = false;
-		testeServicos = false;
+		abaAtual = 0;
 	}
 	 
 	public String addSlide() throws IOException{
@@ -191,7 +185,6 @@ public class Index implements Serializable{
 		config.getSlides().remove(slide);
 		
 		for(int i = 1;i<config.getSlides().size()+1;i++){
-			System.out.println("valor de i:"+i);
 			config.getSlides().get(i-1).setOrdem(i);
 			banco.updateSlide(config.getSlides().get(i-1));
 		}
@@ -205,7 +198,7 @@ public class Index implements Serializable{
 	}
 	
 	
-	public void testeServicos(){
+	public void testarServicos(){
 		try{
 			museu.getBens("",1,1);
 			if(museu.getBens("",1,1)!=null)
@@ -237,9 +230,7 @@ public class Index implements Serializable{
 		}catch(Exception e){
 			freeGeoUIP = "ERROR:"+Mensagens.getString("erroComunicacaoServico");
 		}
-		
-		testeServicos = true;
-		editandoMapa = false;
+		abaAtual = 1;
 	}
 	
 	public BancoRemote getBanco() {
@@ -363,11 +354,11 @@ public class Index implements Serializable{
 		this.mapaBusca = mapaBusca;
 	}
 
-	public boolean isTesteServicos() {
-		return testeServicos;
+	public Integer getAbaAtual() {
+		return abaAtual;
 	}
 
-	public void setTesteServicos(boolean testeServicos) {
-		this.testeServicos = testeServicos;
+	public void setAbaAtual(Integer abaAtual) {
+		this.abaAtual = abaAtual;
 	}
 }

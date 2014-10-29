@@ -42,21 +42,34 @@
 
 <f:view encoding="ISO-8859-1">
 <body style="font-size:13px;">
-	<div id="wrapper">
-		<header>
-			<h:form>
-				<h:outputText value="#{strings.bemVindo}: #{login.u.nome}" />
-				<div style="clear:both; margin: 5px 5px"></div>
-                <h:commandButton value="#{strings.logoff}" action="#{login.realizarLogoff}" styleClass="btn btn-sm btn-primary" />
-			</h:form>
+	<div class="container">
+		<header class="row">		
+			<div class=" col-10 col-md-10 col-lg-10 col-sm-10 col-xs-10">
+				<div class="panel panel-warning">
+					<div class="panel-heading" style="text-align: center;">
+						#{strings.configuracoesMensagens}
+					</div>
+				 	<div class="panel-body" style="text-align: center;">    
+						<h:outputText value="#{strings.mensagem1}"/>
+					</div>
+				</div>
+			</div>
+			<div class="col-2 col-md-2 col-lg-2 col-sm-2 col-xs-2">
+				<h:form>
+					<h:outputText value="#{strings.bemVindo}: #{login.u.nome}" />
+					<div style="clear:both; margin: 5px 5px"></div>
+	                <h:commandButton value="#{strings.logoff}" action="#{login.realizarLogoff}" 
+	                	styleClass="btn btn-sm btn-primary" style="float:right;" />
+				</h:form>
+			</div>
 		</header>
-		<div id="content">
+		<div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xs-12">
 			<ui:insert name="content">
                 Content
             </ui:insert>
 		</div>
-		<footer class="container">
-			Copyright 2014
+		<footer class="row">
+			Copyright © 2014 - ICMC-USP
 		</footer>
 	</div>
 </body>

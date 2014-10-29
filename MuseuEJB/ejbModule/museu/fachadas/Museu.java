@@ -44,8 +44,6 @@ public class Museu implements MuseuRemote {
 	
 	@Override
 	public void carregarWebServices(){
-		System.out.println("aeooooooooow");
-		System.out.println("x:"+banco.getConfiguracao().getUrlMemoria());
 		init();
 	}
 	
