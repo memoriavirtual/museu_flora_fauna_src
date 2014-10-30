@@ -323,7 +323,7 @@ public class Index implements Serializable{
 	
 	public void tratamentoMapa(Mapa m){
 		List<FeatureVector> poligonos = new ArrayList<>();
-		
+
 		for(Poligono p : m.getPoligonos()){
 			Map<String, String> hash = new HashMap<String, String>();
 			hash.put("string", p.getNome());

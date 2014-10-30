@@ -1,5 +1,3 @@
-insert into usuario values(999,'psergiopoli@gmail.com','Paulo Sergio Jr','h4ck3r');
-
 insert into mapa (id,tipo) values(nextval('mapa_seq'),'busca');
 update mapa set url='#' where id = '1';
 update mapa set latitude='-2512377.8075688' where id = '1';

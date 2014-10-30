@@ -2,6 +2,7 @@ package museu.fachadas;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,6 +13,7 @@ import javax.persistence.Query;
 import museu.entidades.Acesso;
 import museu.entidades.Configuracao;
 import museu.entidades.Mapa;
+import museu.entidades.Poligono;
 import museu.entidades.Slide;
 import museu.entidades.Usuario;
 import museu.fachadas.remoto.BancoRemote;
@@ -66,6 +68,7 @@ public class Banco implements BancoRemote,Serializable{
         else{
         	c = new Configuracao();
         	c.setId("Padrao");
+        	c.setUrlFreeGeoIP("http://freegeoip.net/json/");
         	em.persist(c);
         }
         return c;
@@ -161,7 +164,17 @@ public class Banco implements BancoRemote,Serializable{
 	@Override
 	public Mapa getMapaBusca() {
 		Query q = em.createQuery("SELECT m FROM Mapa m where m.tipo='busca'");
-		return (Mapa) q.getSingleResult();
+		if(q.getResultList().size() > 0){
+			return (Mapa) q.getSingleResult();
+			
+		}else{
+			Mapa m = new Mapa();
+			m.setTipo("busca");
+			List<Poligono> p = new ArrayList<>();
+			m.setPoligonos(p);
+			em.persist(m);
+			return m;
+		}
 	}
 	
 	@Override
